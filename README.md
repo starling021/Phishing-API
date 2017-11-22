@@ -24,16 +24,19 @@ To Use :
 2)  Make sure the "username" and "password" fields are named as such
 
 	`<INPUT NAME="username">`
+	
 	`<INPUT NAME="password">`
 	
 3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Site)
 
 	`<INPUT NAME="project" VALUE="My_Project_Here" TYPE="hidden">`
+	
 	`<INPUT NAME="redirect" VALUE="https://site_to_redirect_to" TYPE="hidden">`
 	
 4) Optionally include hidden input fields for altering the Slack bot's behavior (Name and Emoji)
 
 	`<INPUT NAME="slackbotname" VALUE="SuckerBot" TYPE="hidden">`
+	
 	`<INPUT NAME="slackemoji" VALUE=":see_no_evil:" TYPE="hidden">`
 	
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE using your basic auth credentials
