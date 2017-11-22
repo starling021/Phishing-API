@@ -2,6 +2,9 @@
 Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot
 
 
+This is intended to be a "quick and dirty" solution when Phishing.  For better results, use Evilnginx or another solution.  This is for someone who wants to quickly clone a site and start collecting credentials within minutes.  Enjoy!
+
+
 To Setup :
 
 1) Import the DB SQL Dump Schema to a new MySQL Instance
