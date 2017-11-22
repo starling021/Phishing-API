@@ -39,4 +39,4 @@ To Use :
 	
 	`<INPUT NAME="slackemoji" VALUE=":see_no_evil:" TYPE="hidden">`
 	
-5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE using your basic auth credentials
+5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
