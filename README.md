@@ -45,6 +45,6 @@ To Use :
 
 ![Notification to Slack Channel](https://i.imgur.com/BIYQWry.jpg)
 
-
-
-![View Captured Credentials via Web](https://i.imgur.com/UjMVPJ3.jpg)
+                  
+            
+![View Captured Credentials via Web](https://i.imgur.com/ssd1R1V.jpg)
