@@ -1,9 +1,9 @@
 # Phishing-API
 Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot
 
-<img src="https://imgur.com/BIYQWry">
+![Notification to Slack Channel](https://imgur.com/BIYQWry)
 
-<img src="https://imgur.com/UjMVPJ3">
+![View Captured Credentials via Web](https://imgur.com/UjMVPJ3)
 
 
 To Setup :
