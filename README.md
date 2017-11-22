@@ -1,10 +1,6 @@
 # Phishing-API
 Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot
 
-![Notification to Slack Channel](https://imgur.com/BIYQWry)
-
-![View Captured Credentials via Web](https://imgur.com/UjMVPJ3)
-
 
 To Setup :
 
@@ -45,3 +41,10 @@ To Use :
 	`<INPUT NAME="slackemoji" VALUE=":see_no_evil:" TYPE="hidden">`
 	
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
+
+
+![Notification to Slack Channel](https://i.imgur.com/BIYQWry.jpg)
+
+
+
+![View Captured Credentials via Web](https://i.imgur.com/UjMVPJ3.jpg)
