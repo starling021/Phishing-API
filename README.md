@@ -1,6 +1,11 @@
 # Phishing-API
 Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot
 
+<img src="https://imgur.com/BIYQWry">
+
+<img src="https://imgur.com/UjMVPJ3">
+
+
 To Setup :
 
 1) Import the DB SQL Dump Schema to a new MySQL Instance
