@@ -9,9 +9,9 @@ To Setup :
 
 1) Import the DB SQL Dump Schema to a new MySQL Instance
 
-2) Host the PHP in a web service
+2) Host the PHP from a web service (Apache, Nginx, IIS, etc)
 
-3) Configure dbconfig.php
+3) Configure dbconfig.php and index.php variables
 
 4) Limit Access to the "Results" Directory (Apache's Basic Auth is Recommended)
 
