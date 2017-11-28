@@ -4,7 +4,7 @@
 $slackurl = "https://hooks.slack.com/services/TOKEN_GOES_HERE";
 $slackchannel = "#SLACK_CHANNEL";
 $slackemoji = ":see_no_evil:";
-$slackbotname = "SuckerBot";
+$slackbotname = "PhishBot";
 
 // Your API URL Here (https://This web site)
 $APIURI = "https://YOUR_API_HERE";
