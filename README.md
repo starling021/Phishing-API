@@ -46,7 +46,7 @@ To Use :
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
 
 
-![Notification to Slack Channel](https://i.imgur.com/BIYQWry.jpg)
+![Notification to Slack Channel](https://i.imgur.com/uTFhyCC.jpg)
 
                   
             
