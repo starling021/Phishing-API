@@ -15,7 +15,7 @@ To Setup :
 
 4) Limit Access to the "Results" Directory (Apache's Basic Auth is Recommended)
 
-5) Use SSL and a Domain for the Hosted API (More Believable for Phishing)
+5) Use SSL and a Domain for the Hosted API (Configure DNS MASKED Forwarding Instead of an A Name Record for Best Results)
 
 
 
