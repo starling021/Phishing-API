@@ -101,6 +101,42 @@ if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $pass)){
 } else {
     $passstrength = ":thumbsdown:";
 }
+    
+//Checks HaveIBeenPwned DB
+$sha1pass = strtoupper(sha1($pass));
+
+//echo $sha1pass."\r\n";
+
+$cmd2 = 'curl -s -X GET "https://api.pwnedpasswords.com/range/'.substr($sha1pass, 0, 5).'"';
+
+//echo $cmd2;
+
+exec($cmd2);
+
+// Executes the curl command
+exec($cmd2,$pwned);
+
+$pwnedarray = array();
+
+foreach($pwned as $pwned2){
+$pwnedarray[] = substr($pwned2, 0, strrpos($pwned2, ':'));
+}
+
+if (in_array(substr($sha1pass, 5), $pwnedarray)) {
+    $TroyHunt = "yes";
+} else $TroyHunt = "no";
+
+// If the Password is Set, Change Slack Message
+$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
+
+} else {
+
+// If the Password is Not Set, Do Not Include Password Strength in Slack Message
+$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)";
+
+}
+
+if($TroyHunt == "yes"){$message = $message."\r\n*_HaveIBeenPwned Hit_*";}
 
 // If the Password is Set, Change Slack Message
 $message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
