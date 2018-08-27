@@ -28,7 +28,7 @@ CREATE TABLE `stolencreds` (
   `entered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(50) DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
-  `token` varchar(1000) DEFAULT NULL,
+  `token` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
