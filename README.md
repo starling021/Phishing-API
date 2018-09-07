@@ -52,4 +52,4 @@ This is intended to be a "quick and dirty" solution when Phishing.  For better r
 
                   
             
-![View Captured Credentials via Web](https://i.imgur.com/L8yYRMQ.png)
+![View Captured Credentials via Web](https://i.imgur.com/iLPU2pH.png)
