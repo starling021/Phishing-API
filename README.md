@@ -48,8 +48,8 @@ This is intended to be a "quick and dirty" solution when Phishing.  For better r
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
 
 
-![Notification to Slack Channel](https://i.imgur.com/uTFhyCC.jpg)
+![Notification to Slack Channel](https://i.imgur.com/L8yYRMQ.png)
 
                   
             
-![View Captured Credentials via Web](https://i.imgur.com/OmEwX5Z.jpg)
+![View Captured Credentials via Web](https://i.imgur.com/L8yYRMQ.png)
