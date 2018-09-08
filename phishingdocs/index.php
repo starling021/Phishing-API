@@ -348,8 +348,9 @@ exec($cmd6);
 ?>
 <CENTER>
 <br><br>
-<!-- Full width -->
-<button class="btn" style="width:100%"><i class="fa fa-download"></i><a href="Phishing.docx">Download</a></button>
+<form action="Phishing.docx" method="get">
+<button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i>Download</button>
+</form>
 </CENTER>
 <?php
 
