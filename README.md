@@ -78,7 +78,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
                   
             
 	    
-![Downloading and Openinig Doc](https://i.imgur.com/BDC6kXC.png)
+![Downloading and Openinig Doc](https://i.imgur.com/0wQZJvy.png)
 
                   
             
