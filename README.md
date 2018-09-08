@@ -4,6 +4,10 @@ Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/We
 
 This is intended to be a "quick and dirty" solution when Phishing.  For better results, use Evilnginx or another solution.  This is for someone who wants to quickly clone a site, start collecting credentials within minutes, and be notified in real time when there's a catch!  Enjoy!
 
+## Update
+
+I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder or ntlmrelayx you can capture NTLMv2 hashes!
+
 
 # To Setup :
 
@@ -19,7 +23,7 @@ This is intended to be a "quick and dirty" solution when Phishing.  For better r
 
 
 
-# To Use : 
+# To Use the API for Capturing Credentials : 
 
 1) Point your HTML Form to https://YOUR-API-HERE
 
@@ -53,3 +57,27 @@ This is intended to be a "quick and dirty" solution when Phishing.  For better r
                   
             
 ![View Captured Credentials via Web](https://i.imgur.com/iLPU2pH.png)
+
+
+# To Use the API for Generating Word Doc Payloads :
+
+1) Modify /phishingdocs/index.php to include your Slack Webhook parameters
+
+2) Browse out to YOUR_URL.com/phishingdocs to generate your DOCX
+
+3) Optionally set up Responder or ntlmrelayx
+
+4) Customize your doc, email it off, and Wait for the Slack Alerts!  
+
+Bonus points if you use your docs as honeypot bait! :)
+
+
+![Payload Generation](https://i.imgur.com/nyrJEz7.png)
+
+                  
+            
+![Downloading and Openinig Doc](https://i.imgur.com/yHt0AuD.png)
+
+                  
+            
+![Phishing Doc Slack Alert](https://i.imgur.com/dQahnC5.png)
