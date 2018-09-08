@@ -364,7 +364,7 @@ else {
 <TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Orginization</TH>
 </TR>
 <TR>
-<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https">https</option></SELECT></TD><TD><input type="text" name="URL" value="yourdomain.com"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD>
+<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https">https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD>
 </TR>
 </TABLE>
 <br><br><button class="btn"><i class="fa fa-download" type="submit"></i>Generate Payload!</button>
