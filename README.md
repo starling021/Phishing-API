@@ -69,15 +69,18 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 4) Customize your doc, email it off, and Wait for the Slack Alerts!  
 
-Bonus points if you use your docs as honeypot bait! :)
+**Bonus points if you use your docs as honeypot bait! :)**
+
 
 
 ![Payload Generation](https://i.imgur.com/nyrJEz7.png)
 
                   
             
-![Downloading and Openinig Doc](https://i.imgur.com/yHt0AuD.png)
+	    
+![Downloading and Openinig Doc](https://i.imgur.com/BDC6kXC.png)
 
                   
             
+	    
 ![Phishing Doc Slack Alert](https://i.imgur.com/dQahnC5.png)
