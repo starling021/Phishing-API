@@ -75,7 +75,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 
-![Payload Generation](https://i.imgur.com/nyrJEz7.png)
+![Payload Generation](https://i.imgur.com/PLJ1miv.png)
 
                   
             
