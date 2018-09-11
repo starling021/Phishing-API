@@ -85,7 +85,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
                   
             
 	    
-![Phishing Doc Slack Alert](https://i.imgur.com/dQahnC5.png)
+![Phishing Doc Slack Alert](https://i.imgur.com/FXdDm6t.png)
 
 
 
