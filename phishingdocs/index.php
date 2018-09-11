@@ -5,6 +5,7 @@ $slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_TOKEN_
 $slackchannel = "#YOUR_SLACK_CHANNEL_HERE";
 $slackemoji = ":page_facing_up:";
 $slackbotname = "Phished_Document";
+$APIResultsURL = "https://YOUR_PHISHING_API_HERE/phishingdocs/results";
 
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -50,19 +51,25 @@ $result = $conn->query($sql);
 
 if($target != "" && $org != ""){
 
-$message = "Document opened by ".$target." at ".$org."!";
+$orglink = "(<".$APIResultsURL."|".$org.">)";
+
+$message = "Document opened by ".$target." at ".$orglink."!";
 
 }
 
 if($target == "" && $org != ""){
 
-$message = "Document opened at ".$org."!";
+$orglink = "(<".$APIResultsURL."|".$org.">)";
+
+$message = "Document opened at ".$orglink."!";
 
 }
 
 if($target != "" && $org == ""){
 
-$message = "Document opened by ".$target."!";
+$targetlink = "(<".$APIResultsURL."|".$targetlink.">)";
+
+$message = "Document opened by ".$targetlink."!";
 
 }
 
