@@ -93,3 +93,6 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 ![Phishing Doc Results](https://i.imgur.com/KGJtOJA.png)
+
+
+Lastly, I plan to add support for grabbing NTLMv2 tokens and username and throwing them into the Results DB as well soon.  Stay tuned!
