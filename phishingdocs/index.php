@@ -51,7 +51,7 @@ $result = $conn->query($sql);
 
 if($target != "" && $org != ""){
 
-$orglink = "(<".$APIResultsURL."|".$org.">)";
+$orglink = "<".$APIResultsURL."|".$org.">";
 
 $message = "Document opened by ".$target." at ".$orglink."!";
 
@@ -59,7 +59,7 @@ $message = "Document opened by ".$target." at ".$orglink."!";
 
 if($target == "" && $org != ""){
 
-$orglink = "(<".$APIResultsURL."|".$org.">)";
+$orglink = "<".$APIResultsURL."|".$org.">";
 
 $message = "Document opened at ".$orglink."!";
 
@@ -67,7 +67,7 @@ $message = "Document opened at ".$orglink."!";
 
 if($target != "" && $org == ""){
 
-$targetlink = "(<".$APIResultsURL."|".$targetlink.">)";
+$targetlink = "<".$APIResultsURL."|".$targetlink.">";
 
 $message = "Document opened by ".$targetlink."!";
 
