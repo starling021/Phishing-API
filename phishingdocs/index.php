@@ -8,6 +8,7 @@ $slackbotname = "Phished_Document";
 
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
+if(isset($_SERVER['HTTP_USER_AGENT'])){$useragent = $_SERVER['HTTP_USER_AGENT'];}else{$useragent = "";}
 if(isset($_REQUEST['target'])){$target = $_REQUEST['target'];}
 if(isset($_REQUEST['org'])){$org = $_REQUEST['org'];}
 if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}
@@ -42,7 +43,7 @@ $resultselect = $conn->query($sqlselect);
 if(mysqli_num_rows($resultselect) == 0){
 
 // Inserts Captured Information Into MySQL DB
-$sql = "INSERT INTO requests (Datetime, IP, Target, Org) VALUES (now(), '$ip','$target','$org');";
+$sql = "INSERT INTO requests (Datetime, IP, Target, Org, UA) VALUES (now(), '$ip','$target','$org','$useragent');";
 $result = $conn->query($sql);
 
 
