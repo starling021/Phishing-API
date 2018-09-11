@@ -71,6 +71,8 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 5) Email your doc and wait for the Slack alerts!  
 
+6) Set up your php.ini to allow uploads of at least 15MB and enable browsecap.ini for parsing UserAgent strings, otherwise some functionality may be limited.
+
 **Bonus points if you use your docs as honeypot bait! :)**
 
 
