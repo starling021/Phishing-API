@@ -6,7 +6,7 @@ This is intended to be a "quick and dirty" solution when Phishing.  For better r
 
 ## Update
 
-I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder or ntlmrelayx you can capture NTLMv2 hashes!
+I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder or ntlmrelayx you can capture NTLMv2 hashes!  NOW with newly added support for weaponizing your own Word doc templates!  Just upload an existing doc and download it again to hook it.
 
 
 # To Setup :
@@ -63,11 +63,13 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 1) Modify /phishingdocs/index.php to include your Slack Webhook parameters
 
-2) Browse out to YOUR_URL.com/phishingdocs to generate your DOCX
+2) Create /var/www/uploads Path and make sure your web user has sudoers access
 
-3) Optionally set up Responder or ntlmrelayx
+3) Browse out to YOUR_URL.com/phishingdocs to generate your DOCX
 
-4) Customize your doc, email it off, and Wait for the Slack Alerts!  
+4) Optionally set up Responder or ntlmrelayx
+
+5) Email your doc and wait for the Slack alerts!  
 
 **Bonus points if you use your docs as honeypot bait! :)**
 
