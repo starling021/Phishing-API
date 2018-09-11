@@ -7,6 +7,9 @@ $slackemoji = ":page_facing_up:";
 $slackbotname = "Phished_Document";
 $APIResultsURL = "https://YOUR_PHISHING_API_HERE/phishingdocs/results";
 
+$browser = get_browser($_SERVER[‘HTTP_USER_AGENT’], true);
+//print_r($browser);
+
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
 if(isset($_SERVER['HTTP_USER_AGENT'])){$useragent = $_SERVER['HTTP_USER_AGENT'];}else{$useragent = "";}
@@ -37,7 +40,7 @@ if ($conn->connect_error) {
 if(isset($target)){
 
 // Looks Up Recent Requests to Prevent Flooding
-$sqlselect = "SELECT * FROM requests WHERE IP = '$ip' AND Target = '$target' AND Org = '$org' AND Datetime >= NOW() - INTERVAL 7 SECOND;";
+$sqlselect = "SELECT * FROM requests WHERE IP = '$ip' AND Target = '$target' AND Org = '$org' AND Datetime >= NOW() - INTERVAL 15 SECOND;";
 $resultselect = $conn->query($sqlselect);
 
 // If There Isn't a Recent (Within 1 Second) Similar Request..
@@ -53,7 +56,7 @@ if($target != "" && $org != ""){
 
 $orglink = "<".$APIResultsURL."|".$org.">";
 
-$message = "Document opened by ".$target." at ".$orglink."!";
+$message = "Document opened by ".$target." at ".$orglink." on ".$browser['platform']."!";
 
 }
 
@@ -61,7 +64,7 @@ if($target == "" && $org != ""){
 
 $orglink = "<".$APIResultsURL."|".$org.">";
 
-$message = "Document opened at ".$orglink."!";
+$message = "Document opened at ".$orglink." on ".$browser['platform']."!";
 
 }
 
@@ -69,7 +72,7 @@ if($target != "" && $org == ""){
 
 $targetlink = "<".$APIResultsURL."|".$targetlink.">";
 
-$message = "Document opened by ".$targetlink."!";
+$message = "Document opened by ".$targetlink." on ".$browser['platform']."!";
 
 }
 
