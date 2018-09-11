@@ -35,7 +35,8 @@ CREATE TABLE `requests` (
   `IP` varchar(100) DEFAULT NULL,
   `Target` varchar(100) DEFAULT NULL,
   `Org` varchar(100) DEFAULT NULL,
-  `NTLMv2` varchar(1000) DEFAULT NULL
+  `NTLMv2` varchar(1000) DEFAULT NULL,
+  `UA` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
