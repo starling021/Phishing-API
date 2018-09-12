@@ -56,7 +56,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
                   
             
-![View Captured Credentials via Web](https://i.imgur.com/iLPU2pH.png)
+![View Captured Credentials via Web](https://i.imgur.com/2ayiRRW.png)
 
 
 # To Use the API for Generating Word Doc Payloads :
