@@ -276,7 +276,7 @@ $result = $conn->query($sql);
 
 ?>
     <h2><FONT COLOR="#FFFFFF">Stolen Credentials</FONT></h2>
-<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH>DEL</TH></TR>
+<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH>Actions</TH></TR>
 <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
