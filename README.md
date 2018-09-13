@@ -95,4 +95,11 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 ![Phishing Doc Results](https://i.imgur.com/KGJtOJA.png)
 
 
-Lastly, I plan to add support for grabbing NTLMv2 tokens and username and throwing them into the Results DB as well soon.  Stay tuned!
+
+
+![HashBot](https://i.imgur.com/qZFGmXA.png)
+
+
+
+
+Currently, I'm running Responder in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)
