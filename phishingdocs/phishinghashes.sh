@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SlackURL="https://hooks.slack.com/services/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"
-SlackChannel="#phishing"
-APIResultsURL="https://authportals.com/phishingdocs/results"
+SlackURL="https://hooks.slack.com/services/YOUR_SLACK_WEBHOOK_URL_HERE"
+SlackChannel="#YOUR_SLACK_CHANNEL_HERE"
+APIResultsURL="https://YOUR_API_DOMAIN_HERE/phishingdocs/results"
 
 files=$(cd /home/ubuntu/Responder/logs && ls *.txt | awk '{print $1}');
 
