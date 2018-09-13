@@ -127,7 +127,7 @@ if($target != "" && $org != ""){
 
 $orglink = "<".$APIResultsURL."|".$org.">";
 
-$message = "Document opened by ".$target." at ".$orglink." on ".$browser['platform']."!";
+$message = "> Document opened by ".$target." at ".$orglink." on ".$browser['platform']."!";
 
 }
 
@@ -135,7 +135,7 @@ if($target == "" && $org != ""){
 
 $orglink = "<".$APIResultsURL."|".$org.">";
 
-$message = "Document opened at ".$orglink." on ".$browser['platform']."!";
+$message = "> Document opened at ".$orglink." on ".$browser['platform']."!";
 
 }
 
@@ -143,7 +143,7 @@ if($target != "" && $org == ""){
 
 $targetlink = "<".$APIResultsURL."|".$target.">";
 
-$message = "Document opened by ".$targetlink." on ".$browser['platform']."!";
+$message = "> Document opened by ".$targetlink." on ".$browser['platform']."!";
 
 }
 
