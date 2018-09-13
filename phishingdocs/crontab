@@ -20,5 +20,7 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-# SCHEDULED HASH CHECK EVERY MINUTE FOR RESPONDER CAPTURED HASHES
+
+
+# SCHEDULED HASH CHECK EVERY MINUTE FOR RESPONDER CAPTURED HASHES AND THROWS INTO THE RESULTS DATABASE
 * * * * * /var/www/html/phishingdocs/./phishinghashes.sh
