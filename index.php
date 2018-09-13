@@ -53,19 +53,19 @@ $resulttrophy = $conn->query($sqltrophy);
 while($row = $resulttrophy->fetch_assoc()) {
 
 if($row["Title"] == "MostDedicated"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F 'initial_comment=".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 echo $cmdtrophy;
 exec($cmdtrophy);
 }
 
 
 if($row["Title"] == "MostDelayed"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F 'initial_comment=".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
 if($row["Title"] == "MostDisclosedPWs"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F 'initial_comment=".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
