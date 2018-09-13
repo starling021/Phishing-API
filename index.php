@@ -1,11 +1,12 @@
 <?php
 
 // Set Slack Webhook URL
-$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_URL";
-$slackchannel = "#YOUR_SLACK_CHANNEL";
+$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_URL_HERE";
+$slackchannel = "#YOUR_SLACK_CHANNEL_HERE";
 $slackemoji = ":fishing_pole_and_fish:";
 $slackbotname = "PhishBot";
-$SlackLegacyToken = "YOUR_SLACK_LEGACY_TOKEN";
+// OR BOT TOKEN
+$SlackLegacyToken = "YOUR_SLACK_LEGACY_TOKEN_OR_SLACKBOT_TOKEN_HERE";
 
 // Set Optional BEEF Hook URL
 //$BEEFUrl = "https://pondurancelab.com:3000/hook.js";
@@ -52,18 +53,19 @@ $resulttrophy = $conn->query($sqltrophy);
 while($row = $resulttrophy->fetch_assoc()) {
 
 if($row["Title"] == "MostDedicated"){
-$cmdtrophy = "curl -F file=@TrophyMostDedicated.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+echo $cmdtrophy;
 exec($cmdtrophy);
 }
 
 
 if($row["Title"] == "MostDelayed"){
-$cmdtrophy = "curl -F file=@TrophyMostDelayed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
 if($row["Title"] == "MostDisclosedPWs"){
-$cmdtrophy = "curl -F file=@TrophyMostDisclosed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
