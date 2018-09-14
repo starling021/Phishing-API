@@ -219,7 +219,7 @@ SELECT DATE_FORMAT(MAX(entered), '%Y-%m-%d') as LastDate,username
 FROM stolencreds
 WHERE location = InProject
 AND username = InUser) iq
-WHERE DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL 3 DAY) = LastDate
+WHERE datediff(DATE_FORMAT(NOW(), '%Y-%m-%d'), LastDate) >= 2
 UNION
 -- MOST DISCLOSED PASSWORDS
 SELECT 'MostDisclosedPWs' as Title,username
