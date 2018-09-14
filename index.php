@@ -176,7 +176,7 @@ $haveibeenpwnedhits = $arraywithcount[substr($sha1pass, 5)];
 
 // If the Password is so non-unique, give a Trophy
 if ($haveibeenpwnedhits >= "500"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. (".$haveibeenpwnedhits." times!) - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
