@@ -236,7 +236,13 @@ if ($conn->connect_error) {
 <?php
 
 // Show Credentails for the Selected Project
-$sql = "SELECT * FROM requests;";
+if(isset($_REQUEST['UUID'])){
+$UUID = $_REQUEST['UUID'];
+
+$UUID = filter_var($UUID, FILTER_SANITIZE_SPECIAL_CHARS);
+$UUID = mysqli_real_escape_string($conn, $UUID);
+
+$sql = "SELECT * FROM requests WHERE UUID = '$UUID';";
 $result = $conn->query($sql);
 
 ?>
@@ -254,6 +260,7 @@ printf($conn->error);
 
 
 $conn->close();
+}
 ?></TABLE>
 </CENTER>
 </BODY>
