@@ -34,7 +34,8 @@ CREATE TABLE `Notifications` (
   `Type` varchar(100) DEFAULT NULL,
   `API_Token` varchar(1000) DEFAULT NULL,
   `Channel` varchar(1000) DEFAULT NULL,
-  `UUID` varchar(1000) DEFAULT NULL
+  `UUID` varchar(1000) DEFAULT NULL,
+  `Datetime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,7 +53,7 @@ CREATE TABLE `requests` (
   `Org` varchar(100) DEFAULT NULL,
   `NTLMv2` varchar(1000) DEFAULT NULL,
   `UA` varchar(1000) DEFAULT NULL,
-  `UUID` varchar(1000) DEFAULT NULL
+  `UUID` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,9 +93,11 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateNotificationRef`(IN InType VARCHAR(100), IN InAPI_Token VARCHAR(1000), IN InChannel VARCHAR(100), IN InUUID VARCHAR(1000))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateNotificationRef`(IN InType VARCHAR(100), IN InAPI_Token VARCHAR(1000), IN InChannel VARCHAR(100))
 BEGIN
-INSERT INTO Notifications (Type, API_Token, Channel, UUID) VALUES (InType, InAPI_Token, InChannel, InUUID);
+SET @UUID = UUID();
+INSERT INTO Notifications (Type, API_Token, Channel, UUID, Datetime) VALUES (InType, InAPI_Token, InChannel, @UUID, now());
+SELECT @UUID AS UUID;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -113,7 +116,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetNotificationRef`(IN InUUID VARCHAR(1000))
 BEGIN
-SELECT * FROM Notifications WHERE UUID = InUUID;
+SELECT * FROM Notifications WHERE UUID = InUUID ORDER BY Datetime desc;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -130,9 +133,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequests`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100), IN InUA VARCHAR(1000))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequests`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100), IN InUA VARCHAR(1000), IN InUUID VARCHAR(1000))
 BEGIN
-INSERT INTO requests (Datetime, IP, Target, Org, UA) VALUES (now(), InIP,InTarget,InOrg,InUA);
+INSERT INTO requests (Datetime, IP, Target, Org, UA, UUID) VALUES (now(), InIP,InTarget,InOrg,InUA,InUUID);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -152,7 +155,11 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MatchHashes`(IN InIP VARCHAR(100), IN InHash VARCHAR(1000))
 BEGIN
 UPDATE requests SET NTLMv2 = CONCAT_WS(InHash, InHash) WHERE IP = InIP;
-SELECT DISTINCT Target,Org FROM requests WHERE IP = InIP;
+SELECT DISTINCT rq.Target,rq.Org,nt.API_Token,nt.Channel,rq.UUID FROM requests rq 
+INNER JOIN Notifications nt on nt.UUID = rq.UUID
+WHERE rq.IP = InIP
+ORDER BY nt.Datetime DESC
+LIMIT 1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -210,7 +217,7 @@ select 'MostDedicated' as Title,username
 FROM (
 select username,count(password) as count from stolencreds sc WHERE sc.location = InProject AND sc.username = InUser GROUP BY username
 ) sc
-WHERE count = 3
+WHERE count = 2
 UNION
 -- MOST DELAYED
 SELECT 'MostDelayed' as Title,username 
@@ -226,7 +233,7 @@ SELECT 'MostDisclosedPWs' as Title,username
 FROM (
 select username,count(DISTINCT password) as countpass from stolencreds WHERE location = InProject AND username = InUser GROUP BY username,password
 ) iq
-WHERE countpass = 3;
+WHERE countpass = 2;
 
 END ;;
 DELIMITER ;
@@ -244,4 +251,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-13 17:03:53
+-- Dump completed on 2018-09-16  1:15:35
