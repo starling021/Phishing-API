@@ -1,12 +1,12 @@
 # Phishing-API
-Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
+Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
 
 
 This is intended to be a "quick and dirty" solution when Phishing.  For better results, use Evilnginx or another solution.  This is for someone who wants to quickly clone a site, start collecting credentials within minutes, and be notified in real time when there's a catch!  Enjoy!
 
 ## Update
 
-I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder or ntlmrelayx you can capture NTLMv2 hashes!  NOW with newly added support for weaponizing your own Word doc templates!  Just upload an existing doc and download it again to hook it.
+I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder in a background session you can capture NTLMv2 hashes and be notified via Slack!  Support for weaponizing your own Word doc templates is built in.  Just upload an existing doc and download it again to hook it.
 
 
 # To Setup :
@@ -67,11 +67,11 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 3) Browse out to YOUR_URL.com/phishingdocs to generate your DOCX
 
-4) Optionally set up Responder or ntlmrelayx
+4) Optionally set up Responder in a background process and run `phishinghashes.sh` every minute or so with cron
 
-5) Email your doc and wait for the Slack alerts!  
+5) Set up your php.ini to allow uploads of at least 15MB and enable browsecap.ini for parsing UserAgent strings, otherwise some functionality may be limited.  
 
-6) Set up your php.ini to allow uploads of at least 15MB and enable browsecap.ini for parsing UserAgent strings, otherwise some functionality may be limited.
+6) Email your doc and wait for the Slack alerts!
 
 **Bonus points if you use your docs as honeypot bait! :)**
 
