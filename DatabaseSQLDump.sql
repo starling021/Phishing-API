@@ -224,8 +224,7 @@ SELECT 'MostDelayed' as Title,username
 FROM (
 SELECT DATE_FORMAT(MAX(entered), '%Y-%m-%d') as LastDate,username
 FROM stolencreds
-WHERE location = InProject
-AND username = InUser) iq
+WHERE location = InProject) iq
 WHERE datediff(DATE_FORMAT(NOW(), '%Y-%m-%d'), LastDate) >= 2
 UNION
 -- MOST DISCLOSED PASSWORDS
