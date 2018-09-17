@@ -23,7 +23,7 @@ if(isset($_REQUEST['slackchannel'])){$slackchannel = $_REQUEST['slackchannel']; 
 else
 {$slackchannel = "#phishing";}
 $slackemoji = ":page_facing_up:";
-$slackbotname = "Phished_Document";
+$slackbotname = "DocBot";
 // ------------------------ SET THIS MANUALLY ----------------------------------------------------------------------------------
 $APIResultsURL = "https://YOUR_API_DOMAIN_HERE.com/phishingdocs/results";
 //$uniqueid = uniqid();
@@ -87,8 +87,6 @@ if(isset($_SERVER['HTTP_USER_AGENT'])){$useragent = mysqli_real_escape_string($c
 if(isset($_REQUEST['target'])){$target = mysqli_real_escape_string($conn2, $_REQUEST['target']);}
 if(isset($_REQUEST['org'])){$org = mysqli_real_escape_string($conn2, $_REQUEST['org']);}
 
-$slackbotname = $slackbotname." (".$ip.")";
-
 // Makes Password Safe for DB
 if(isset($target)){$target = stripslashes($target); $target = filter_var($target, FILTER_SANITIZE_SPECIAL_CHARS);}
 if(isset($org)){$org = stripslashes($org); $org = filter_var($org, FILTER_SANITIZE_SPECIAL_CHARS);}
@@ -129,25 +127,19 @@ $conn3->close();
 // Prepares Message for Slack
 if($target != "" && $org != ""){
 
-$orglink = "<".$APIResultsURL."?UUID=".$id."|".$org.">";
-
-$message = "> Document opened by ".$target." at ".$orglink." on ".$browser['platform']."!";
+$message = "> Document opened by ".$target." at ".$org." on ".$browser['platform']."! (<".$APIResultsURL."?UUID=".$id."|".$ip.">)";
 
 }
 
 if($target == "" && $org != ""){
 
-$orglink = "<".$APIResultsURL."|".$org.">";
-
-$message = "> Document opened at ".$orglink." on ".$browser['platform']."!";
+$message = "> Document opened at ".$org." on ".$browser['platform']."! (<".$APIResultsURL."?UUID=".$id."|".$ip.">)";
 
 }
 
 if($target != "" && $org == ""){
 
-$targetlink = "<".$APIResultsURL."|".$target.">";
-
-$message = "> Document opened by ".$targetlink." on ".$browser['platform']."!";
+$message = "> Document opened by ".$target." on ".$browser['platform']."! (<".$APIResultsURL."?UUID=".$id."|".$ip.">)";
 
 }
 
