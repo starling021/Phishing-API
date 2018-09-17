@@ -566,7 +566,7 @@ else {
 <FONT COLOR="#ffffff"><H1>Create a Phishing Word Doc</H1></FONT><br>
 <TABLE>
 <TR>
-<TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Orginization</TH><TH COLSPAN="2">Slack Settings</TH>
+<TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Organization</TH><TH COLSPAN="2">Slack Settings</TH>
 </TR>
 <TR>
 <TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https">https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD><TD align="center"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required - Defaults to Conf</font></TD><TD align="center"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required - Defaults to Conf</font></TD>
