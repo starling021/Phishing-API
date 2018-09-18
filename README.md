@@ -6,7 +6,7 @@ This is intended to be a "quick and dirty" solution when Phishing.  For better r
 
 ## Update
 
-I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder in a background session you can capture NTLMv2 hashes and be notified via Slack!  Support for weaponizing your own Word doc templates is built in.  Just upload an existing doc and download it again to hook it.
+I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder in a background session you can capture NTLMv2 hashes and be notified via Slack!  Support for weaponizing your own Word doc templates is built in.  Just upload an existing doc and download it again to hook it.  You can also choose to use Basic Auth which prompts the user for credentials, just like Phishery does!
 
 
 # To Setup :
@@ -77,15 +77,20 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 
-![Payload Generation](https://i.imgur.com/U748tgn.png)
+![Payload Generation](https://i.imgur.com/LW4BUjN.png)
 
                   
             
 	    
-![Downloading and Openinig Doc](https://i.imgur.com/0wQZJvy.png)
+![Downloading and Openinig Doc](https://i.imgur.com/Sx1b1Z5.png)
+
+
+
+
+![Downloading and Openinig Doc w Auth](https://i.imgur.com/sw8JWQE.png)
 
                   
-            
+
 	    
 ![Phishing Doc Slack Alert](https://i.imgur.com/FXdDm6t.png)
 
@@ -97,7 +102,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 
-![Phishing Doc Results](https://i.imgur.com/KGJtOJA.png)
+![Phishing Doc Results](https://i.imgur.com/JJJWTnZ.png)
 
 
 
