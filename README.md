@@ -21,7 +21,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 
-# To Use the API for Capturing Credentials from Fake Sites : 
+# 1) To Use the API for Capturing Credentials from Fake Sites : 
 
 Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
 
@@ -60,7 +60,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 ![View Captured Credentials via Web](https://i.imgur.com/2ayiRRW.png)
 
 
-# To Use the API for Generating Word Doc Payloads :
+# 2) To Use the API for Generating Word Doc Payloads :
 
 1) Modify /phishingdocs/index.php to include your Slack Webhook parameters
 
