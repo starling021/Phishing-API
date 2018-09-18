@@ -237,11 +237,11 @@ select username,count(DISTINCT password) as countpass from stolencreds WHERE loc
 WHERE countpass = 2
 UNION
 -- MOST PHISH
-SELECT 'MostPhish' as Title,'User' as username
+SELECT 'MostPhish' as Title,iq.countrows as username
 FROM (
 select count(*) as countrows from stolencreds WHERE location = InProject
 ) iq
-WHERE iq.countrows >= 50;
+WHERE iq.countrows IN (50,60,70,80);
 
 END ;;
 DELIMITER ;
@@ -259,4 +259,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-18 15:17:58
+-- Dump completed on 2018-09-18 15:27:03
