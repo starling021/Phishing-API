@@ -68,7 +68,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 3) Browse out to YOUR_URL.com/phishingdocs to generate your DOCX
 
-4) Optionally set up Responder in a background process and run `phishinghashes.sh` every minute or so with cron
+4) Optionally set up [Responder](https://github.com/SpiderLabs/Responder "Responder") in a background process and run `phishinghashes.sh` every minute or so with cron
 
 5) Set up your php.ini to allow uploads of at least 15MB and enable browsecap.ini for parsing UserAgent strings, otherwise some functionality may be limited.  
 
@@ -113,4 +113,4 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 
-Currently, I'm running Responder in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)
+Currently, I'm running [Responder](https://github.com/SpiderLabs/Responder "Responder") in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)
