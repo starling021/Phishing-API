@@ -70,7 +70,7 @@ exec($cmdtrophy3);
 
 
 if($row["Title"] == "MostPhish"){
-$cmdtrophy4 = "curl -F file=@awardgifs/TrophyMostPhish.gif -F 'initial_comment=Gonna need a bigger boat.. - ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy4 = "curl -F file=@awardgifs/TrophyMostPhish.gif -F 'initial_comment=Gonna need a bigger boat.. ".$row["username"]." phish! - ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy4);
 }
 
