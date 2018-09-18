@@ -53,7 +53,9 @@ CREATE TABLE `requests` (
   `Org` varchar(100) DEFAULT NULL,
   `NTLMv2` varchar(1000) DEFAULT NULL,
   `UA` varchar(1000) DEFAULT NULL,
-  `UUID` varchar(1000) NOT NULL
+  `UUID` varchar(1000) NOT NULL,
+  `User` varchar(100) DEFAULT NULL,
+  `Pass` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -76,7 +78,7 @@ CREATE TABLE `requests` (
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckRecentlySubmitted`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100))
 BEGIN
-SELECT * FROM requests WHERE IP = InIP AND Target = InTarget AND Org = InOrg AND Datetime >= NOW() - INTERVAL 10 SECOND;
+SELECT * FROM requests WHERE IP = InIP AND Target = InTarget AND Org = InOrg AND Datetime >= NOW() - INTERVAL 8 SECOND;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -133,9 +135,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequests`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100), IN InUA VARCHAR(1000), IN InUUID VARCHAR(1000))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequests`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100), IN InUA VARCHAR(1000), IN InUUID VARCHAR(1000), IN InUser VARCHAR(100), IN InPass VARCHAR(100))
 BEGIN
-INSERT INTO requests (Datetime, IP, Target, Org, UA, UUID) VALUES (now(), InIP,InTarget,InOrg,InUA,InUUID);
+INSERT INTO requests (Datetime, IP, Target, Org, UA, UUID, User, Pass) VALUES (now(), InIP,InTarget,InOrg,InUA,InUUID,InUser,InPass);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -250,4 +252,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-16  1:15:35
+-- Dump completed on 2018-09-18  1:35:52
