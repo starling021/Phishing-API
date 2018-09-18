@@ -92,6 +92,11 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 
+![Phishing Doc Slack Alert 2](https://i.imgur.com/ku6UTNI.png)
+
+
+
+
 ![Phishing Doc Results](https://i.imgur.com/KGJtOJA.png)
 
 
