@@ -1,8 +1,6 @@
 # Phishing-API
-Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
+This API has two main features.  One allows you to easily deploy cloned landing pages for credential stealing and the other feature is weaponized Word doc creation.  Both are integrated into Slack for real-time alerting.  There's a free service I'm running with a similiar code-base at https://phishapi.com.  
 
-
-This is intended to be a "quick and dirty" solution when Phishing.  For better results, use Evilnginx or another solution.  This is for someone who wants to quickly clone a site, start collecting credentials within minutes, and be notified in real time when there's a catch!  Enjoy!
 
 ## Update
 
@@ -24,6 +22,9 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 # To Use the API for Capturing Credentials : 
+
+Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
+
 
 1) Point your HTML Form to https://YOUR-API-HERE
 
