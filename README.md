@@ -21,7 +21,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 
-# To Use the API for Capturing Credentials : 
+# To Use the API for Capturing Credentials from Fake Sites : 
 
 Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
 
