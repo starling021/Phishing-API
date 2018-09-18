@@ -234,7 +234,14 @@ SELECT 'MostDisclosedPWs' as Title,username
 FROM (
 select username,count(DISTINCT password) as countpass from stolencreds WHERE location = InProject AND username = InUser GROUP BY username,password
 ) iq
-WHERE countpass = 2;
+WHERE countpass = 2
+UNION
+-- MOST PHISH
+SELECT 'MostPhish' as Title,'User' as username
+FROM (
+select count(*) as countrows from stolencreds WHERE location = InProject
+) iq
+WHERE iq.countrows >= 50;
 
 END ;;
 DELIMITER ;
@@ -252,4 +259,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-18  1:35:52
+-- Dump completed on 2018-09-18 15:17:58
