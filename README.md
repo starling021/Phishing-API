@@ -53,7 +53,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
 
 
-![Notification to Slack Channel](https://i.imgur.com/L8yYRMQ.png)
+<img src="https://i.imgur.com/L8yYRMQ.png" width="75%">
 
                   
             
@@ -88,17 +88,17 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 
-<img src="https://i.imgur.com/sw8JWQE.png" width="40%">
+<center><img src="https://i.imgur.com/sw8JWQE.png" width="40%"></center>
 
                   
 
 	    
-![Phishing Doc Slack Alert](https://i.imgur.com/FXdDm6t.png)
+<img src="https://i.imgur.com/FXdDm6t.png" width="75%">
 
 
 
 
-![Phishing Doc Slack Alert 2](https://i.imgur.com/ku6UTNI.png)
+<img src="https://i.imgur.com/ku6UTNI.png" width="75%">
 
 
 
