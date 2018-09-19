@@ -114,4 +114,4 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 <br />
-**Currently, I'm running [Responder](https://github.com/SpiderLabs/Responder "Responder") in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)**</p>
+<b>Currently, I'm running [Responder](https://github.com/SpiderLabs/Responder "Responder") in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)</b></p>
