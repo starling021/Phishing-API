@@ -96,7 +96,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br /><br/>
 <p align="center">
 <img src="https://i.imgur.com/sw8JWQE.png" width="40%"><br />
-<b>Figure 3: If "Auth Prompt" is Selected in Payload Options, Display Basic Auth Prompt to User for Credential Capturing</b>
+<b>Figure 3: If "Auth Prompt" if Selected in Payload Options, Display Basic Auth Prompt to User for Credential Capturing</b>
 </p>
                   
 
