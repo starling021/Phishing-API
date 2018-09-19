@@ -52,13 +52,13 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 	
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
 
-
-<img src="https://i.imgur.com/L8yYRMQ.png" width="75%" align="center">
+<p align="center">
+<img src="https://i.imgur.com/L8yYRMQ.png" width="75%">
 
                   
             
 ![View Captured Credentials via Web](https://i.imgur.com/2ayiRRW.png)
-
+</p>
 
 # 2) To Use the API for Generating Word Doc Payloads :
 
@@ -77,7 +77,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 **Bonus points if you use your docs as honeypot bait! :)**
 
 
-
+<p align="center">
 ![Payload Generation](https://i.imgur.com/LW4BUjN.png)
 
                   
@@ -88,17 +88,17 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 
-<img src="https://i.imgur.com/sw8JWQE.png" width="40%" align="center">
+<img src="https://i.imgur.com/sw8JWQE.png" width="40%" 
 
                   
 
 	    
-<img src="https://i.imgur.com/FXdDm6t.png" width="75%" align="center">
+<img src="https://i.imgur.com/FXdDm6t.png" width="75%">
 
 
 
 
-<img src="https://i.imgur.com/ku6UTNI.png" width="75%" align="center">
+<img src="https://i.imgur.com/ku6UTNI.png" width="75%">
 
 
 
@@ -113,4 +113,4 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 
-Currently, I'm running [Responder](https://github.com/SpiderLabs/Responder "Responder") in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)
+Currently, I'm running [Responder](https://github.com/SpiderLabs/Responder "Responder") in a Screen session with `phishinghashes.sh` scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)</p>
