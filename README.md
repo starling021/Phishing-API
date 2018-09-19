@@ -78,17 +78,17 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 <p align="center">
-![Payload Generation](https://i.imgur.com/LW4BUjN.png)
+<img src="https://i.imgur.com/LW4BUjN.png">
 
                   
             
 	    
-![Downloading and Openinig Doc](https://i.imgur.com/Sx1b1Z5.png)
+<img src="https://i.imgur.com/Sx1b1Z5.png">
 
 
 
 
-<img src="https://i.imgur.com/sw8JWQE.png" width="40%" 
+<img src="https://i.imgur.com/sw8JWQE.png" width="40%">
 
                   
 
@@ -103,12 +103,12 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 
-![Phishing Doc Results](https://i.imgur.com/JJJWTnZ.png)
+<img src="https://i.imgur.com/JJJWTnZ.png">
 
 
 
 
-![HashBot](https://i.imgur.com/qZFGmXA.png)
+<img src="https://i.imgur.com/qZFGmXA.png">
 
 
 
