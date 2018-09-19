@@ -57,7 +57,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br/><br/></p>
                   
 <p align="center">           
-![View Captured Credentials via Web](https://i.imgur.com/2ayiRRW.png)
+<img src="https://i.imgur.com/2ayiRRW.png">
 <br /><br/>
 </p>
 
