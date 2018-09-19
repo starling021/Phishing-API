@@ -1,5 +1,5 @@
 # Phishing-API
-This API has two main features.  One allows you to easily deploy cloned landing pages for credential stealing and the other feature is weaponized Word doc creation.  Both are integrated into Slack for real-time alerting.  There's a free service I'm running with a similiar code-base at https://phishapi.com.  
+This API has two main features.  One allows you to easily deploy cloned landing pages for credential stealing and the other feature is weaponized Word doc creation.  Both are integrated into Slack for real-time alerting.  <b>I'm currently running this same code for those that don't want to implement their own environment as a free service @ https://phishapi.com!  </b>
 
 
 ## Update
