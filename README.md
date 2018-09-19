@@ -88,7 +88,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 
 
-![Downloading and Openinig Doc w Auth](https://i.imgur.com/sw8JWQE.png)
+<img src="https://i.imgur.com/sw8JWQE.png" width="40%">
 
                   
 
