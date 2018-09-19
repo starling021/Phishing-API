@@ -77,7 +77,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 6) Email your doc and wait for the Slack alerts!
 
-**Bonus points if you use your docs as honeypot bait! :)**
+<p align="center"><b>Bonus points if you use your docs as honeypot bait! :)</b></p>
 
 <br /><br/>
 <p align="center">
