@@ -53,12 +53,12 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
 
 <p align="center">
-<img src="https://i.imgur.com/L8yYRMQ.png" width="75%">
+<img src="https://i.imgur.com/L8yYRMQ.png" width="75%"><br />
 <b>Figure 1: Someone Entered Credentials into the Fake Portal - Slack Alert</b>
 <br/><br/></p>
                   
 <p align="center">           
-<img src="https://i.imgur.com/2ayiRRW.png">
+<img src="https://i.imgur.com/2ayiRRW.png"><br />
 <b>Figure 2: Clicking the Slack Link Allows Viewing Credentials</b>
 <br /><br/>
 </p>
@@ -81,49 +81,49 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/LW4BUjN.png">
+<img src="https://i.imgur.com/LW4BUjN.png"><br />
 <b>Figure 1: Web Based Payload Generation - Create New Doc or Upload Existing w/ Payload Options</b>
 </p>
                   
             
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/Sx1b1Z5.png">
+<img src="https://i.imgur.com/Sx1b1Z5.png"><br />
 <b>Figure 2: Opening Document Generated (New) by Service</b>
 </p>
 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/sw8JWQE.png" width="40%">
+<img src="https://i.imgur.com/sw8JWQE.png" width="40%"><br />
 <b>Figure 3: If "Auth Prompt" is Selected in Payload Options, Display Basic Auth Prompt to User for Credential Capturing</b>
 </p>
                   
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/FXdDm6t.png" width="75%">
+<img src="https://i.imgur.com/FXdDm6t.png" width="75%"><br />
 <b>Figure 4: HTTP Beacon is Selected by Default and Alerts When the Target Opens the Document</b>
 </p>
 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/ku6UTNI.png" width="75%">
+<img src="https://i.imgur.com/ku6UTNI.png" width="75%"><br />
 <b>Figure 5: If Credentials are Entered from Figure 3 Above, Notify via Slack When Captured</b>
 </p>
 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/JJJWTnZ.png">
+<img src="https://i.imgur.com/JJJWTnZ.png"><br />
 <b>Figure 6: Clicking on the Slack Alert Displays Captured Details (Hashes, Credentials, Client Details)</b>
 </p>
 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/qZFGmXA.png">
+<img src="https://i.imgur.com/qZFGmXA.png"><br />
 <b>Figure 7: Slack Alert when UNC/SMB Hashes are Received</b>
 </p>
 
