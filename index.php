@@ -134,7 +134,7 @@ if($BEEFUrl != "" && $redirect != ""){?>
 
 <?php
 
-$slacklink = "https://authportals.com/results/index.php?project=".$portal;
+$slacklink = "https://YOUR_DOMAIN_HERE/results/index.php?project=".$portal;
 
 // Don't Do Anything if the User is Blank (Helps Avoid False Submissions)
 if($user != ""){
