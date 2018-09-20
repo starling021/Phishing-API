@@ -116,7 +116,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/JJJWTnZ.png"><br />
+<img src="https://i.imgur.com/M1iwFo3.png"><br />
 <b>Figure 6: Clicking on the Slack Alert Displays Captured Details (Hashes, Credentials, Client Details)</b>
 </p>
 
