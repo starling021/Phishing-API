@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Set Slack Webhook URL
-if(isset($_REQUEST['slackurl'])){$slackurl = $_REQUEST['slackurl'];
+if(isset($_REQUEST['slackurl']) && $_REQUEST['slackurl'] != ""){$slackurl = $_REQUEST['slackurl'];
 }
 else
 // ------------------------ SET THIS WEBHOOK MANUALLY --------------------------------------------------------------------------
