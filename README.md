@@ -53,12 +53,12 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.
 
 <p align="center">
-<img src="https://i.imgur.com/L8yYRMQ.png" width="75%"><br />
+<img src="https://i.imgur.com/L8yYRMQ.png" width="70%"><br />
 <b>Figure 1: Someone Entered Credentials into the Fake Portal - Slack Alert</b>
 <br/><br/></p>
 
 <p align="center">
-<img src="https://i.imgur.com/CcSw4TT.png" width="75%"><br />
+<img src="https://i.imgur.com/CcSw4TT.png" width="100%"><br />
 <b>Figure 2: Captured NTLMv2 Hash Exposed via Browser</b>
 <br/><br/></p>
 
