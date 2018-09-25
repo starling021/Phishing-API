@@ -4,7 +4,7 @@ This API has two main features.  One allows you to easily deploy cloned landing 
 
 ## Update
 
-I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well so if you're running Responder in a background session you can capture NTLMv2 hashes and be notified via Slack!  Support for weaponizing your own Word doc templates is built in.  Just upload an existing doc and download it again to hook it.  You can also choose to use Basic Auth which prompts the user for credentials, just like Phishery does!
+I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well (as does the Phishing Portal feature) so if you're running Responder in a background session you can capture NTLMv2 hashes and be notified via Slack!  Support for weaponizing your own Word doc templates is built in.  Just upload an existing doc and download it again to hook it.  You can also choose to use Basic Auth which prompts the user for credentials, just like Phishery does!
 
 
 # To Setup :
