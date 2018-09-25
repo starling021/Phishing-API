@@ -36,7 +36,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 	
 	`<INPUT NAME="password">`
 	
-	(OPTIONAL MFA FIELD)  `<INPUT NAME="token">`
+	`<INPUT NAME="token">` <b>(OPTIONAL MFA FIELD)</b>  
 	
 3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Login Location - For Best Results Use a Clickjacking Vulnerable URL That Allows iFRAMEs)
 
@@ -50,7 +50,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 	
 	`<INPUT NAME="slackemoji" VALUE=":see_no_evil:" TYPE="hidden">`
 	
-5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials
+5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.
 
 <p align="center">
 <img src="https://i.imgur.com/L8yYRMQ.png" width="75%"><br />
