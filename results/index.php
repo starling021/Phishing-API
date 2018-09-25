@@ -232,7 +232,7 @@ if ($conn->connect_error) {
 if(!isset($_REQUEST['project'])){
 
 // Show Unique Projects (Not Including Blanks)
-$sql1 = "SELECT DISTINCT location FROM stolencreds WHERE location != '';";
+$sql1 = "CALL CheckProjects();";
 $result1 = $conn->query($sql1);
 ?>
 
@@ -265,13 +265,13 @@ if(isset($_REQUEST['DELETE'])){
 $timestamp = $_REQUEST['timestamp'];
 
 // Delete Row From Results
-$sqlrm = "DELETE FROM stolencreds WHERE location = '$project' and entered = '$timestamp';";
+$sqlrm = "CALL RemoveRecord('$project','$timestamp');";
 $resultrm = $conn->query($sqlrm);
 
 }
 
 // Show Credentails for the Selected Project
-$sql = "SELECT * FROM stolencreds WHERE location = '$project';";
+$sql = "CALL GetRecords('$project');";
 $result = $conn->query($sql);
 
 ?>
