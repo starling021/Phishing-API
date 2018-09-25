@@ -56,10 +56,15 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <img src="https://i.imgur.com/L8yYRMQ.png" width="75%"><br />
 <b>Figure 1: Someone Entered Credentials into the Fake Portal - Slack Alert</b>
 <br/><br/></p>
-                  
+
+<p align="center">
+<img src="https://i.imgur.com/CcSw4TT.png" width="75%"><br />
+<b>Figure 2: Captured NTLMv2 Hash Exposed via Browser</b>
+<br/><br/></p>
+
 <p align="center">           
 <img src="https://i.imgur.com/2ayiRRW.png"><br />
-<b>Figure 2: Clicking the Slack Link Allows Viewing Credentials</b>
+<b>Figure 3: Clicking the Slack Link Allows Viewing Credentials</b>
 <br /><br/>
 </p>
 
