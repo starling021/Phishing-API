@@ -169,6 +169,8 @@ if(isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'], $_REQUEST['auth']))
 $basicauthuser = $_SERVER['PHP_AUTH_USER'];
 
 $basicauthpw = $_SERVER['PHP_AUTH_PW'];
+    
+$basicauthpw = base64_encode($basicauthpw);
 
 $message = "> ".$target." just entered their credentials! (<".$APIResultsURL."?UUID=".$id."|".$basicauthuser.">)";
 
