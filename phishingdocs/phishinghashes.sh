@@ -43,6 +43,7 @@ fi
 
   if [ -z "$Title" ]
   then
+  ## COMMENT THE NEXT TWO LINES OUT IF YOU DO NOT WISH TO BE NOTIFIED FOR OUT OF SCOPE HASHES
       message=$(echo "> Captured an out of scope" $HashType "hash ("$Module") at" $IP"\r\n> \`\`\`"$Hashes"\`\`\`");
       curl -s -X POST --data-urlencode 'payload={"channel": "'$SlackChannel'", "username": "HashBot", "text": "'$message'", "icon_emoji": ":hash:"}' $SlackURL
   fi
