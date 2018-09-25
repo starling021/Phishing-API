@@ -242,7 +242,7 @@ $UUID = $_REQUEST['UUID'];
 $UUID = filter_var($UUID, FILTER_SANITIZE_SPECIAL_CHARS);
 $UUID = mysqli_real_escape_string($conn, $UUID);
 
-$sql = "SELECT * FROM requests WHERE UUID = '$UUID';";
+$sql = "Call GetUUIDRecord('$UUID');";
 $result = $conn->query($sql);
 
 ?>
