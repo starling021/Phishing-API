@@ -24,3 +24,4 @@
 
 # SCHEDULED HASH CHECK EVERY MINUTE FOR RESPONDER CAPTURED HASHES AND THROWS INTO THE RESULTS DATABASE
 * * * * * /var/www/html/phishingdocs/./phishinghashes.sh
+* * * * * php /var/www/html/beefhook.php
