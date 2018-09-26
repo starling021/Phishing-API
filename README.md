@@ -107,7 +107,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/FXdDm6t.png" width="75%"><br />
+<img src="https://i.imgur.com/HlY3T4G.png" width="75%"><br />
 <b>Figure 4: HTTP Beacon is Selected by Default and Alerts When the Target Opens the Document</b>
 </p>
 
