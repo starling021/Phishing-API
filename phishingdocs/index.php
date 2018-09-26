@@ -449,12 +449,10 @@ $HTTPValue = str_replace('"', "", $HTTPValue);
 $HTTPValue = str_replace("'", "", $HTTPValue);
 $Target = str_replace('"', "", $Target);
 $Target = str_replace("'", "", $Target);
-$Target = str_replace("#","",$Target);
-$Target = filter_var($Target, FILTER_SANITIZE_SPECIAL_CHARS);
+$Target = preg_replace('/[^a-zA-Z0-9]/', '', $Target);
 $Org = str_replace('"', "", $Org);
 $Org = str_replace("'", "", $Org);
-$Org = str_replace("#","",$Org);
-$Org = filter_var($Org, FILTER_SANITIZE_SPECIAL_CHARS);
+$Org = preg_replace('/[^a-zA-Z0-9]/', '', $Org);
 
 
 // Generates Payload
