@@ -58,13 +58,18 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br/><br/></p>
 
 <p align="center">
+<img src="https://i.imgur.com/csXEhuP.png" width="70%"><br />
+<b>Figure 2: BeEF Hook! - Slack Alert</b>
+<br/><br/></p>
+
+<p align="center">
 <img src="https://i.imgur.com/CcSw4TT.png" width="100%"><br />
-<b>Figure 2: Captured NTLMv2 Hash Exposed via Browser</b>
+<b>Figure 3: Captured NTLMv2 Hash Exposed via Browser</b>
 <br/><br/></p>
 
 <p align="center">           
 <img src="https://i.imgur.com/2ayiRRW.png"><br />
-<b>Figure 3: Clicking the Slack Link Allows Viewing Credentials</b>
+<b>Figure 4: Clicking the Slack Link Allows Viewing Credentials</b>
 <br /><br/>
 </p>
 
