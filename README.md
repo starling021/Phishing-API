@@ -93,7 +93,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
             
 <br /><br/>
 <p align="center">
-<img src="https://i.imgur.com/Sx1b1Z5.png"><br />
+<img src="https://i.imgur.com/onsPyFp.png"><br />
 <b>Figure 2: Opening Document Generated (New) by Service</b>
 </p>
 
