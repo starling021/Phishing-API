@@ -129,7 +129,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br /><br/>
 <p align="center">
 <img src="https://i.imgur.com/qZFGmXA.png"><br />
-<b>Figure 7: Slack Alert when UNC/SMB Hashes are Received</b>
+<b>Figure 7: Slack Alert when UNC/SMB Hashes are Received from Word Document</b>
 </p>
 
 
