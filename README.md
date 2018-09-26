@@ -46,9 +46,9 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 	
 4) Optionally include hidden input fields for altering the Slack bot's behavior (Name and Emoji)
 
-	`<INPUT NAME="slackbotname" VALUE="SuckerBot" TYPE="hidden">`
+	`<INPUT NAME="slackbotname" VALUE="PhishBot" TYPE="hidden">`
 	
-	`<INPUT NAME="slackemoji" VALUE=":see_no_evil:" TYPE="hidden">`
+	`<INPUT NAME="slackemoji" VALUE=":fishing_pole_and_fish:" TYPE="hidden">`
 	
 5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.
 
