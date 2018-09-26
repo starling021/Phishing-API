@@ -58,7 +58,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br/><br/></p>
 
 <p align="center">
-<img src="https://i.imgur.com/pTbmUsi.png" width="70%"><br />
+<img src="https://i.imgur.com/pTbmUsi.png" width="80%"><br />
 <b>Figure 2: BeEF Hook! - Slack Alert</b>
 <br/><br/></p>
 
