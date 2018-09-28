@@ -517,7 +517,7 @@ if(isset($_REQUEST['basicauth'])){
 $cmdchecksettings = "ls /var/www/uploads/word/_rels/ | grep 'settings.xml.rels'";
 exec($cmdchecksettings,$outputchecksettings);
 
-if(isset($outputchecksettings)){
+if(isset($outputchecksettings[0])){
 
 // If settings.xml.rels already exists, append template instead of replacing the file
 $cmdsettingsxmlrelsperms = "sudo chmod 777 /var/www/uploads/word/_rels/settings.xml.rels; sudo chmod 777 /var/www/uploads/word/settings.xml;";
