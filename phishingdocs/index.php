@@ -142,7 +142,7 @@ printf($conn3->error);
 $conn3->close();
 
 // Prepares Message for Slack
-if($target != "" && $org != "" && isset($_REQUEST['auth']) == false){
+if($target != "" && $org != ""){
 
 $message = "> Document opened by ".$target." at ".$org." on ".$browser['platform']."! (<".$APIResultsURL."?UUID=".$id."|".$ip.">)";
 
