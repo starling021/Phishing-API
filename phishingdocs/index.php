@@ -18,10 +18,10 @@ if(isset($_REQUEST['slackurl']) && $_REQUEST['slackurl'] != ""){$slackurl = $_RE
 else
 // ------------------------ SET THIS WEBHOOK MANUALLY --------------------------------------------------------------------------
 {$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEB_URL_HERE";}
-if(isset($_REQUEST['slackchannel'])){$slackchannel = $_REQUEST['slackchannel']; $slackchannel = stripslashes($slackchannel);
+if(isset($_REQUEST['slackchannel']) && $_REQUEST['slackchannel'] != ""){$slackchannel = $_REQUEST['slackchannel']; $slackchannel = stripslashes($slackchannel);
 }
 else
-{$slackchannel = "#phishing";}
+{$slackchannel = "#general";}
 $slackemoji = ":page_facing_up:";
 $slackbotname = "DocBot";
 // ------------------------ SET THIS MANUALLY ----------------------------------------------------------------------------------
@@ -683,7 +683,7 @@ else {
 <FONT COLOR="#ffffff"><H1>Create a Phishing Word Doc</H1></FONT><br>
 <TABLE>
 <TR>
-<TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Organization</TH><TH>Payloads</TH><TH COLSPAN="2">Slack Settings</TH>
+<TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Organization</TH><TH>Payloads</TH><TH COLSPAN="2">Slack Settings<br>(Not Required)</TH>
 </TR>
 <TR>
 <TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https" selected>https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD><TD><font size="2">HTTP Beacon</font><input type="checkbox" disabled checked><br><font size="2">SMB Hash</font><input type="checkbox" disabled checked><br><font size="2">Auth Prompt<input type="checkbox" name="basicauth"></font></TD><TD align="center"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required - Defaults to Conf</font></TD><TD align="center"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required - Defaults to Conf</font></TD>
