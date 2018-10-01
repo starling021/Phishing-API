@@ -17,7 +17,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 4) Limit Access to the "Results" Directory (Apache's Basic Auth is Recommended)
 
-5) Use SSL and a Domain for the Hosted API (Configure DNS MASKED Forwarding Instead of an A Name Record for Best Results)
+5) Use SSL and a Domain for the Hosted API
 
 
 
