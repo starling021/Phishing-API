@@ -268,14 +268,14 @@ echo "<option value=\"".$row1["location"]."\">".$row1["location"]."</option>";
 // If a Project is Selected Already After Posting to Self...
 if(isset($_REQUEST['project'])){ $project = $_REQUEST['project'];
 
-if(isset($_REQUEST['DELETE'])){
+if(isset($_REQUEST['deleteproject'])){
 
-$timestamp = $_REQUEST['timestamp'];
+$projectdelname = $_REQUEST['deleteproject'];
 
-// Delete Row From Results
-$sqlrm = "CALL RemoveRecord('$project','$timestamp');";
-$resultrm = $conn->query($sqlrm);
-
+// Show Credentails for the Selected Project
+$sql = "CALL RemoveProject('$projectdelname');";
+$result = $conn->query($sql);
+      
 }
 
 // Show Credentails for the Selected Project
