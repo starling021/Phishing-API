@@ -5,6 +5,11 @@ require_once '../dbconfig.php';
 
 $dbname = "phishingdocs";
 
+ini_set('upload_max_filesize', '20M');
+ini_set('post_max_size', '20M');
+ini_set('max_input_time', 300);
+ini_set('max_execution_time', 300);
+
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
