@@ -66,7 +66,7 @@ div.table-title {
 
 th {
   color:#FFFFFF;
-  background:#d12128;
+  background:#1E90FF;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
   font-size:20px;
@@ -349,7 +349,7 @@ div.table-title {
 
 th {
   color:#FFFFFF;
-  background:#d12128;
+  background:#1E90FF;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
   font-size:20px;
