@@ -20,7 +20,7 @@ if (navigator.usb) {
 
 <!-------------------------------------------- CHANGE LOGO HERE ---------------------------->
 
-        <center><img src="wordpress_files/wordpresslogo.png" width="100"></center>
+        <center><img src="<?php if(isset($_REQUEST['ImageLogo']) && $_REQUEST['ImageLogo'] != ""){echo $_REQUEST['ImageLogo'];}else{echo "wordpress_files/wordpresslogo.png";} ?>" width="100"></center>
 
 
 
