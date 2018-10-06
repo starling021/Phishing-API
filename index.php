@@ -376,7 +376,9 @@ if($outputredir[0] == false){ ?>
 <BR><FONT COLOR="#FFFFFF">Choose a default template, download the HTML, and customize however you'd like.  <br><br>For best results, host these landing pages on their own server to avoid having the API blacklisted for a certain campaign.  <br><br>Use SSL for both so there is no mixed-content.  These pages already contain the fields necessary for the API!</FONT>
 </CENTER>
 
-<?php } else { ?>
+<?php } else { 
+
+if($redirect == false){ ?>
 
 <CENTER>
 <BR><BR><BR><TABLE>
@@ -385,7 +387,7 @@ if($outputredir[0] == false){ ?>
 </TABLE>
 </CENTER>
 
-<?php } ?>
+<?php } } ?>
 
 </BODY>
 </HTML>
