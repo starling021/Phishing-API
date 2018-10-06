@@ -457,14 +457,14 @@ else {
 // If the API Isn't Receiving Requests from a Doc Already, Display Form to Create One
 ?>
 <FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
-<CENTER>
+<CENTER><br>
 <FONT COLOR="#ffffff"><H1>Create a Phishing Word Doc</H1></FONT><br>
 <TABLE>
 <TR>
 <TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Organization</TH><TH>Payloads</TH><TH COLSPAN="2">Slack Settings<br>(Not Required)</TH>
 </TR>
 <TR>
-<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https" selected>https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD><TD><font size="2">HTTP Beacon</font><input type="checkbox" disabled checked><br><font size="2">SMB Hash</font><input type="checkbox" disabled checked><br><font size="2">Auth Prompt<input type="checkbox" name="basicauth"></font></TD><TD align="center"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required - Defaults to Conf</font></TD><TD align="center"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required - Defaults to Conf</font></TD>
+<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https" selected>https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD><TD><font size="2">HTTP Beacon</font><input type="checkbox" disabled checked><br><font size="2">SMB Hash</font><input type="checkbox" disabled checked><br><font size="2">Auth Prompt<input type="checkbox" name="basicauth"></font></TD><TD align="center" style="vertical-align:bottom"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required - Defaults to Conf</font></TD><TD align="center" style="vertical-align:bottom"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required - Defaults to Conf</font></TD>
 </TR>
 <TR>
 <TD COLSPAN="7">
