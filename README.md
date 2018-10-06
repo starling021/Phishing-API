@@ -25,6 +25,32 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
 
+<p align="center">
+<img src="https://i.imgur.com/NoSpx88.png" width="70%"><br />
+<b>Figure 1: Choose "Fake Portal" From API Options</b>
+<br/><br/></p>
+
+<p align="center">
+<img src="https://i.imgur.com/5C9e2Ou.png" width="70%"><br />
+<b>Figure 2: Choose Pre-Designed Generic Portal for Landing Page</b>
+<br/><br/></p>
+
+<p align="center">
+<img src="https://i.imgur.com/DWx6cTl.png" width="60%"><br />
+<b>Figure 3: Fill Out API Details for Landing Page HTML</b>
+<br/><br/></p>
+
+<p align="center">
+<img src="https://i.imgur.com/4MD7kq5.png" width="70%"><br />
+<b>Figure 4: Download Automatically Created Source HTML to Host on a Standalone Server</b>
+<br/><br/></p>
+
+<p align="center">
+<img src="https://i.imgur.com/qcCzaQl.png" width="70%"><br />
+<b>Figure 5: The Hosted Site's Contents</b>
+<br/><br/></p>
+
+However, if you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : 
 
 1) Point your HTML Form to https://YOUR-API-HERE
 
@@ -54,22 +80,22 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <p align="center">
 <img src="https://i.imgur.com/L8yYRMQ.png" width="70%"><br />
-<b>Figure 1: Someone Entered Credentials into the Fake Portal - Slack Alert</b>
+<b>Figure 6: Someone Entered Credentials into the Fake Portal - Slack Alert</b>
 <br/><br/></p>
 
 <p align="center">
 <img src="https://i.imgur.com/oXy9dEE.png" width="80%"><br />
-<b>Figure 2: BeEF Hook Slack Alert (Optional in Case You Want to React Quickly w/ Modules)</b>
+<b>Figure 7: BeEF Hook Slack Alert (Optional in Case You Want to React Quickly w/ Modules)</b>
 <br/><br/></p>
 
 <p align="center">
 <img src="https://i.imgur.com/CcSw4TT.png" width="100%"><br />
-<b>Figure 3: Captured NTLMv2 Hash Exposed via Browser</b>
+<b>Figure 8: Captured NTLMv2 Hash Exposed via Browser</b>
 <br/><br/></p>
 
 <p align="center">           
 <img src="https://i.imgur.com/2ayiRRW.png"><br />
-<b>Figure 4: Clicking the Slack Link Allows Viewing Credentials</b>
+<b>Figure 9: Clicking the Slack Link Allows Viewing Credentials</b>
 <br /><br/>
 </p>
 
@@ -79,7 +105,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 2) Create /var/www/uploads Path and make sure your web user has sudoers access
 
-3) Browse out to YOUR_URL.com/phishingdocs to generate your DOCX
+3) Browse out to YOUR_URL.com and select "Weaponized Documents" to generate your DOCX
 
 4) Optionally set up [Responder](https://github.com/SpiderLabs/Responder "Responder") in a background process and run `phishinghashes.sh` every minute or so with cron
 
