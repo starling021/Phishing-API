@@ -54,11 +54,11 @@ div.table-title {
 
 th {
   color:#FFFFFF;
-  background:#d12128;
+  background:#1E90FF;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
   font-size:20px;
-  font-weight: 120;
+  font-weight: 400;
   padding:16px;
   text-align:center;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
