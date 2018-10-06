@@ -50,7 +50,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <b>Figure 5: The Hosted Site's Contents</b>
 <br/><br/></p>
 
-<b>However, if you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : </b>
+<b>However, if you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : </b><br><br>
 
 1) Point your HTML Form to https://YOUR-API-HERE
 
@@ -97,7 +97,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <img src="https://i.imgur.com/2ayiRRW.png"><br />
 <b>Figure 9: Clicking the Slack Link Allows Viewing Credentials</b>
 <br /><br/>
-</p>
+</p><br><br><br><br>
 
 # 2) To Use the API for Generating Word Doc Payloads :
 
