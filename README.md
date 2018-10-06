@@ -76,7 +76,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 	
 	`<INPUT NAME="slackemoji" VALUE=":fishing_pole_and_fish:" TYPE="hidden">`
 	
-5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.
+5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.<br><br>
 
 <p align="center">
 <img src="https://i.imgur.com/L8yYRMQ.png" width="70%"><br />
