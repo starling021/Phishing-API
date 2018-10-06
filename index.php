@@ -216,7 +216,7 @@ td {
   background:#FFFFFF;
   padding:10px;
   text-align:center;
-  vertical-align:middle;
+  vertical-align:bottom;
   font-weight:300;
   font-size:16px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
@@ -381,7 +381,7 @@ if($outputredir[0] == false){ ?>
 <CENTER>
 <BR><BR><BR><TABLE>
 <TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH></TR>
-<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300"></a></TD></TR>
+<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300" height="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300" height="300"></a></TD></TR>
 </TABLE>
 </CENTER>
 
