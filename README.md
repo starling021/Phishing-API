@@ -37,7 +37,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <p align="center">
 <img src="https://i.imgur.com/DWx6cTl.png" width="60%"><br />
-<b>Figure 3: Fill Out API Details for Landing Page HTML</b>
+<b>Figure 3: Fill Out API Details for Landing Page HTML and Optionally Include Your Own Logo</b>
 <br/><br/></p>
 
 <p align="center">
