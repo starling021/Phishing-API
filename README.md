@@ -50,7 +50,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <b>Figure 5: The Hosted Site's Contents</b>
 <br/><br/></p>
 
-However, if you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : 
+<b>However, if you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : </b>
 
 1) Point your HTML Form to https://YOUR-API-HERE
 
@@ -64,7 +64,7 @@ However, if you don't wish to use a pre-populated landing page template, feel fr
 	
 	`<INPUT NAME="token">` <b>(OPTIONAL MFA FIELD)</b>  
 	
-3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Login Location - For Best Results Use a Clickjacking Vulnerable URL That Allows iFRAMEs)
+3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Login Location - For Best Results Use a Clickjacking Vulnerable URL That Allows iframes)
 
 	`<INPUT NAME="project" VALUE="My_Project_Here" TYPE="hidden">`
 	
