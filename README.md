@@ -32,7 +32,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <p align="center">
 <img src="https://i.imgur.com/5C9e2Ou.png" width="70%"><br />
-<b>Figure 2: Choose Pre-Designed Generic Portal for Landing Page</b>
+<b>Figure 2: Choose a Pre-Designed Generic Portal for Landing Page</b>
 <br/><br/></p>
 
 <p align="center">
