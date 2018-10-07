@@ -9,11 +9,11 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 # To Setup :
 
-1) Import the DB SQL Dump Schema to a new MySQL Instance
+1) Import the DB SQL Dump Schema to a new MySQL Instance `mysql -u root -h localhost < DatabaseSQLDump.sql;`
 
 2) Host the PHP from a web service (Apache, Nginx, IIS, etc)
 
-3) Configure dbconfig.php and index.php variables
+3) Configure config.php variables
 
 4) Limit Access to the "Results" Directory (Apache's Basic Auth is Recommended)
 
