@@ -19,6 +19,8 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 5) Use SSL and a Domain for the Hosted API
 
+6) Optionally run Responder and BeEF in a screen session and import the crontab file
+
 
 
 # 1) To Use the API for Capturing Credentials from Fake Sites : 
