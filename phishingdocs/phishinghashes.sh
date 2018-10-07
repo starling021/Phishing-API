@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ## DEFAULTS IF NOT FROM PHISHING DOCS
-SlackURL="https://hooks.slack.com/services/YOUR_SLACK_INCOMING_WEBHOOK_URL_HERE"
-SlackChannel="#YOUR_SLACK_CHANNEL_HERE"
-APIURL="https://YOUR_API_URL_HERE"
+SlackURL=$(cat /var/www/html/config.php |grep "SlackIncomingWebhookURL" | cut -d '"' -f 2);
+SlackChannel=$(cat /var/www/html/config.php |grep "slackchannel" | cut -d '"' -f 2);
+APIURL=$(cat /var/www/html/config.php |grep "APIDomain" | cut -d '"' -f 2);
 
 files=$(cd /home/ubuntu/Responder/logs && ls *.txt | awk '{print $1}');
 
