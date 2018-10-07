@@ -19,7 +19,9 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 5) Use SSL and a Domain for the Hosted API
 
-6) Optionally run Responder and BeEF in a screen session and import the crontab file
+6) Add your web service account to /etc/sudoers (www-data for apache)
+
+7) Optionally run Responder and BeEF in a screen session and import the crontab file
 
 
 
