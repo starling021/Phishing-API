@@ -7,7 +7,7 @@
 <?php
 
 // Read Database Connection Variables
-require_once '../../dbconfig.php';
+require_once '../../config.php';
 
 $dbname = "phishingdocs";
 
