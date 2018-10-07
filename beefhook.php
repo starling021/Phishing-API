@@ -1,13 +1,12 @@
 <?php
 
+require_once 'config.php';
+
 $i = 1;
 
 while ($i < 12){
 
-$SlackToken = "https://hooks.slack.com/services/YOUR_INCOMING_SLACK_TOKEN_HERE";
-$SlackChannel = "#YOUR_SLACK_CHANNEL";
-
-$cmd2 = "curl -s https://YOUR_BEEF_URL:3000/api/logs?token=YOUR_BEEF_API_KEY --insecure";
+$cmd2 = "curl -s ".$APIDomain.":3000/api/logs?token=".$BeefToken." --insecure";
 
 exec($cmd2,$output2);
 
@@ -30,7 +29,7 @@ if($datediff <= 5){
 $message = ">*BeEF Hook!* ".$id["event"];
 
 // Execute Slack Incoming Webhook
-$cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$SlackChannel.'", "username": "BeEFBot", "text": "'.$message.'", "icon_emoji": ":cow:"}\' '.$SlackToken.'';
+$cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "BeEFBot", "text": "'.$message.'", "icon_emoji": ":cow:"}\' '.$SlackIncomingWebhookURL.'';
 
 echo $message;
 
