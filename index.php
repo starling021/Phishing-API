@@ -215,7 +215,7 @@ $haveibeenpwnedhits = $arraywithcount[substr($sha1pass, 5)];
 
 // If the Password is so non-unique, give a Trophy
 if ($haveibeenpwnedhits >= "3000"){
-$cmdtrophy5 = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. (".$haveibeenpwnedhits." times!) - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
+$cmdtrophy5 = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. (".number_format($haveibeenpwnedhits)." times!) - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";
 exec($cmdtrophy5);
 }
 
@@ -231,7 +231,7 @@ $message = "> Caught Another Phish at ".$portal."! (<".$slacklink."|".$user.">)"
 
 }
 
-if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_* (".$haveibeenpwnedhits.")";}
+if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_* (".number_format($haveibeenpwnedhits).")";}
 
 // Execute Slack Incoming Webhook
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$SlackIncomingWebhookURL.'';
