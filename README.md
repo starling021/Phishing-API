@@ -30,17 +30,17 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
 
 <p align="center">
-<img src="https://i.imgur.com/NoSpx88.png" width="70%"><br />
+<img src="https://i.imgur.com/6RTPElH.png" width="70%"><br />
 <b>Figure 1: Choose "Fake Portal" From API Options</b>
 <br/><br/></p>
 
 <p align="center">
-<img src="https://i.imgur.com/5C9e2Ou.png" width="70%"><br />
+<img src="https://i.imgur.com/bLyuteG.png" width="70%"><br />
 <b>Figure 2: Choose a Pre-Designed Generic Portal for Landing Page</b>
 <br/><br/></p>
 
 <p align="center">
-<img src="https://i.imgur.com/DWx6cTl.png" width="60%"><br />
+<img src="https://i.imgur.com/V9GOCZ9.png" width="60%"><br />
 <b>Figure 3: Fill Out API Details for Landing Page HTML and Optionally Include Your Own Logo</b>
 <br/><br/></p>
 
