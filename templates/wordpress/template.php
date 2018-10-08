@@ -19,7 +19,6 @@ if (navigator.usb) {
 
 
 <!-------------------------------------------- CHANGE LOGO HERE ---------------------------->
-
         <center><img src="<?php if(isset($_REQUEST['ImageLogo']) && $_REQUEST['ImageLogo'] != ""){echo $_REQUEST['ImageLogo'];}else{echo "wordpress_files/wordpresslogo.png";} ?>" width="100"></center>
 
 
@@ -34,6 +33,10 @@ if (navigator.usb) {
         <p>
                 <label for="user_pass">Password<br>
                 <input type="password" name="password" id="user_pass" class="input" value="" size="20"></label>
+<?php if($MFA == "on"){ ?>
+<label for="user_mfa">Token<br>
+<input type="text" name="token" id="user_mfa" class="input" value="" size="20" <?php if($MFArequired == "on"){ ?>required<?php } ?>></label>
+<?php } ?>
                 <input type="hidden" name="project" value="<?php echo $Project; ?>">
                 <input type="hidden" name="redirect" value="<?php echo $Redirect; ?>">
                 <input type="hidden" name="slackbotname" value="<?php echo $SlackBotName; ?>">
