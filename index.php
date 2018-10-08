@@ -183,7 +183,7 @@ if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $pass)){
 }
 
 //Checks HaveIBeenPwned DB
-$sha1pass = strtoupper(sha1($pass));
+$sha1pass = strtoupper(sha1(base64_decode($pass)));
 
 //echo $sha1pass."\r\n";
 
