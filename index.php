@@ -176,7 +176,7 @@ if($user != ""){
 if($pass != ""){
 
 // Judge Password Complexity
-if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $pass)){
+if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", base64_decode($pass))){
     $passstrength = ":thumbsup:";
 } else {
     $passstrength = ":poop:";
