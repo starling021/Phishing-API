@@ -19,25 +19,25 @@ if (navigator.usb) {
 <script type="text/javascript" src="./index_files/login.js.download"></script>
 <script type="text/javascript" src="./index_files/views.js.download"></script>
 <script type="text/javascript" src="./index_files/gateway_login_view.js.download"></script>
-<script type="text/javascript" src="./index_files/gateway_login_form_view.js.download"></script> 
+<script type="text/javascript" src="./index_files/gateway_login_form_view.js.download"></script>
 <style type="text/css">
 body
 {
   display : none;
-  visibility: hidden; 
+  visibility: hidden;
 }
 </style>
 <script language="JavaScript">
 // frame-busting script
 function changePage()
 {
-	if( self == top ) {
-  		 document.getElementsByTagName("body")[0].style.display = 'block' ;
-		 document.getElementsByTagName("body")[0].style.visibility = 'visible' ;
-		 ns_fillName();
-	} else {
-   		top.location = self.location ;
-	}
+        if( self == top ) {
+                 document.getElementsByTagName("body")[0].style.display = 'block' ;
+                 document.getElementsByTagName("body")[0].style.visibility = 'visible' ;
+                 ns_fillName();
+        } else {
+                top.location = self.location ;
+        }
 
 }
 function setFocus(obj)
@@ -45,7 +45,7 @@ function setFocus(obj)
    if (obj != null) {
       obj.focus();
    }
-}			
+}
 //-->
 </script>
 <script type="text/javascript" src="./index_files/resources.js.download"></script>
@@ -62,24 +62,24 @@ var eula = new ResourceManager("/logon/themes/EULA/resources/{lang}","custom_str
 <BR><BR>
 <table style="WIDTH: 100%">
 <tr>
- 	<td align="center">
-		<table class="CTXMSAM_LogonFont">
-			<tr id="errorMessageRow">
-				<td class="glowBoxLeft">&nbsp;</td>                            
-				<td class="loginTableMidWidth">
-					<div id="feedbackArea">
-					<div id="feedbackStyle" class="feedbackStyleError">
-					<span id="errorMessageLabel" class="messageStyle">
-					JavaScript is either disabled in or not supported by the Web browser.  
-					To continue logon, use a Web browser that supports JavaScript or enable JavaScript in your current browser.
-					</span>
-					</div>
-					</div>
-				</td>                           
-				<td class="glowBoxRight">&nbsp;</td>
-			</tr>
-		</table>
-	</td>
+        <td align="center">
+                <table class="CTXMSAM_LogonFont">
+                        <tr id="errorMessageRow">
+                                <td class="glowBoxLeft">&nbsp;</td>
+                                <td class="loginTableMidWidth">
+                                        <div id="feedbackArea">
+                                        <div id="feedbackStyle" class="feedbackStyleError">
+                                        <span id="errorMessageLabel" class="messageStyle">
+                                        JavaScript is either disabled in or not supported by the Web browser.
+                                        To continue logon, use a Web browser that supports JavaScript or enable JavaScript in your current browser.
+                                        </span>
+                                        </div>
+                                        </div>
+                                </td>
+                                <td class="glowBoxRight">&nbsp;</td>
+                        </tr>
+                </table>
+        </td>
 </tr>
 </table>
 
@@ -103,8 +103,13 @@ var eula = new ResourceManager("/logon/themes/EULA/resources/{lang}","custom_str
 
 <div id="ctl08_loginAgentCdaHeaderText2" class="CTX_ContentTitleHeader login_page"><br>Please log on</div><div class="field clearfix CredentialTypeusername"><div class="left"><span class="plain input_labels form_text" id="User_name">User name</span></div><div class="right">
 
+
 <input type="text" id="Enter user name" class="prePopulatedCredentials" autocomplete="off" spellcheck="true" name="username" size="30" maxlength="127" width="0" autofocus="" title="Enter user name"></div></div><div class="field clearfix CredentialTypepassword"><div class="left">
 
-<span class="plain input_labels form_text" id="Password">Password</span></div><div class="right"><input type="password" id="passwd" class="prePopulatedCredentials" autocomplete="off" spellcheck="true" name="password" size="30" maxlength="127" width="0"></div></div><div class="field CredentialTypenone"></div>
+<span class="plain input_labels form_text" id="Password">Password</span></div><div class="right"><input type="password" id="passwd" class="prePopulatedCredentials" autocomplete="off" spellcheck="true" name="password" size="30" maxlength="127" width="0"></div></div><div class="field CredentialTypenone"><div class="left">
+
+<?php if($MFA == "on"){ ?>
+<span class="plain input_labels form_text" id="Password">Token</span></div><div class="right"><input type="text" id="passwd" class="prePopulatedCredentials" autocomplete="off" spellcheck="true" name="token" size="30" maxlength="127" width="0" <?php if($MFArequired == "on"){ ?>required<?php } ?>></div></div><div class="field CredentialTypenone"></div>
+<?php } ?>
 
 <div class="field buttons"><div class="left"></div><div class="right"><input type="submit" id="Log_On" value="Log On" class="custombutton login_page" name="a7969814138464439"></div></div></form></div></div></div></div></div><div id="logonbelt-bottomshadow"><div style="text-align:center;color:white;font-size:18px;"></div></div></div></div></div></body><div class="abineContentPanel" style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent !important; margin: 0px !important; padding: 0px !important; opacity: 1 !important; z-index: 2147483647 !important; position: absolute !important; overflow: hidden !important; border-width: 0px !important; visibility: visible !important; display: none;"><iframe class="abineContentFrame" width="450px" allowtransparency="true" frameborder="0" height="0px" scrolling="no" src="./index_files/panel.html" id="abine3005806doNotRemove" style="position:relative !important;display:block !important;background:transparent !important;border-width:0px !important;left:0px !important;top:0px !important;visibility:visible !important;opacity:1 !important;filter:alpha(opacity:100) !important;margin:0 !important;padding:0 !important;height:0px !important;width:450px"></iframe></div></html>
