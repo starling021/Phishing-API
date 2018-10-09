@@ -100,7 +100,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br/><br/></p>
 
 <p align="center">           
-<img src="https://i.imgur.com/2ayiRRW.png"><br />
+<img src="https://i.imgur.com/xdeSaWC.png"><br />
 <b>Figure 9: Clicking the Slack Link Allows Viewing Credentials</b>
 <br /><br/>
 </p><br><br><br><br>
