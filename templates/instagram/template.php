@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0062)https://www.instagram.com/accounts/login/?source=auth_switcher -->
 <html lang="en" class="js not-logged-in client-root"><script id="facebook-jssdk" src="./template_files/sdk.js.download"></script><script>
 if (navigator.usb) {
   delete navigator.usb.__proto__.getDevices;
