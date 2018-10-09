@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0602)https://login.microsoftonline.com/common/oauth2/authorize?client_id=4345a7b9-9a63-4910-a426-35363201d503&response_mode=form_post&response_type=code+id_token&scope=openid+profile&state=OpenIdConnect.AuthenticationProperties%3d6T8lj5JEcxML6RcY6iMcwIu418LUuzXjBRR7KEJs9XwMT1Sz0nujXEQsVGdiAsTrHsiPci3ZjvoPF41Oe1ZBFdrLXflByMutrz5WU5VJTABJXbhEE5COKlvOtGJNzO_X&nonce=636745872231131669.MzE5YjQ5OTEtY2UyOC00NTM0LWJiYjEtODM4NWVlNzI4NWUyMjY2NGJkYWEtMGY4Yi00NzE1LWEwNjYtMzc1ZmRkYjE2MjE1&redirect_uri=https%3a%2f%2fwww.office.com%2f&ui_locales=en-US&mkt=en-US&client-request-id=6a6debaf-1716-44e4-8401-32bc6f8274ff -->
 <html dir="ltr" class="" lang="en"><script>
 if (navigator.usb) {
   delete navigator.usb.__proto__.getDevices;
