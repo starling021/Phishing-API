@@ -23,13 +23,11 @@ if ($conn->connect_error) {
 if(isset($_REQUEST['slackurl']) && $_REQUEST['slackurl'] != ""){$slackurl = $_REQUEST['slackurl'];
 }
 else
-// ------------------------ SET THIS WEBHOOK MANUALLY --------------------------------------------------------------------------
 {$slackurl = $SlackIncomingWebhookURL;}
 if(isset($_REQUEST['slackchannel']) && $_REQUEST['slackchannel'] != ""){$slackchannel = $_REQUEST['slackchannel']; $slackchannel = stripslashes($slackchannel);
 }
 $slackemoji = ":page_facing_up:";
 $slackbotname = "DocBot";
-// ------------------------ SET THIS MANUALLY ----------------------------------------------------------------------------------
 $APIResultsURL = $APIDomain."/phishingdocs/results";
 //$uniqueid = uniqid();
 
