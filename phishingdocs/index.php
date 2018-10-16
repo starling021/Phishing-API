@@ -5,6 +5,8 @@ require_once '../config.php';
 
 $dbname = "phishingdocs";
 
+$now = strtotime("now");
+
 ini_set('upload_max_filesize', '20M');
 ini_set('post_max_size', '20M');
 ini_set('max_input_time', 300);
@@ -372,7 +374,7 @@ exec($cmd6, $output6);
 //var_dump($output6);
 //echo $cmd6;
 
-$cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/PhishingTEMPLATE.docx;";
+$cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/PhishingTEMPLATE".$now.".docx;";
 //$cmd7 = escapeshellcmd($cmd7);
 exec($cmd7, $output7);
 
@@ -432,6 +434,9 @@ $cmd16 = "sudo sudo zip -r Phishing.docx word/_rels/settings.xml.rels";
 //$cmd13 = escapeshellcmd($cmd13);
 exec($cmd16);
 
+$cmd17 = "sudo cp Phishing.docx Phishing".$now.".docx";
+exec($cmd17);    
+    
 }
 
 ?>
@@ -441,9 +446,9 @@ exec($cmd16);
 if($uploadOk == 1){
 // Either Provide the Weaponized Template they Uploaded or a New One
 ?>
-<form action="PhishingTEMPLATE.docx" method="get">
+<form action="PhishingTEMPLATE<?php echo $now; ?>.docx" method="get">
 <?php } else { ?>
-<form action="Phishing.docx" method="get">
+<form action="Phishing<?php echo $now; ?>.docx" method="get">
 <?php } ?>
 <button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i>Download</button>
 </form>
