@@ -140,11 +140,16 @@ $basicauthpw = mysqli_real_escape_string($conn3, $_SERVER['PHP_AUTH_PW']);
 $basicauthpw = base64_encode($basicauthpw);
 
 }
+}
 if(isset($id)){
+if(isset($basicauthuser) && isset($basicauthpw)){
 $sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent','$id','$basicauthuser','$basicauthpw');";
+} else {
+$sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent','$id','','');";
 }
+}
+echo $sqlinsert;
 $resultinsert = $conn3->query($sqlinsert);
-}
 
 //printf($conn3->error);
 $conn3->close();
