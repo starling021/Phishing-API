@@ -98,7 +98,7 @@ if(isset($org)){$org = stripslashes($org); $org = filter_var($org, FILTER_SANITI
 $ip = stripslashes($ip);
 $ip = filter_var($ip, FILTER_SANITIZE_SPECIAL_CHARS);
 
-if(isset($_REQUEST["id"])){
+if(isset($_REQUEST["id"]) || $_SERVER['REQUEST_METHOD'] == "OPTIONS")){
 
 
 // Looks Up Recent Requests to Prevent Flooding
@@ -123,7 +123,7 @@ $useragent = mysqli_real_escape_string($conn3, $useragent);
 $useragent = stripslashes($useragent);
 
 // Inserts Captured Information Into MySQL DB
-if (isset($_REQUEST['auth'])){
+if (isset($_REQUEST['auth']) || $_SERVER['REQUEST_METHOD'] == "OPTIONS")){
 
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
     header('WWW-Authenticate: Basic realm="Microsoft Anti-Phishing Engine"');
@@ -139,12 +139,11 @@ $basicauthpw = mysqli_real_escape_string($conn3, $_SERVER['PHP_AUTH_PW']);
 $basicauthpw = base64_encode($basicauthpw);
 
 }
-
+if(isset($id)){
 $sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent','$id','$basicauthuser','$basicauthpw');";
-} else {
-$sqlinsert = "CALL InsertRequests('$ip','$target','$org','$useragent','$id','','');";
 }
 $resultinsert = $conn3->query($sqlinsert);
+}
 
 printf($conn3->error);
 $conn3->close();
