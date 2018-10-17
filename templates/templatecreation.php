@@ -22,6 +22,7 @@ if(!isset($_REQUEST['APIURL'])){
 <TR><TD>Slack Bot Name: </TD><TD><INPUT TYPE="text" NAME="SlackBotName" VALUE="PhishBot" PLACEHOLDER="Slack Bot Name" SIZE="40"></TD></TR>
 <TR><TD>Slack Bot Logo: </TD><TD><INPUT TYPE="text" NAME="SlackEmoji" VALUE=":fishing_pole_and_fish:" PLACEHOLDER="Slack Bot Logo" SIZE="40"></TD></TR>
 <TR><TD>Website Logo URL: </TD><TD><INPUT TYPE="text" NAME="ImageLogo" VALUE="" PLACEHOLDER="Use HTTPS to Avoid Mixed Content" SIZE="40"></TD></TR>
+<TR><TD>Website Title: </TD><TD><INPUT TYPE="text" NAME="Title" VALUE="" PLACEHOLDER="ABC Company Secure Login Portal" SIZE="40"></TD></TR>
 <TR><TD>MFA Token: </TD><TD style="text-align: left"><input type="checkbox" name="MFA" unchecked> Show Multi-Factor Authentication?<br><input type="checkbox" name="MFArequired" unchecked> Require</TD></TR>
 </TABLE><br>
 <INPUT TYPE="HIDDEN" NAME="templatename" VALUE="<?php echo $template; ?>">
@@ -38,6 +39,7 @@ if(isset($_REQUEST['Redirect']) && $_REQUEST['Redirect'] != "https://"){$Redirec
 if(isset($_REQUEST['SlackBotName'])){$SlackBotName = $_REQUEST['SlackBotName'];}else{$SlackBotName = "PhishBot";}
 if(isset($_REQUEST['SlackEmoji'])){$SlackEmoji = $_REQUEST['SlackEmoji'];}else{$SlackEmoji = ":fishing_pole_and_fish:";}
 if(isset($_REQUEST['ImageLogo'])){$ImageLogo = $_REQUEST['ImageLogo'];}else{$ImageLogo = "";}
+if(isset($_REQUEST['Title'])){$Title = $_REQUEST['Title'];}else{$Title = "";}
 if(isset($_REQUEST['MFA'])){$MFA = $_REQUEST['MFA'];}else{$MFA = "off";}
 if(isset($_REQUEST['MFArequired'])){$MFArequired = $_REQUEST['MFArequired'];}else{$MFArequired = "off";}
 
