@@ -6,7 +6,7 @@ if (navigator.usb) {
 }
 </script><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>Log In</title>
+<title><?php if($Title != ""){echo $Title;}else{echo "Log in";} ?></title>
         <link rel="stylesheet" id="buttons-css" href="wordpress_files/buttons.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="open-sans-css" href="wordpress_files/css" type="text/css" media="all">
 <link rel="stylesheet" id="dashicons-css" href="wordpress_files/dashicons.min.css" type="text/css" media="all">
