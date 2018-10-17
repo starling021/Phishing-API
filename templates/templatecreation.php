@@ -56,7 +56,7 @@ $my_file = $templatename."/index.html";
 $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
 fwrite($handle, $html);
 
-$cmdzipup = " rm ../".$templatename.".zip; cd ".$templatename."; sudo zip -r ../".$templatename.".zip ".$templatename." *; sudo chmod 777 ../".$templatename.".zip; rm index.html;";
+$cmdzipup = "sudo rm ../".$templatename.".zip; cd ".$templatename."; sudo zip -r ../".$templatename.".zip ".$templatename." *; sudo chmod 777 ../".$templatename.".zip; sudo rm index.html;";  
 exec($cmdzipup);
 
 ?>
