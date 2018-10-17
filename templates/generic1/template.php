@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Untitled Document</title>
+<title><?php if($Title != ""){echo $Title;}else{echo "Secure Login Portal";} ?></title>
 <style>
 /* Basics */
 html, body {
@@ -18,7 +18,7 @@ html, body {
     position: fixed;
     width: 340px;
 <?php if($MFA == "on"){ ?>
-    height: 310px;
+    height: 330px;
 <?php } else { ?>
     height: 280px;
 <?php } ?>
@@ -143,6 +143,8 @@ input[type=submit]:active {
     <!-- Begin Page Content -->
 <?php if(isset($_REQUEST['ImageLogo']) && $_REQUEST['ImageLogo'] != ""){echo "<CENTER><br><br><br><br><IMG SRC='".$_REQUEST['ImageLogo']."' WIDTH='300'></CENTER><BR>";}?>
     <div id="container">	
+
+<?php if($Title != ""){echo "<CENTER><H3>".$Title."</H3></CENTER>";} ?>
 
  <form action="<?php echo $APIURL; ?>" method="POST">
             <label for="username">Username:</label>
