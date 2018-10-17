@@ -1,6 +1,6 @@
 <html>
   <head>
-
+<title><?php if($Title != ""){echo $Title;}else{echo "Secure Login Portal";} ?></title>
   <style>
   body#LoginForm{ background-image:url("blur-26347-27038-hd-wallpapers.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 
@@ -70,7 +70,7 @@
 <div class="main-div">
     <div class="panel">
 <?php if(isset($_REQUEST['ImageLogo']) && $_REQUEST['ImageLogo'] != ""){echo "<IMG SRC='".$_REQUEST['ImageLogo']."' WIDTH='200'><BR><BR>";}?>
-   <h2>Secure Login Portal</h2>
+<?php if($Title != ""){echo "<h2>".$Title."</h2>";}else{echo "<h2>Secure Login Portal</h2>";} ?>
    <p>Please enter your email and password</p>
    </div>
     <form id="Login" action="<?php echo $APIURL; ?>" method="POST">
