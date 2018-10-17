@@ -50,7 +50,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br/><br/></p>
 
 <p align="center">
-<img src="https://i.imgur.com/FzniiwA.png" width="90%"><br />
+<img src="https://i.imgur.com/E7ZLcam.png" width="90%"><br />
 <b>Figure 5: The Hosted Site's Contents</b>
 <br/><br/></p>
 
