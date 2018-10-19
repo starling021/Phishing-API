@@ -5,7 +5,7 @@ require_once '../config.php';
 
 $dbname = "phishingdocs";
 
-$now = strtotime("now");
+$uniqid = uniqid('', true);
 
 ini_set('upload_max_filesize', '20M');
 ini_set('post_max_size', '20M');
@@ -213,6 +213,14 @@ else {
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../main.css">
+<style>
+textarea {
+    width: 65%;
+    white-space: normal;
+    -moz-text-align-last: center; /* Firefox 12+ */
+    text-align-last: center;
+}
+</style>
 </HEAD>
 <BODY>
 <FONT COLOR="#ffffff">
@@ -379,7 +387,7 @@ exec($cmd6, $output6);
 //var_dump($output6);
 //echo $cmd6;
 
-$cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/PhishingTEMPLATE".$now.".docx;";
+$cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/hosted/".$uniqid.".docx;";
 //$cmd7 = escapeshellcmd($cmd7);
 exec($cmd7, $output7);
 
@@ -439,24 +447,52 @@ $cmd16 = "sudo sudo zip -r Phishing.docx word/_rels/settings.xml.rels";
 //$cmd13 = escapeshellcmd($cmd13);
 exec($cmd16);
 
-$cmd17 = "sudo cp Phishing.docx Phishing".$now.".docx";
+$cmd17 = "sudo cp Phishing.docx hosted/".$uniqid.".docx";
 exec($cmd17);
 
 }
 
+$DocName = $uniqid.".docx";
+
 ?>
 <CENTER>
-<br><br>
+<br>
+<FONT COLOR="#FFFFFF">Download and Send the File Directly (as an attachment)..</FONT><BR><BR>
+<form action="hosted/<?php echo $DocName; ?>" method="get">
+<button class="btn" style="width:25%" type="submit"><i class="fa fa-download"></i> Download</button>
+</form><BR>
+<FONT COLOR="#FFFFFF"><H2>OR</H2><br>Use a Hyperlink and Host the Document Here</FONT><BR><BR>
 <?php
-if($uploadOk == 1){
-// Either Provide the Weaponized Template they Uploaded or a New One
+$urischemelink = "<a href=\"ms-word:ofv|u|".$APIDomain."/phishingdocs/hosted/".$DocName."\">YOUR HYPERLINK TEXT</a>";
+echo "<textarea class=\"js-emaillink\">".htmlspecialchars($urischemelink)."</textarea>";
 ?>
-<form action="PhishingTEMPLATE<?php echo $now; ?>.docx" method="get">
-<?php } else { ?>
-<form action="Phishing<?php echo $now; ?>.docx" method="get">
-<?php } ?>
-<button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i> Download</button>
-</form>
+
+<p><button class="js-emailcopybtn btn" style="width:25%">Copy to Clipboard</button></p>
+
+<script>
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');
+copyEmailBtn.addEventListener('click', function(event) {
+  // Select the email link anchor text
+  var emailLink = document.querySelector('.js-emaillink');
+  var range = document.createRange();
+  range.selectNode(emailLink);
+  window.getSelection().addRange(range);
+
+  try {
+    // Now that we've selected the anchor text, execute the copy command
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copy email command was ' + msg);
+  } catch(err) {
+    console.log('Oops, unable to copy');
+  }
+
+  // Remove the selections - NOTE: Should use
+  // removeRange(range) when it is supported
+  window.getSelection().removeAllRanges();
+});
+</script>
+
 </CENTER>
 <?php
 
