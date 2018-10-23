@@ -53,9 +53,9 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <img src="https://i.imgur.com/E7ZLcam.png" width="90%"><br />
 <b>Figure 5: The Hosted Site's Contents</b>
 <br/><br/></p>
-
+<p align="center">
 ## OR
-
+</p>
 <b>If you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : </b><br><br>
 
 1) Point your HTML Form to https://YOUR-API-HERE
