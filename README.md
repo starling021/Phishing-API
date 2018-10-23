@@ -54,7 +54,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <b>Figure 5: The Hosted Site's Contents</b>
 <br/><br/></p>
 <p align="center">
-## OR
+<B><H2>OR</H2></B>
 </p>
 <b>If you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : </b><br><br>
 
