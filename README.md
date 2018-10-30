@@ -1,5 +1,5 @@
 # Phishing-API
-See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html for more details.  This API has two main features.  One allows you to easily deploy cloned landing pages for credential stealing and the other feature is weaponized Word doc creation.  Both are integrated into Slack for real-time alerting.  <b>I'm currently running this same code for those that don't want to implement their own environment as a free service @ https://phishapi.com!  </b>
+See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html for more details.  This API has three main features.  One allows you to easily deploy cloned landing pages for credential stealing, another is weaponized Word doc creation, and the third is saved email campaign templates.  Both attack methods are integrated into Slack for real-time alerting.  <b>I'm currently running this same code for those that don't want to implement their own environment as a free service @ https://phishapi.com!  </b>
 
 
 ## Update
@@ -30,7 +30,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to MySQL/Web Table &amp; Slack Bot.  Supports BEEF Hooking & HaveIBeenPwned!
 
 <p align="center">
-<img src="https://i.imgur.com/6RTPElH.png" width="60%"><br />
+<img src="https://i.imgur.com/iHgHECx.png" width="60%"><br />
 <b>Figure 1: Choose "Fake Portal" From API Options</b>
 <br/><br/></p>
 
