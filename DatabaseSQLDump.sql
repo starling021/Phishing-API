@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: phishingdocs
+-- Host: localhost    Database: campaigns
 -- ------------------------------------------------------
 -- Server version	5.5.59-0ubuntu0.14.04.1
 
@@ -14,6 +14,85 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `campaigns`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `campaigns` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `campaigns`;
+
+--
+-- Table structure for table `content`
+--
+
+DROP TABLE IF EXISTS `content`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `content` (
+  `CampaignName` varchar(100) DEFAULT NULL,
+  `Markup` varchar(10000) DEFAULT NULL,
+  `Variable1` varchar(1000) DEFAULT NULL,
+  `Variable2` varchar(1000) DEFAULT NULL,
+  `Variable3` varchar(1000) DEFAULT NULL,
+  `Variable4` varchar(1000) DEFAULT NULL,
+  `Variable5` varchar(1000) DEFAULT NULL,
+  `Variable6` varchar(1000) DEFAULT NULL,
+  `Variable7` varchar(1000) DEFAULT NULL,
+  `Variable8` varchar(1000) DEFAULT NULL,
+  `Variable9` varchar(1000) DEFAULT NULL,
+  `Variable10` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping events for database 'campaigns'
+--
+
+--
+-- Dumping routines for database 'campaigns'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `CreateModifyCampaign` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1 VARCHAR(1000), IN INVariable2 VARCHAR(1000), IN INVariable3 VARCHAR(1000), IN INVariable4 VARCHAR(1000), IN INVariable5 VARCHAR(1000), IN INVariable6 VARCHAR(1000), IN INVariable7 VARCHAR(1000), IN INVariable8 VARCHAR(1000), IN INVariable9 VARCHAR(1000), IN INVariable10 VARCHAR(1000))
+BEGIN
+
+-- CREATE OR UPDATE EXISTING EMAIL CAMPAIGN
+IF EXISTS (select 1 from content where CampaignName = INCampaignName) THEN
+    UPDATE content
+    SET Markup = InMarkup,
+    Variable1 = INVariable1,
+    Variable2 = INVariable2,
+    Variable3 = INVariable3,
+    Variable4 = INVariable4,
+    Variable5 = INVariable5,
+    Variable6 = INVariable6,
+    Variable7 = INVariable7,
+    Variable8 = INVariable8,
+    Variable9 = INVariable9,
+    Variable10 = INVariable10
+    WHERE CampaignName = INCampaignName;
+  ELSE 
+    INSERT INTO content(CampaignName, Markup, Variable1, Variable2, Variable3, Variable4, Variable5, Variable6, Variable7, Variable8, Variable9, Variable10) 
+	VALUES(INCampaignName, INMarkup, INVariable1, INVariable2, INVariable3, INVariable4, INVariable5, INVariable6, INVariable7, INVariable8, INVariable9, INVariable10);
+
+  END IF;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Current Database: `phishingdocs`
@@ -496,4 +575,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-23 16:41:44
+-- Dump completed on 2018-10-30  0:39:46
