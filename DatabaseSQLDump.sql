@@ -79,7 +79,7 @@ CREATE TABLE `emailalerts` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1Name VARCHAR(1000), IN INVariable1Value VARCHAR(1000), IN INVariable2Name VARCHAR(1000), IN INVariable2Value VARCHAR(1000), IN INVariable3Name VARCHAR(1000), IN INVariable3Value VARCHAR(1000), IN INVariable4Name VARCHAR(1000), IN INVariable4Value VARCHAR(1000), IN INVariable5Name VARCHAR(1000), IN INVariable5Value VARCHAR(1000), IN INVariable6Name VARCHAR(1000), IN INVariable6Value VARCHAR(1000), IN INVariable7Name VARCHAR(1000), IN INVariable7Value VARCHAR(1000), IN INVariable8Name VARCHAR(1000), IN INVariable8Value VARCHAR(1000), IN INVariable9Name VARCHAR(1000), IN INVariable9Value VARCHAR(1000), IN INVariable10Name VARCHAR(1000), IN INVariable10Value VARCHAR(1000))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1Name VARCHAR(1000), IN INVariable2Name VARCHAR(1000), IN INVariable3Name VARCHAR(1000), IN INVariable4Name VARCHAR(1000), IN INVariable5Name VARCHAR(1000), IN INVariable6Name VARCHAR(1000), IN INVariable7Name VARCHAR(1000), IN INVariable8Name VARCHAR(1000), IN INVariable9Name VARCHAR(1000), IN INVariable10Name VARCHAR(1000))
 BEGIN
 
 -- CREATE OR UPDATE EXISTING EMAIL CAMPAIGN
@@ -87,29 +87,19 @@ IF EXISTS (select 1 from content where CampaignName = INCampaignName) THEN
     UPDATE content
     SET Markup = InMarkup,
     Variable1Name = INVariable1Name,
-    Variable1Value = INVariable1Value,
     Variable2Name = INVariable2Name,
-    Variable2Value = INVariable2Value,
     Variable3Name = INVariable3Name,
-    Variable3Value = INVariable3Value,
     Variable4Name = INVariable4Name,
-    Variable4Value = INVariable4Value,
     Variable5Name = INVariable5Name,
-    Variable5Value = INVariable5Value,
     Variable6Name = INVariable6Name,
-    Variable6Value = INVariable6Value,
     Variable7Name = INVariable7Name,
-    Variable7Value = INVariable7Value,
     Variable8Name = INVariable8Name,
-    Variable8Value = INVariable8Value,
     Variable9Name = INVariable9Name,
-    Variable9Value = INVariable9Value,
-    Variable10Name = INVariable10Name,
-    Variable10Value = INVariable10Value    
+    Variable10Name = INVariable10Name 
     WHERE CampaignName = INCampaignName;
   ELSE 
-    INSERT INTO content(CampaignName, Markup, Variable1Name, Variable1Value, Variable2Name, Variable2Value, Variable3Name, Variable3Value, Variable4Name, Variable4Value, Variable5Name, Variable5Value, Variable6Name, Variable6Value, Variable7Name, Variable7Value, Variable8Name, Variable8Value, Variable9Name, Variable9Value, Variable10Name, Variable10Value) 
-	VALUES(INCampaignName, INMarkup, INVariable1Name, INVariable1Value, INVariable2Name, INVariable2Value, INVariable3Name, INVariable3Value, INVariable4Name, INVariable4Value, INVariable5Name, INVariable5Value, INVariable6Name, INVariable6Value, INVariable7Name, INVariable7Value, INVariable8Name, INVariable8Value, INVariable9Name, INVariable9Value, INVariable10Name, INVariable10Value);
+    INSERT INTO content(CampaignName, Markup, Variable1Name, Variable2Name, Variable3Name, Variable4Name, Variable5Name, Variable6Name, Variable7Name, Variable8Name, Variable9Name, Variable10Name) 
+	VALUES(INCampaignName, INMarkup, INVariable1Name, INVariable2Name, INVariable3Name, INVariable4Name, INVariable5Name, INVariable6Name, INVariable7Name, INVariable8Name, INVariable9Name, INVariable10Name);
 
   END IF;
 
@@ -644,4 +634,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-08  0:46:14
+-- Dump completed on 2018-11-08  1:09:25
