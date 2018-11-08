@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=of5ifxe3ls8fdxa89e2ja3o4h2e0de9fp38rxhwpttatu8xq"></script>
-<script>
-tinymce.init({
-    selector: 'textarea',
-    visual : false
-});
-</script>
+
 <link rel="stylesheet" href="../main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -608,12 +602,28 @@ if($row1['Variable10Name'] != ""){echo "<TR><TD>Variable ".$x.": </TD><TD><input
 
 </TABLE>
 
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=of5ifxe3ls8fdxa89e2ja3o4h2e0de9fp38rxhwpttatu8xq"></script>
+<script>
+tinymce.init({
+    selector: 'textarea',
+    visual : false
+});
+</script>
+
 <?php
 
 echo "<br><input name=\"ReplaceVariables\" class=\"btn\" type=\"button\" value=\"Update Variables\" onclick=\"Replacevariables()\" /><br><br><textarea rows=\"20\" cols=\"80\" name=\"content\" id=\"contentbox\">".base64_decode($row1['Markup'])."</textarea>";
     }
 
 } else { ?>
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=of5ifxe3ls8fdxa89e2ja3o4h2e0de9fp38rxhwpttatu8xq"></script>
+<script>
+tinymce.init({
+    selector: 'textarea',
+    visual : false
+});
+</script>
 
 </FONT><textarea rows="20" cols="80" name="content" id="contentbox">Create a new email template here!</textarea>
 
@@ -682,6 +692,35 @@ echo "<option value=\"".$row1["CampaignName"]."\">".$row1["CampaignName"]."</opt
 </SELECT><br><br>
 <button class="btn" style="width:10%" type="submit">Go</button>
 </FORM>
+
+<BR>
+<FONT COLOR="#FFFFFF"><H2>OR</H2><br>Use Your Own and Embed a Notification Tag</FONT><BR><BR>
+<textarea style="text-align:center" class="js-emaillink"><IMG SRC="<?php echo $APIDomain; ?>/campaigns?target=EMAIL@RECIPIENT.COM&campaignname=ITCAMPAIGN" height="1" width="1"></textarea>
+<p><button class="js-emailcopybtn btn" style="width:25%">Copy to Clipboard</button></p>
+
+<script>
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');  
+copyEmailBtn.addEventListener('click', function(event) {  
+  // Select the email link anchor text  
+  var emailLink = document.querySelector('.js-emaillink');  
+  var range = document.createRange();  
+  range.selectNode(emailLink);  
+  window.getSelection().addRange(range);  
+
+  try {  
+    // Now that we've selected the anchor text, execute the copy command  
+    var successful = document.execCommand('copy');  
+    var msg = successful ? 'successful' : 'unsuccessful';  
+    console.log('Copy email command was ' + msg);  
+  } catch(err) {  
+    console.log('Oops, unable to copy');  
+  }  
+
+  // Remove the selections - NOTE: Should use
+  // removeRange(range) when it is supported  
+  window.getSelection().removeAllRanges();  
+});
+</script>
 
 <?php }} ?>
 
