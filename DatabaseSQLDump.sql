@@ -33,16 +33,32 @@ DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
   `CampaignName` varchar(100) DEFAULT NULL,
   `Markup` varchar(10000) DEFAULT NULL,
-  `Variable1` varchar(1000) DEFAULT NULL,
-  `Variable2` varchar(1000) DEFAULT NULL,
-  `Variable3` varchar(1000) DEFAULT NULL,
-  `Variable4` varchar(1000) DEFAULT NULL,
-  `Variable5` varchar(1000) DEFAULT NULL,
-  `Variable6` varchar(1000) DEFAULT NULL,
-  `Variable7` varchar(1000) DEFAULT NULL,
-  `Variable8` varchar(1000) DEFAULT NULL,
-  `Variable9` varchar(1000) DEFAULT NULL,
-  `Variable10` varchar(1000) DEFAULT NULL
+  `Variable1Name` varchar(1000) DEFAULT NULL,
+  `Variable2Name` varchar(1000) DEFAULT NULL,
+  `Variable3Name` varchar(1000) DEFAULT NULL,
+  `Variable4Name` varchar(1000) DEFAULT NULL,
+  `Variable5Name` varchar(1000) DEFAULT NULL,
+  `Variable6Name` varchar(1000) DEFAULT NULL,
+  `Variable7Name` varchar(1000) DEFAULT NULL,
+  `Variable8Name` varchar(1000) DEFAULT NULL,
+  `Variable9Name` varchar(1000) DEFAULT NULL,
+  `Variable10Name` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `emailalerts`
+--
+
+DROP TABLE IF EXISTS `emailalerts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `emailalerts` (
+  `DateTime` datetime DEFAULT NULL,
+  `Target` varchar(1000) DEFAULT NULL,
+  `Campaign` varchar(1000) DEFAULT NULL,
+  `IP` varchar(100) DEFAULT NULL,
+  `UserAgent` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,29 +79,82 @@ CREATE TABLE `content` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1 VARCHAR(1000), IN INVariable2 VARCHAR(1000), IN INVariable3 VARCHAR(1000), IN INVariable4 VARCHAR(1000), IN INVariable5 VARCHAR(1000), IN INVariable6 VARCHAR(1000), IN INVariable7 VARCHAR(1000), IN INVariable8 VARCHAR(1000), IN INVariable9 VARCHAR(1000), IN INVariable10 VARCHAR(1000))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1Name VARCHAR(1000), IN INVariable1Value VARCHAR(1000), IN INVariable2Name VARCHAR(1000), IN INVariable2Value VARCHAR(1000), IN INVariable3Name VARCHAR(1000), IN INVariable3Value VARCHAR(1000), IN INVariable4Name VARCHAR(1000), IN INVariable4Value VARCHAR(1000), IN INVariable5Name VARCHAR(1000), IN INVariable5Value VARCHAR(1000), IN INVariable6Name VARCHAR(1000), IN INVariable6Value VARCHAR(1000), IN INVariable7Name VARCHAR(1000), IN INVariable7Value VARCHAR(1000), IN INVariable8Name VARCHAR(1000), IN INVariable8Value VARCHAR(1000), IN INVariable9Name VARCHAR(1000), IN INVariable9Value VARCHAR(1000), IN INVariable10Name VARCHAR(1000), IN INVariable10Value VARCHAR(1000))
 BEGIN
 
 -- CREATE OR UPDATE EXISTING EMAIL CAMPAIGN
 IF EXISTS (select 1 from content where CampaignName = INCampaignName) THEN
     UPDATE content
     SET Markup = InMarkup,
-    Variable1 = INVariable1,
-    Variable2 = INVariable2,
-    Variable3 = INVariable3,
-    Variable4 = INVariable4,
-    Variable5 = INVariable5,
-    Variable6 = INVariable6,
-    Variable7 = INVariable7,
-    Variable8 = INVariable8,
-    Variable9 = INVariable9,
-    Variable10 = INVariable10
+    Variable1Name = INVariable1Name,
+    Variable1Value = INVariable1Value,
+    Variable2Name = INVariable2Name,
+    Variable2Value = INVariable2Value,
+    Variable3Name = INVariable3Name,
+    Variable3Value = INVariable3Value,
+    Variable4Name = INVariable4Name,
+    Variable4Value = INVariable4Value,
+    Variable5Name = INVariable5Name,
+    Variable5Value = INVariable5Value,
+    Variable6Name = INVariable6Name,
+    Variable6Value = INVariable6Value,
+    Variable7Name = INVariable7Name,
+    Variable7Value = INVariable7Value,
+    Variable8Name = INVariable8Name,
+    Variable8Value = INVariable8Value,
+    Variable9Name = INVariable9Name,
+    Variable9Value = INVariable9Value,
+    Variable10Name = INVariable10Name,
+    Variable10Value = INVariable10Value    
     WHERE CampaignName = INCampaignName;
   ELSE 
-    INSERT INTO content(CampaignName, Markup, Variable1, Variable2, Variable3, Variable4, Variable5, Variable6, Variable7, Variable8, Variable9, Variable10) 
-	VALUES(INCampaignName, INMarkup, INVariable1, INVariable2, INVariable3, INVariable4, INVariable5, INVariable6, INVariable7, INVariable8, INVariable9, INVariable10);
+    INSERT INTO content(CampaignName, Markup, Variable1Name, Variable1Value, Variable2Name, Variable2Value, Variable3Name, Variable3Value, Variable4Name, Variable4Value, Variable5Name, Variable5Value, Variable6Name, Variable6Value, Variable7Name, Variable7Value, Variable8Name, Variable8Value, Variable9Name, Variable9Value, Variable10Name, Variable10Value) 
+	VALUES(INCampaignName, INMarkup, INVariable1Name, INVariable1Value, INVariable2Name, INVariable2Value, INVariable3Name, INVariable3Value, INVariable4Name, INVariable4Value, INVariable5Name, INVariable5Value, INVariable6Name, INVariable6Value, INVariable7Name, INVariable7Value, INVariable8Name, INVariable8Value, INVariable9Name, INVariable9Value, INVariable10Name, INVariable10Value);
 
   END IF;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `InsertRequest` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequest`(IN INTarget VARCHAR(1000), IN INCampaign VARCHAR(1000), IN INIP VARCHAR(100), IN INUserAgent VARCHAR(1000))
+BEGIN
+
+INSERT INTO emailalerts(DateTime, Target, Campaign, IP, UserAgent)
+VALUES (now(), INTarget, INCampaign, INIP, INUserAgent);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SelectCampaign` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectCampaign`(IN INCampaignName VARCHAR(1000))
+BEGIN
+
+SELECT * from content WHERE CampaignName = INCampaignName;
 
 END ;;
 DELIMITER ;
@@ -575,4 +644,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-30  0:39:46
+-- Dump completed on 2018-11-08  0:46:14
