@@ -173,3 +173,40 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 <br /><br/>
 <p align="center">
 	<b>Currently, I'm running <a href="https://github.com/SpiderLabs/Responder">Responder</a> in a Screen session with <i>phishinghashes.sh</i> scheduled via Cron to run every minute to pick up hashes, correlate phished users, and alert via Slack.  You can also relay those hashes with another tool if you'd like to take things even further.  Enjoy! :)</b></p>
+
+
+# 3) To Use the API to Store and Generate Email Campaign Templates : 
+
+Leverage a template by creating or choosing an existing template from the local repository, or, you can compose a blank email and embed the invisible HTML beacon to be notified when the recipient opens their email.
+
+<br /><br/>
+<p align="center">
+<img src="https://i.imgur.com/AmwZbbF.png"><br />
+<b>Figure 1: Existing, New, or No Campaign Choices</b>
+</p>
+
+If a new campaign is chosen, you can create variables for dynamic re-use in the future and store them as HTML templates in a database.  The WYSIWYG editor makes things simple, but you can also copy and paste from a text editor or another source if you'd like!
+
+<br /><br/>
+<p align="center">
+<img src="https://i.imgur.com/COHaq6q.png"><br />
+<b>Figure 2: New Campaign w/ Variables & Images</b>
+</p>
+
+Next time, choosing the existing template will dynamically provide input fields for the stored variables.  They can be applied in real time using JavaScript to update the email body.  Checking the "Embed Notification for Opened Email" box will automatically append invisible code to your template that will alert you when your recipient opens their email.  (Images must be allowed to render for this to work)
+
+<br /><br/>
+<p align="center">
+<img src="https://i.imgur.com/SsBAqKv.png"><br />
+<b>Figure 3: Existing Campaign</b>
+</p>
+
+Sit back and watch as your target opens their email and cross your fingers you later recieve another alert for BeEF, Maldocs, or your captured credentials!
+
+<br /><br/>
+<p align="center">
+<img src="https://i.imgur.com/jJ5dGlRr.png"><br />
+<b>Figure 4: Existing Campaign</b>
+</p>
+
+<b>Enjoy! :)
