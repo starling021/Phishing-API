@@ -28,7 +28,7 @@ if ($conn->connect_error) {
 }
 
 // Receive Notification Request from Embedded Email
-if(isset($_REQUEST['target'])){
+if(isset($_REQUEST['target']) || isset($_REQUEST['campaignname'])){
 	
 $target = $_REQUEST['target'];
 
