@@ -21,6 +21,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Delete Campaign
+if(isset($_REQUEST['delete'])){
+	
+	$deletecampaign = $_REQUEST['delete'];
+	
+	$deletecampaignsql = "CALL DeleteCampaign('$deletecampaign');";
+
+	$result = $conn->query($deletecampaignsql);
+	
+}
+
 // Receive Notification Request from Embedded Email
 if(isset($_REQUEST['target']) || isset($_REQUEST['campaignname'])){
 	
@@ -94,8 +105,11 @@ $result = $conn->query($selectcampaignsql);
 <FONT COLOR="#FFFFFF">
 
 <h2>Email Campaign from Template</h2>
-
-
+<form method="post" action="<?php $_SERVER["PHP_SELF"]; ?>">
+<input type="hidden" name="delete" value="<?php echo $campaign; ?>">
+<input type="submit" value="Delete Template">
+</form>
+<br>
 
 
 <?php
