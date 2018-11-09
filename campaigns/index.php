@@ -48,8 +48,28 @@ $insertrequest = "CALL InsertRequest('$target','$campaignname','$ip','$ua');";
 
 $result = $conn->query($insertrequest);
 
+if(isset($target) && $target != "" && isset($campaignname) && $campaignname != ""){
+
 // Send Slack Notification	
 $message = "Email was just opened by ".$target." using ".$campaignname." campaign! (<".$APIDomain."/campaigns/results?ip=".$ip."|".$ip.">)";
+
+}
+
+else {
+
+if(!isset($target) || $target == ""){
+
+$message = "Email was just opened using ".$campaignname." campaign! (<".$APIDomain."/campaigns/results?ip=".$ip."|".$ip.">)";
+
+}
+
+if(!isset($campaignname) || $campaignname == ""){
+
+$message = "Email was just opened by ".$target."! (<".$APIDomain."/campaigns/results?ip=".$ip."|".$ip.">)";
+
+}	
+	
+}
 
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "EmailBot", "text": "'.$message.'", "icon_emoji": ":e-mail:"}\' '.$SlackIncomingWebhookURL.'';
 //echo $cmd;
