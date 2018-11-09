@@ -35,6 +35,10 @@ if(isset($_REQUEST['delete'])){
 // Receive Notification Request from Embedded Email
 if(isset($_REQUEST['target']) || isset($_REQUEST['campaignname'])){
 	
+$referer = $_SERVER['HTTP_REFERER'];
+
+if (strpos($referer, 'campaigns') == false) {
+	
 $target = $_REQUEST['target'];
 
 $campaignname = $_REQUEST['campaignname'];	
@@ -75,6 +79,7 @@ $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.
 //echo $cmd;
 exec($cmd);	
 	
+}
 }
 
 // View an Existing Campaign Template's Contents
