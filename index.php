@@ -2,10 +2,10 @@
 
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
-$user = $_REQUEST['username'];
-$pass = base64_encode($_REQUEST['password']);
-$portal = $_REQUEST['project'];
-$redirect = $_REQUEST['redirect'];
+if(isset($_REQUEST['username'])){$user = $_REQUEST['username'];}else{$user = "";}
+if(isset($_REQUEST['password'])){$pass = base64_encode($_REQUEST['password']);}else{$pass = "";}
+if(isset($_REQUEST['project'])){$portal = $_REQUEST['project'];}else{$portal = "";}
+if(isset($_REQUEST['redirect'])){$redirect = $_REQUEST['redirect'];}else{$redirect = "";}
 
 // Receives Optional Parameters and Overrides Variables
 if(isset($_REQUEST['token'])){$MFAToken = $_REQUEST['token'];}else{$MFAToken = "";}
@@ -117,10 +117,11 @@ if($redirect == false){ ?>
 <link rel="stylesheet" href="main.css">
 </HEAD>
 <BODY>
-<CENTER>
+<BR><CENTER><FONT COLOR="#FFFFFF"><H1>Welcome to PhishAPI</H1>
+<b>Choose an Option Below to Get Started!</b>
 <BR><BR><BR><TABLE>
 <TR><TH>Fake Portal</TH><TH>Weaponized Documents</TH><TH>Email Campaigns</TH></TR>
-<TR><TD><a href="index.php?fakesite=1"><img src="genericlogin.png" width="300" height="300"></a></TD><TD><a href="/phishingdocs/"><img src="mswordlogo.png" width="300" height="300"></a></TD><TD><a href="campaigns/"><img src="campaignslogo.png" width="300" height="300"></a></TD></TR>
+<TR><TD><a href="index.php?fakesite=1"><i class="fa fa-user fa-5X" aria-hidden="true" style="color: black;  font-size: 150px;"></i></a></TD><TD><a href="/phishingdocs/"><i class="fa fa-file-text fa-5X" aria-hidden="true"  style="color: black; font-size: 150px;"></a></TD><TD><a href="campaigns/"><i class="fa fa-envelope fa-5X" aria-hidden="true" style="color: black; font-size: 150px;"></i></a></TD></TR>
 </TABLE>
 </CENTER>
 </BODY>
