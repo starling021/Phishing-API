@@ -12,6 +12,7 @@ if(!isset($_REQUEST['APIURL'])){
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../main.css">
+<link rel="stylesheet" href="../w3.css">
 <TITLE>PhishAPI</TITLE>
 <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon/apple-icon-60x60.png">
@@ -32,7 +33,16 @@ if(!isset($_REQUEST['APIURL'])){
 <meta name="theme-color" content="#ffffff">
 </HEAD>
 <BODY>
-<br><br><br><CENTER>
+<FORM ACTION="../index.php" METHOD="GET">
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-phishapi"><i class="fa fa-home fa-2x" aria-hidden="true" style="color: black;"></i> Home</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="../index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
+      <a href="../phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
+      <a href="../campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
+    </div>
+  </div></FORM><br><br><br>
+<CENTER>
 <FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>">
 <TABLE>
 <TR><TH COLSPAN="2">Specifiy API Details for Form Submission</TH></TR>
@@ -46,7 +56,7 @@ if(!isset($_REQUEST['APIURL'])){
 <TR><TD>MFA Token: </TD><TD style="text-align: left"><input type="checkbox" name="MFA" unchecked> Show Multi-Factor Authentication?<br><input type="checkbox" name="MFArequired" unchecked> Require</TD></TR>
 </TABLE><br>
 <INPUT TYPE="HIDDEN" NAME="templatename" VALUE="<?php echo $template; ?>">
-<INPUT TYPE="SUBMIT" VALUE="Generate Portal">
+<button class="btn" style="width:250px" type="submit">Generate Portal</button>
 </FORM>
 </CENTER>
 </BODY>
@@ -89,6 +99,7 @@ exec($cmdzipup);
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../main.css">
+<link rel="stylesheet" href="../w3.css">
 <TITLE>PhishAPI</TITLE>
 <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon/apple-icon-60x60.png">
@@ -108,7 +119,16 @@ exec($cmdzipup);
 <meta name="msapplication-TileImage" content="../images/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 </HEAD>
-<BODY><br><br><br>
+<BODY>
+<FORM ACTION="../index.php" METHOD="GET">
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-phishapi"><i class="fa fa-home fa-2x" aria-hidden="true" style="color: black;"></i> Home</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="../index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
+      <a href="../phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
+      <a href="../campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
+    </div>
+  </div></FORM><br><br><br>
 <FORM ACTION="<?php echo $templatename; ?>.zip" METHOD="GET">
 <button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i> Download Source HTML</button>
 </FORM>

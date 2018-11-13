@@ -1,6 +1,8 @@
 <HTML>
 <HEAD>
 <link rel="stylesheet" href="../../main.css">
+<link rel="stylesheet" href="../../w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <TITLE>PhishAPI</TITLE>
 <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
@@ -21,6 +23,15 @@
 <meta name="theme-color" content="#ffffff">
 </HEAD>
 <BODY>
+<FORM ACTION="../../index.php" METHOD="GET">
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-phishapi"><i class="fa fa-home fa-2x" aria-hidden="true" style="color: black;"></i> Home</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="../../index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
+      <a href="../../phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
+      <a href="../../campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
+    </div>
+  </div></FORM><br><br>
 <CENTER>
 <?php
 

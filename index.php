@@ -108,11 +108,21 @@ textarea {
 <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
 <link rel="manifest" href="images/favicon/manifest.json">
+<link rel="stylesheet" href="w3.css">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 </HEAD>
 <BODY>
+<FORM ACTION="index.php" METHOD="GET">
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-phishapi"><i class="fa fa-home fa-2x" aria-hidden="true" style="color: black;"></i> Home</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
+      <a href="phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
+      <a href="campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
+    </div>
+  </div></FORM><br><br>
 <CENTER>
 <BR>
 <TABLE WIDTH="80%">
@@ -188,6 +198,7 @@ if($redirect == false){ ?>
 <HEAD>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="w3.css">
 <TITLE>PhishAPI</TITLE>
 <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
@@ -208,7 +219,16 @@ if($redirect == false){ ?>
 <meta name="theme-color" content="#ffffff">
 </HEAD>
 <BODY>
-<BR><CENTER><FONT COLOR="#FFFFFF"><H1>Welcome to PhishAPI</H1>
+<FORM ACTION="index.php" METHOD="GET">
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-phishapi"><i class="fa fa-home fa-2x" aria-hidden="true" style="color: black;"></i> Home</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
+      <a href="phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
+      <a href="campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
+    </div>
+  </div></FORM><br><br>
+<CENTER><FONT COLOR="#FFFFFF"><H1>Welcome to PhishAPI</H1>
 <b>Choose an Option Below to Get Started!</b>
 <BR><BR><BR>
 <TABLE>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../w3.css">
 <TITLE>PhishAPI</TITLE>
 <link rel="apple-touch-icon" sizes="57x57" href="../images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon/apple-icon-60x60.png">
@@ -24,7 +25,15 @@
 <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-
+<FORM ACTION="../index.php" METHOD="GET">
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-phishapi"><i class="fa fa-home fa-2x" aria-hidden="true" style="color: black;"></i> Home</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="../index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
+      <a href="../phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
+      <a href="../campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
+    </div>
+  </div></FORM><br><br>
 <CENTER>
 
 <?php
@@ -159,11 +168,11 @@ $result = $conn->query($selectcampaignsql);
 
 if($campaign == "New"){ ?>
 
-<FORM ACTION="<?php $_SERVER["PHP_SELF"]; ?>" METHOD="POST" enctype="multipart/form-data">
+<FORM ACTION="<?php $_SERVER["PHP_SELF"]; ?>" METHOD="POST" enctype="multipart/form-data"><br>
 
 <b>Name of Campaign: </b><INPUT TYPE="TEXT" Value="" Name="campaign">
 
-<br><br>
+<br><br><br><br>
 
 <script>
 function Addvariable1()
@@ -720,7 +729,7 @@ if(isset($campaign) && $campaign == "New"){
 
 ?>
 
-<BR><BR>
+<BR>
 <FONT COLOR="#FFFFFF">Tip: Try Pasting Formatted Content Here From Another Source!</FONT><BR><BR>
 <button class="btn" style="width:25%" type="submit">Save Campaign</button>
 
