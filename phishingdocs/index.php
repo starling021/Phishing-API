@@ -545,7 +545,7 @@ else {
 </TD>
 </TR>
 </TABLE>
-<br><br><button class="btn"><i class="fa fa-download" type="submit"></i> Generate Payload!</button>
+<br><br><button class="btn" type="submit"><i class="fa fa-download"></i> Generate Payload!</button>
 </CENTER><br><br>
 <FONT SIZE="3" COLOR="#ffffff"><p align="center">The generated Word doc will call back via HTTP to the Slack API specified in the API's php file.  Also, a UNC path will be created as well in an attempt to capture NTLMv2 SMB requests.  Make sure your server allows TCP 445 and you're running Responder when the documents are opened for added fun! :)<br><br>If you don't trust me enough to provide your Slack Token (can't blame you!) you can serve your own by downloading the source code on my <a href="https://github.com/curtbraz/Phishing-API">Github</a> page!</p></FONT>
 </FORM>
