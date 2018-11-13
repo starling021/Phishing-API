@@ -201,7 +201,7 @@ Next time, choosing the existing template will dynamically provide input fields 
 
 <br />
 <p align="center">
-<img src="https://i.imgur.com/SsBAqKv.png"><br />
+<img src="https://i.imgur.com/SsBAqKv.png" width="75%"><br />
 <b>Figure 3: Existing Campaign</b>
 </p>
 
@@ -211,7 +211,7 @@ Sit back and watch as your target opens their email and cross your fingers you l
 <br />
 <p align="center">
 <img src="https://i.imgur.com/jJ5dGlRr.png"><br />
-<b>Figure 4: Existing Campaign</b>
+<b>Figure 4: Notification of Email Opened by Recipient</b>
 </p>
 
 <b>Enjoy! :)
