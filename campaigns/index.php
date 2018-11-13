@@ -157,10 +157,12 @@ $result = $conn->query($selectcampaignsql);
 <FONT COLOR="#FFFFFF">
 
 <h2>Email Campaign from Template</h2>
+<?php if($campaign != "New"){ ?>
 <form method="post" action="<?php $_SERVER["PHP_SELF"]; ?>">
 <input type="hidden" name="delete" value="<?php echo $campaign; ?>">
 <input type="submit" value="Delete Template">
 </form>
+<?php } ?>
 <br>
 
 
