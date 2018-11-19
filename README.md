@@ -8,22 +8,22 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 
 <p align="center">
-<img src="https://i.imgur.com/M6H7jfg.mp4" width="60%"><br />
+<img src="https://i.imgur.com/M6H7jfg.gif" width="60%"><br />
 <b>Auto-Generate Fake Portal</b>
 <br/><br/></p>
 
 <p align="center">
-<img src="blob:https://imgur.com/3a35ff91-faa3-4ceb-8a3d-e2ae3ecd1e25" width="60%"><br />
+<img src="https://i.imgur.com/4TeVrzE.gif" width="60%"><br />
 <b>Create Word Maldoc</b>
 <br/><br/></p>
 
 <p align="center">
-<img src="blob:https://imgur.com/90e9d7d8-c94d-4671-b276-e9bcb36b99eb" width="60%"><br />
+<img src="https://i.imgur.com/fDwFbHy.gif" width="60%"><br />
 <b>Weaponize Existing Word Doc</b>
 <br/><br/></p>
 
 <p align="center">
-<img src="blob:https://imgur.com/36587770-4ac3-4817-a971-c8fec990709d" width="60%"><br />
+<img src="https://i.imgur.com/xCMqAYc.gif" width="60%"><br />
 <b>Create or Leverage Saved Email Campaigns</b>
 <br/><br/></p>
 
