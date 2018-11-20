@@ -36,7 +36,7 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 3) Configure config.php variables
 
-4) Limit Access to the "Results" Directory (Apache's Basic Auth is Recommended)
+4) Limit Access to the "Results" Directories (Apache's Basic Auth is Recommended)
 
 5) Use SSL and a Domain for the Hosted API
 
