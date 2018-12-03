@@ -65,7 +65,8 @@ $result = $conn->query($sql);
 
 ?>
     <h2><FONT COLOR="#FFFFFF">Received Requests</FONT></h2>
-<TABLE BORDER=1><TR><TH>Date/Time</TH><TH>IP</TH><TH>Target</TH><TH>Org</TH><TH>Hash</TH><TH>UserAgent</TH><TH>User</TH><TH>Pass</TH></TR>
+<TABLE BORDER=1><TR><TH>Date/Time</TH><TH>IP</TH><TH>Target</TH><TH>Org</TH><TH style="word-wrap: break-word;
+max-width: 150px;">Hash</TH><TH>UserAgent</TH><TH>User</TH><TH>Pass</TH></TR>
 <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
