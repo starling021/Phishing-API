@@ -88,6 +88,14 @@ echo "<option value=\"".$row1["location"]."\">".$row1["location"]."</option>";
 // If a Project is Selected Already After Posting to Self...
 if(isset($_REQUEST['project'])){ $project = $_REQUEST['project'];
 
+if(isset($_REQUEST['DELETE'])){
+	$timestamp = $_REQUEST['timestamp'];
+
+$sqldelrec = "CALL RemoveRecord('$project','$timestamp');";
+$resultdelrec = $conn->query($sqldelrec);
+
+}
+
 if(isset($_REQUEST['deleteproject'])){
 
 $projectdelname = $_REQUEST['deleteproject'];
