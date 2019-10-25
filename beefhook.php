@@ -26,7 +26,7 @@ $datediff = $datenow - $dateevent;
 
 if($datediff <= 5){
 
-$message = ">*BeEF Hook!* ".$id["event"];
+$message = ">*BeEF Hook!* ".$id["event"]." [".$APIDomain.":3000/ui/authentication]";
 
 // Execute Slack Incoming Webhook
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "BeEFBot", "text": "'.$message.'", "icon_emoji": ":cow:"}\' '.$SlackIncomingWebhookURL.'';
