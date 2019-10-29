@@ -26,7 +26,15 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 		url:APIPortal,
         type:'post',
 		data:encodeURI(URL),
-        success:function (){		
+        success:function (msg){		
+		
+				// Grab Remote XSRF Token if Provided and Update Input Field to Match
+				if(XSRFToken){
+				var xsrfvalue = msg;
+				if(document.getElementsByName(XSRFToken)){document.getElementsByName(XSRFToken)[0].value = xsrfvalue;}
+				if(document.getElementById(XSRFToken)){document.getElementById(XSRFToken).value = xsrfvalue;}
+				}
+				
 				// Submit Original Form
 				var x = document.getElementsByName(FormName);
 				x[0].submit();

