@@ -47,6 +47,24 @@ if ($err) {
 }
 
 
+
+$arr = explode("\n", $response); 
+  
+
+
+$matchingvalue = 'name="'.$xsrftoken.'"';
+
+
+$content_before_string = strstr($response, $matchingvalue, true);
+
+if (false !== $content_before_string) {
+    $line = count(explode(PHP_EOL, $content_before_string));
+	$line = $line - 1;
+    $tokenline = $arr[$line];
+}
+
+
+
 function get_string_between($string, $start, $end){
     $string = ' ' . $string;
     $ini = strpos($string, $start);
@@ -56,10 +74,10 @@ function get_string_between($string, $start, $end){
     return substr($string, $ini, $len);
 }
 
-$xsrfvalue = "";
-$xsrfvalue = get_string_between($response, 'name="'.$xsrftoken.'" value="', '"');
+$csrfvalue = get_string_between($tokenline, 'value="', '"');
 
-echo $xsrfvalue;
+echo $csrfvalue;
+
 	
 }
 
