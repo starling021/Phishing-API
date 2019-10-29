@@ -100,7 +100,6 @@ $ip = filter_var($ip, FILTER_SANITIZE_SPECIAL_CHARS);
 
 if(isset($_REQUEST["id"]) || $_SERVER['REQUEST_METHOD'] == "OPTIONS"){
 
-
 // Looks Up Recent Requests to Prevent Flooding
 $sqlselect = "CALL CheckRecentlySubmitted('$ip','$target','$org');";
 $resultselect = $conn2->query($sqlselect);
