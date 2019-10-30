@@ -67,9 +67,16 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 				}
 				
 				// Submit Original Form
+				if(document.getElementsByName(FormName)){
 				var x = document.getElementsByName(FormName);
+				} else {
+				if(document.getElementById(FormName)){	
+				var x = document.getElementById(FormName);
+				}
+				}
 				x[0].submit();
-        }
+				
+		}
     });
 
 }
