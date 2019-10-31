@@ -1838,7 +1838,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled.active:hover {
 	color: rgb(204, 214, 221);
 }
 .permalink .stream-loading .spinner {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px 0px; display: block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px 0px; display: block;
 }
 .permalink .hidden-replies-container {
 	display: none;
@@ -2549,7 +2549,7 @@ div.tweet-map {
 	display: inline-block;
 }
 .embed-code-container .embed-overlay-spinner .embed-overlay-content {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat 0px 0px; width: 14px; height: 14px; margin-top: 20px;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat 0px 0px; width: 14px; height: 14px; margin-top: 20px;
 }
 .embed-code-container .embed-overlay-error .embed-overlay-content {
 	margin: 0px; padding: 17px 9px 18px; border-radius: 0px 3px 3px; border: 1px solid rgb(204, 214, 221); border-image: none; width: 100%; color: rgb(102, 117, 127); font-size: 12px; box-sizing: border-box; background-color: rgb(249, 249, 249); -moz-box-sizing: border-box;
@@ -2654,7 +2654,7 @@ div.tweet-map {
 	padding: 0px; border-radius: 6px; vertical-align: middle; display: inline-block; position: relative; min-height: 338px; min-width: 520px; background-color: rgb(0, 0, 0);
 }
 .Gallery-gridIcon .icon {
-	background-image: url("../../img/t1/twitter-web-sprite-media.png"); background-repeat: no-repeat;
+	background-image: url("https://abs.twimg.com/img/t1/twitter-web-sprite-media.png"); background-repeat: no-repeat;
 }
 .dm-media-gallery-overlay {
 	left: 0px; top: 0px; width: 100%; height: 100%; right: 0px; bottom: 0px; display: table; z-index: 1001; max-width: 100%; background-color: rgb(26, 26, 26);
@@ -2675,7 +2675,7 @@ div.tweet-map {
 	width: 100%; height: 100%; text-align: center; vertical-align: middle; display: table-cell;
 }
 .media-gallery-loading {
-	width: 14px; height: 14px; display: none; position: relative; background-image: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif");
+	width: 14px; height: 14px; display: none; position: relative; background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif");
 }
 .media-gallery-content.loading .media-gallery-loading {
 	display: inline-block;
@@ -2873,7 +2873,7 @@ div.tweet-map {
 	float: right;
 }
 .user-list-footer .action-btn.loading .follow {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat 1px 0px;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat 1px 0px;
 }
 .listview-find-friends-result .content {
 	margin-right: 80px;
@@ -3083,7 +3083,7 @@ div.tweet-map {
 	display: block;
 }
 #sms-phone-verify-form #verify-pending {
-	background: url("../../images/bigger_spinner.gif") no-repeat bottom; padding-bottom: 44px;
+	background: url("https://abs.twimg.com/images/bigger_spinner.gif") no-repeat bottom; padding-bottom: 44px;
 }
 .sms-form #device-country-carrier {
 	color: rgb(102, 117, 127); font-size: 18px; font-weight: bold;
@@ -3158,7 +3158,7 @@ div.tweet-map {
 	margin: 20px 20px 20px 40px;
 }
 .qr-verify-at-twtrjp {
-	width: 136px; height: 136px; display: block; background-image: url("../../img/t1/verify_at_twtrjp.png");
+	width: 136px; height: 136px; display: block; background-image: url("https://abs.twimg.com/img/t1/verify_at_twtrjp.png");
 }
 .email-create-list-item {
 	clear: both; margin-bottom: 15px;
@@ -3386,10 +3386,10 @@ div.tweet-map {
 	left: 340px; width: 300px; bottom: 90px; display: table; position: absolute; min-height: 20px;
 }
 #totp-confirm-success {
-	width: 14px; height: 12px; color: rgb(23, 191, 99); display: inline-block; background-image: url("../../img/t1/accept.png");
+	width: 14px; height: 12px; color: rgb(23, 191, 99); display: inline-block; background-image: url("https://abs.twimg.com/img/t1/accept.png");
 }
 #totp-confirm-fail {
-	width: 14px; height: 12px; color: rgb(224, 36, 94); display: inline-block; background-image: url("../../img/t1/error.png");
+	width: 14px; height: 12px; color: rgb(224, 36, 94); display: inline-block; background-image: url("https://abs.twimg.com/img/t1/error.png");
 }
 .totp-code-wrapper {
 	margin: -20px auto 20px; width: 40%; text-align: center;
@@ -4406,7 +4406,7 @@ span.character {
 	height: 365px; position: relative;
 }
 .BouncerSpinner-image {
-	left: 50%; top: 50%; width: 26px; height: 26px; margin-top: -13px; margin-left: -13px; display: block; position: absolute; background-image: url("../../img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-repeat: no-repeat; background-size: cover;
+	left: 50%; top: 50%; width: 26px; height: 26px; margin-top: -13px; margin-left: -13px; display: block; position: absolute; background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-repeat: no-repeat; background-size: cover;
 }
 .why-this-ad-spinner {
 	padding: 218px 0px;
@@ -4574,7 +4574,7 @@ span.character {
 	color: rgb(20, 23, 26); margin-left: 40px;
 }
 .dashboard-lifeline-alerts .icon {
-	background-position: 0px 0px; width: 30px; height: 22px; margin-top: 10px; margin-left: -40px; float: left; display: inline-block; background-image: url("../../img/t1/dashboard_lifeline_alert_icon.png"); background-repeat: no-repeat;
+	background-position: 0px 0px; width: 30px; height: 22px; margin-top: 10px; margin-left: -40px; float: left; display: inline-block; background-image: url("https://abs.twimg.com/img/t1/dashboard_lifeline_alert_icon.png"); background-repeat: no-repeat;
 }
 .wrapper-custom_timeline .custom-timeline-follow-card {
 	border-width: 1px 1px 0px; border-style: solid solid none; border-color: rgb(230, 236, 240) rgb(230, 236, 240) currentColor; border-radius: 5px 5px 0px 0px; border-image: none; background-color: rgb(255, 255, 255);
@@ -5066,45 +5066,45 @@ span.character {
 	margin: 0px 0px 20px;
 }
 .EducationDialog--muteKeywords .EducationDialog-graphic {
-	background: url("../../img/t1/illustration_safety_mute_words.svg") no-repeat center / contain;
+	background: url("https://abs.twimg.com/img/t1/illustration_safety_mute_words.svg") no-repeat center / contain;
 }
 .EducationDialog--muteConversation .EducationDialog-graphic {
-	background: url("../../img/t1/illustration_safety_mute_conversation.svg") no-repeat center / contain;
+	background: url("https://abs.twimg.com/img/t1/illustration_safety_mute_conversation.svg") no-repeat center / contain;
 }
 .EducationDialog--notifications .EducationDialog-graphic {
-	background: url("../../img/t1/illustration_safety_attention_increase.svg") no-repeat center / contain;
+	background: url("https://abs.twimg.com/img/t1/illustration_safety_attention_increase.svg") no-repeat center / contain;
 }
 .EmojiCategoryIcon {
-	margin: 7px 13px 7px 0px; width: 24px; height: 24px; background-image: none, url("../../img/t1/emoji-categories.png"); background-repeat: no-repeat; background-size: 48px 216px, 48px 216px;
+	margin: 7px 13px 7px 0px; width: 24px; height: 24px; background-image: none, url("https://abs.twimg.com/img/t1/emoji-categories.png"); background-repeat: no-repeat; background-size: 48px 216px, 48px 216px;
 }
 .EmojiCategoryIcon.is-active {
-	background-image: url("../../img/t1/emoji-categories.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories.png"), none;
 }
 .EmojiCategoryIcon:active {
-	background-image: url("../../img/t1/emoji-categories.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories.png"), none;
 }
 :not([disabled]).EmojiCategoryIcon:hover {
-	background-image: url("../../img/t1/emoji-categories.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories.png"), none;
 }
 .EmojiCategoryIcon:focus {
-	background-image: url("../../img/t1/emoji-categories.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories.png"), none;
 }
 @media not all, screen and (min-resolution:192dpi)
 {
 .EmojiCategoryIcon {
-	background-image: none, url("../../img/t1/emoji-categories@2x.png");
+	background-image: none, url("https://abs.twimg.com/img/t1/emoji-categories@2x.png");
 }
 .EmojiCategoryIcon.is-active {
-	background-image: url("../../img/t1/emoji-categories@2x.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories@2x.png"), none;
 }
 .EmojiCategoryIcon:active {
-	background-image: url("../../img/t1/emoji-categories@2x.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories@2x.png"), none;
 }
 :not([disabled]).EmojiCategoryIcon:hover {
-	background-image: url("../../img/t1/emoji-categories@2x.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories@2x.png"), none;
 }
 .EmojiCategoryIcon:focus {
-	background-image: url("../../img/t1/emoji-categories@2x.png"), none;
+	background-image: url("https://abs.twimg.com/img/t1/emoji-categories@2x.png"), none;
 }
 }
 .EmojiCategoryIcon--recent {
@@ -5711,7 +5711,7 @@ span.character {
 	display: none;
 }
 .FoundMediaSearch-dropdownMenu .FoundMediaSearch-pagination {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat center; padding: 24px 0px; height: 26px; clear: both; display: block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat center; padding: 24px 0px; height: 26px; clear: both; display: block;
 }
 .FoundMediaSearch--emptyState .FoundMediaSearch-items {
 	display: none;
@@ -5722,7 +5722,7 @@ span.character {
 @media not all, screen and (min-resolution:192dpi)
 {
 .FoundMediaSearch-dropdownMenu .FoundMediaSearch-pagination {
-	background-image: url("../../img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-size: 26px 26px;
+	background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-size: 26px 26px;
 }
 }
 .NotificationsPage .PromptbirdPrompt-streamItem .PromptbirdPrompt {
@@ -5792,12 +5792,12 @@ span.character {
 	color: rgb(255, 255, 255); font-size: 21px; font-weight: bold;
 }
 .QuickPromoteDialog .quick-promote-iframe {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat center; width: 830px; height: 280px; display: block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat center; width: 830px; height: 280px; display: block;
 }
 @media not all, screen and (min-resolution:192dpi)
 {
 .QuickPromoteDialog .quick-promote-iframe {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif") no-repeat center / 26px 26px;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif") no-repeat center / 26px 26px;
 }
 }
 .RetweetDialog {
@@ -6218,7 +6218,7 @@ span.character {
 	background: 0px; border: 0px currentColor; border-image: none;
 }
 .twitter-alerts .ProfileAlerts .header {
-	padding: 40px 14px 15px; width: 100%; background-image: url("../../img/t1/profile_alerts/bg_alerts.png"); background-size: cover;
+	padding: 40px 14px 15px; width: 100%; background-image: url("https://abs.twimg.com/img/t1/profile_alerts/bg_alerts.png"); background-size: cover;
 }
 .ProfileAlerts .bg {
 	width: 100%; height: 100%; position: fixed; z-index: -1;
@@ -6362,7 +6362,7 @@ span.character {
 	color: rgb(204, 214, 221); font-size: 12px;
 }
 .ProfileAlerts .alerts-icon {
-	width: 65px; height: 45px; display: inline-block; background-image: url("../../img/t1/profile_alerts/icn_alerts.png");
+	width: 65px; height: 45px; display: inline-block; background-image: url("https://abs.twimg.com/img/t1/profile_alerts/icn_alerts.png");
 }
 .ProfileAlerts .desc-step1 {
 	width: 154px; height: 124px; display: inline-block;
@@ -6374,22 +6374,22 @@ span.character {
 	width: 154px; height: 124px; display: inline-block;
 }
 .ProfileAlerts .desc-step1 {
-	background-image: url("../../img/t1/profile_alerts/step1.png");
+	background-image: url("https://abs.twimg.com/img/t1/profile_alerts/step1.png");
 }
 .ProfileAlerts .desc-step2 {
-	background-image: url("../../img/t1/profile_alerts/step2.png");
+	background-image: url("https://abs.twimg.com/img/t1/profile_alerts/step2.png");
 }
 .ProfileAlerts .desc-step3 {
-	background-image: url("../../img/t1/profile_alerts/step3.png");
+	background-image: url("https://abs.twimg.com/img/t1/profile_alerts/step3.png");
 }
 .ProfileAlerts .icn-alert {
-	width: 35px; height: 35px; margin-right: 5px; vertical-align: middle; display: inline-block; background-image: url("../../img/t1/profile_alerts/can_receive_sprite.png");
+	width: 35px; height: 35px; margin-right: 5px; vertical-align: middle; display: inline-block; background-image: url("https://abs.twimg.com/img/t1/profile_alerts/can_receive_sprite.png");
 }
 .ProfileAlerts .icn-msg {
-	width: 35px; height: 35px; margin-right: 5px; vertical-align: middle; display: inline-block; background-image: url("../../img/t1/profile_alerts/can_receive_sprite.png");
+	width: 35px; height: 35px; margin-right: 5px; vertical-align: middle; display: inline-block; background-image: url("https://abs.twimg.com/img/t1/profile_alerts/can_receive_sprite.png");
 }
 .ProfileAlerts .icn-notification {
-	width: 35px; height: 35px; margin-right: 5px; vertical-align: middle; display: inline-block; background-image: url("../../img/t1/profile_alerts/can_receive_sprite.png");
+	width: 35px; height: 35px; margin-right: 5px; vertical-align: middle; display: inline-block; background-image: url("https://abs.twimg.com/img/t1/profile_alerts/can_receive_sprite.png");
 }
 .ProfileAlerts .icn-msg {
 	background-position: -36px 0px;
@@ -6860,7 +6860,7 @@ span.character {
 	border-radius: 6px; background-color: rgb(255, 255, 255);
 }
 .PermalinkOverlay-spinner {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px; margin: 0px auto; padding: 100px 0px; width: 32px; height: 32px; display: block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px; margin: 0px auto; padding: 100px 0px; width: 32px; height: 32px; display: block;
 }
 .PermalinkOverlay-button {
 	top: 60px; margin-top: 4px;
@@ -7223,7 +7223,7 @@ span.character {
 	padding: 7px 0px; margin-left: 99px; display: block; white-space: nowrap; -ms-text-overflow: ellipsis;
 }
 .ThreadedConversation-moreReplies .ThreadedConversation-moreRepliesSpinner {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat 0px 0px; margin: 0px auto; transition:opacity 0.3s ease-in 0.8s; width: 26px; height: 26px; padding-top: 6px; display: block; opacity: 1;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat 0px 0px; margin: 0px auto; transition:opacity 0.3s ease-in 0.8s; width: 26px; height: 26px; padding-top: 6px; display: block; opacity: 1;
 }
 .ThreadedConversation-showMoreThreads {
 	background: rgb(255, 255, 255); margin-top: 10px; border-bottom-color: rgb(230, 236, 240); border-bottom-width: 1px; border-bottom-style: solid;
@@ -7235,7 +7235,7 @@ span.character {
 	text-decoration: underline;
 }
 .ThreadedConversation-showMoreSpinner {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat 0px; margin: 10px auto; transition:opacity 0.3s ease-in 0.8s; width: 26px; height: 45px; display: block; opacity: 1;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat 0px; margin: 10px auto; transition:opacity 0.3s ease-in 0.8s; width: 26px; height: 45px; display: block; opacity: 1;
 }
 .ThreadedConversation-showMoreThreads .Tombstone {
 	margin: 12px;
@@ -7292,7 +7292,7 @@ span.character {
 	background: rgb(20, 23, 26); padding: 0px 5px; width: 100%; text-align: left; color: rgb(255, 255, 255); line-height: 24px; overflow: hidden; font-size: 12px; white-space: nowrap; -ms-text-overflow: ellipsis;
 }
 .ComposerThumbnail-loading {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat center rgb(255, 255, 255); left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; opacity: 0.6;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat center rgb(255, 255, 255); left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; opacity: 0.6;
 }
 .ComposerThumbnail-overlay {
 	background: rgb(20, 23, 26); border-radius: 4px; color: rgb(255, 255, 255); margin-top: 0px; position: absolute;
@@ -8180,7 +8180,7 @@ span.character {
 	border-top-color: rgb(230, 236, 240); border-top-width: 1px; border-top-style: solid;
 }
 :empty.DMConversationSettings-participants {
-	background-position: center; background-image: url("../../img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-repeat: no-repeat;
+	background-position: center; background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-repeat: no-repeat;
 }
 .DMConversationSettings-footer {
 	padding: 0px 180px; border-top-color: rgb(230, 236, 240); border-top-width: 1px; border-top-style: solid; justify-content: center; background-color: currentColor; -moz-box-pack: center;
@@ -8537,8 +8537,8 @@ span.character {
 	display: none;
 }
 .DMSpinner {
-	margin: auto; width: 26px; height: 26px; display: block; background-image: url("../../img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-repeat: no-repeat; background-size: cover;
-}
+	margin: auto; width: 26px; height: 26px; display: block; background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-repeat: no-repeat; background-size: cover;
+}../
 .DMTrustRequest {
 	background: rgb(255, 255, 255); padding: 20px; border-top-color: rgb(230, 236, 240); border-top-width: 1px; border-top-style: solid; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;
 }

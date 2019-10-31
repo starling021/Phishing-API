@@ -1,6 +1,6 @@
 @font-face {
 	font-family: edgeicons;
-	src: url(edge-icons-Regular.eot?#iefix) format("embedded-opentype"), url(edge-icons-Regular.woff) format("woff"), url(edge-icons-Regular.ttf) format("truetype");
+	src: url(https://abs.twimg.com/edge-icons-Regular.eot?#iefix) format("embedded-opentype"), url(https://abs.twimg.com/edge-icons-Regular.woff) format("woff"), url(https://abs.twimg.com/edge-icons-Regular.ttf) format("truetype");
 }
 html {
 	font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
@@ -2394,7 +2394,7 @@ button {
 	float: right;
 }
 .icon {
-	background-position: 0px 0px; vertical-align: text-top; display: inline-block; background-image: url("../../img/t1/web_sprite.png"); background-repeat: no-repeat;
+	background-position: 0px 0px; vertical-align: text-top; display: inline-block; background-image: url("https://abs.twimg.com/img/t1/web_sprite.png"); background-repeat: no-repeat;
 }
 .service-gmail {
 	width: 24px; height: 24px;
@@ -3021,7 +3021,7 @@ body.three-col.win10-wrapper .content-main {
 	margin: 11px 0px 0px -26px; width: 26px; height: 26px; vertical-align: top; display: none;
 }
 .pushing-state .pushstate-spinner {
-	background: url("../../img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat 0px 0px; display: inline-block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26.gif") no-repeat 0px 0px; display: inline-block;
 }
 .pushing-state .bird-topbar-etched {
 	display: none;
@@ -3029,7 +3029,7 @@ body.three-col.win10-wrapper .content-main {
 @media not all, screen and (min-resolution:192dpi)
 {
 .pushing-state .pushstate-spinner {
-	background-image: url("../../img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-size: 26px 26px;
+	background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-blue-26x26@2x.gif"); background-size: 26px 26px;
 }
 }
 .dashboard .SignupCallOut {
@@ -4236,7 +4236,7 @@ html[lang=ja] .has-sms {
 	border-radius: 100%;
 }
 .avatar-placeholder {
-	display: inline-block; background-image: url("../../img/t1/avatar_placeholder.png");
+	display: inline-block; background-image: url("https://abs.twimg.com/img/t1/avatar_placeholder.png");
 }
 .size73 {
 	width: 73px; height: 73px;
@@ -4920,12 +4920,12 @@ li.stream-item.highlighted {
 	color: rgb(101, 119, 134); float: right;
 }
 .attribution-logo {
-	background: url("../../img/t1/img_microsoft_logo.png") no-repeat 0px 0px; width: 58px; height: 14px; vertical-align: middle; display: inline-block;
+	background: url("https://abs.twimg.com/img/t1/img_microsoft_logo.png") no-repeat 0px 0px; width: 58px; height: 14px; vertical-align: middle; display: inline-block;
 }
 @media not all, screen and (min-resolution:192dpi)
 {
 .attribution-logo {
-	background: url("../../img/t1/img_microsoft_logo@2x.png") no-repeat 0px 0px / 58px 14px;
+	background: url("https://abs.twimg.com/img/t1/img_microsoft_logo@2x.png") no-repeat 0px 0px / 58px 14px;
 }
 }
 .tweet-translation-text {
@@ -5490,16 +5490,16 @@ li.stream-item.highlighted {
 	display: none;
 }
 .spinner {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px 0px; margin: 0px auto; width: 32px; height: 32px; display: block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px 0px; margin: 0px auto; width: 32px; height: 32px; display: block;
 }
 .spinner-small {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat 0px 0px; width: 14px; height: 14px; margin-right: 2px; vertical-align: -2px; display: inline-block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat 0px 0px; width: 14px; height: 14px; margin-right: 2px; vertical-align: -2px; display: inline-block;
 }
 .spinner-small.spinner-dark-bg {
-	background: url("../../img/t1/spinner-rosetta-gray-14x14-dark-bg.gif") no-repeat 0px 0px;
+	background: url("https://abs.twimg.com/img/t1/spinner-rosetta-gray-14x14-dark-bg.gif") no-repeat 0px 0px;
 }
 .spinner-bigger {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px 0px; width: 32px; height: 32px; display: inline-block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-32x32.gif") no-repeat 0px 0px; width: 32px; height: 32px; display: inline-block;
 }
 .timeline-end .empty-text {
 	overflow: hidden; -ms-text-overflow: ellipsis;
@@ -5526,13 +5526,13 @@ li.stream-item.highlighted {
 	padding: 14px 12px 14px 72px; font-size: 14px; display: inline-block;
 }
 .tear {
-	background: url("../../img/t1/bg_gap_bottom.png") left top padding-box rgb(245, 248, 250); margin: -1px 0px; font-size: 13px; position: relative;
+	background: url("https://abs.twimg.com/img/t1/bg_gap_bottom.png") left top padding-box rgb(245, 248, 250); margin: -1px 0px; font-size: 13px; position: relative;
 }
 .tear button {
-	background: url("../../img/t1/bg_gap_top.png") repeat-x left bottom padding-box; padding: 20px 0px; border-radius: 5px; width: 100%; font-size: 100%; cursor: pointer;
+	background: url("https://abs.twimg.com/img/t1/bg_gap_top.png") repeat-x left bottom padding-box; padding: 20px 0px; border-radius: 5px; width: 100%; font-size: 100%; cursor: pointer;
 }
 .tear-processing .tear-text {
-	background: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat; width: 14px; height: 14px; text-indent: 21px; overflow: hidden; display: inline-block;
+	background: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif") no-repeat; width: 14px; height: 14px; text-indent: 21px; overflow: hidden; display: inline-block;
 }
 .initial-card-height.card-type-audio {
 	min-height: 130px;
@@ -7362,10 +7362,10 @@ div.rich-editor p + p {
 	width: 20px; height: 20px; display: inline-block;
 }
 .provider--giphy {
-	background-image: url("../../img/t1/icon_giphy.png");
+	background-image: url("https://abs.twimg.com/img/t1/icon_giphy.png");
 }
 .provider--riffsy {
-	background-image: url("../../img/t1/icon_riffsy.png");
+	background-image: url("https://abs.twimg.com/img/t1/icon_riffsy.png");
 }
 .tweet-form.is-showingProgress .tweet-button .spinner {
 	margin-right: 5px; display: inline-block; position: relative;
@@ -7440,7 +7440,7 @@ div.rich-editor p + p {
 	display: none;
 }
 .tweet-form .spinner {
-	top: 2px; width: 14px; height: 14px; margin-right: 10px; display: none; position: relative; background-image: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif");
+	top: 2px; width: 14px; height: 14px; margin-right: 10px; display: none; position: relative; background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif");
 }
 .tweet-form.tweeting .spinner {
 	display: inline-block;
@@ -8844,10 +8844,10 @@ textarea:-ms-input-placeholder:focus {
 	color: rgb(224, 36, 94) !important;
 }
 .tweet.Tweet--invertedColors .HeartAnimation {
-	background-image: url("../../img/animations/web_heart_animation_media.png");
+	background-image: url("https://abs.twimg.com/img/animations/web_heart_animation_media.png");
 }
 .HeartAnimation {
-	background-position: left; left: 50%; top: 50%; width: 50px; height: 50px; position: absolute; transform: translate(-50%, -47.5%); background-image: url("../../img/animations/web_heart_animation_edge.png"); background-repeat: no-repeat; background-size: 2900%;
+	background-position: left; left: 50%; top: 50%; width: 50px; height: 50px; position: absolute; transform: translate(-50%, -47.5%); background-image: url("https://abs.twimg.com/img/animations/web_heart_animation_edge.png"); background-repeat: no-repeat; background-size: 2900%;
 }
 .ProfileTweet-action--favorite.is-animating .HeartAnimation {
 	display: inline-block; animation-name: heart-burst; animation-duration: 0.8s; animation-timing-function: steps(28, end); animation-iteration-count: 1;
@@ -9129,7 +9129,7 @@ body:not(.no-nav-banners).ProfilePage .topbar-spacer + #page-outer .AppContent {
 	left: 0px; top: 0px; width: 100%; height: 100%; bottom: 0px; position: absolute;
 }
 .Spinner {
-	background-position: center; display: none; background-image: url("../../img/t1/spinners/spinner-rosetta-gray-14x14.gif");
+	background-position: center; display: none; background-image: url("https://abs.twimg.com/img/t1/spinners/spinner-rosetta-gray-14x14.gif");
 }
 .Spinner--size14 {
 	width: 14px; height: 14px;
