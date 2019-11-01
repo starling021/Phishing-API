@@ -1,5 +1,5 @@
 # Phishing-API
-See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html for more details.  This API has three main features.  One allows you to easily deploy cloned landing pages for credential stealing, another is weaponized Word doc creation, and the third is saved email campaign templates.  Both attack methods are integrated into Slack for real-time alerting.  <b>Unfortunately, I'm no longer running this code as a free service @ https://phishapi.com due to cost, sorry!  To deploy this yourself, simply install Apache/PHP7/MySQL (LAMP) and enable browscap.ini in your php.ini file.  </b>
+See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html for more details.  This API has three main features.  One allows you to easily deploy cloned landing pages for credential stealing, another is weaponized Word doc creation, and the third is saved email campaign templates.  Both attack methods are integrated into Slack for real-time alerting.  <b>Unfortunately, I'm no longer running this code as a free service @ https://phishapi.com due to cost, sorry!</b>
 
 
 ## Update
@@ -32,17 +32,19 @@ I've added support for MS Word document generation.  Now, simply go to the API t
 
 1) Import the DB SQL Dump Schema to a new MySQL Instance `mysql -u root -h localhost < DatabaseSQLDump.sql;`
 
-2) Host the PHP from a web service (Apache, Nginx, IIS, etc)
+2) Host the PHP (PHP7 is supported!) from a web service (Apache, Nginx, IIS, etc)
 
 3) Configure config.php variables
 
 4) Limit Access to the "Results" Directories (Apache's Basic Auth is Recommended)
 
-5) Use SSL and a Domain for the Hosted API
+5) Use HTTPS (Let's Encrypt!) and a Domain for the Hosted API
 
-6) Add your web service account to /etc/sudoers (www-data for apache)
+6) Add your web service account to /etc/sudoers (www-data for Apache)
 
 7) Optionally run Responder and BeEF in a screen session and import the crontab file
+
+8) Enable browscap in your php.ini config and point to it in your web directory (included in this repo)
 
 
 
