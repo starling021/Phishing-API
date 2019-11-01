@@ -1,5 +1,5 @@
 # Phishing-API
-See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html for more details.  This API has three main features.  One allows you to easily deploy cloned landing pages for credential stealing, another is weaponized Word doc creation, and the third is saved email campaign templates.  Both attack methods are integrated into Slack for real-time alerting.  <b>I'm currently running this same code for those that don't want to implement their own environment as a free service @ https://phishapi.com!  </b>
+See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html for more details.  This API has three main features.  One allows you to easily deploy cloned landing pages for credential stealing, another is weaponized Word doc creation, and the third is saved email campaign templates.  Both attack methods are integrated into Slack for real-time alerting.  <b>Unfortunately, I'm no longer running this code as a free service @ https://phishapi.com due to cost, sorry!  To deploy this yourself, simply install Apache/PHP7/MySQL (LAMP) and enable browscap.ini in your php.ini file.  </b>
 
 
 ## Update
