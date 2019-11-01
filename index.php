@@ -1,5 +1,7 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+
 // Receives Required Parameters and Sets Variables
 $ip = $_SERVER['REMOTE_ADDR'];
 if(isset($_REQUEST['username'])){$user = $_REQUEST['username'];}else{$user = "";}
