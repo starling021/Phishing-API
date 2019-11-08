@@ -343,11 +343,7 @@ set_focus();
 </tbody></table>
 </td></tr>
 
-<tr>
-<td id="copyright_panel" colspan="2" style="vertical-align:bottom">
-      <div style="text-indent:10px; ">  This is a private computer network belonging to Dayton Children's.  Use of this site must be authorized by Dayton Children's.
-</div></td>
-</tr>
+
 
 </tbody></table>
 
