@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: campaigns
 -- ------------------------------------------------------
--- Server version	5.5.59-0ubuntu0.14.04.1
+-- Server version	5.7.27-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +29,7 @@ USE `campaigns`;
 
 DROP TABLE IF EXISTS `content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `content` (
   `CampaignName` varchar(100) DEFAULT NULL,
   `Markup` varchar(10000) DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `content` (
 
 DROP TABLE IF EXISTS `emailalerts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `emailalerts` (
   `DateTime` datetime DEFAULT NULL,
   `Target` varchar(1000) DEFAULT NULL,
@@ -82,7 +82,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1Name VARCHAR(1000), IN INVariable2Name VARCHAR(1000), IN INVariable3Name VARCHAR(1000), IN INVariable4Name VARCHAR(1000), IN INVariable5Name VARCHAR(1000), IN INVariable6Name VARCHAR(1000), IN INVariable7Name VARCHAR(1000), IN INVariable8Name VARCHAR(1000), IN INVariable9Name VARCHAR(1000), IN INVariable10Name VARCHAR(1000))
 BEGIN
 
--- CREATE OR UPDATE EXISTING EMAIL CAMPAIGN
+
 IF EXISTS (select 1 from content where CampaignName = INCampaignName) THEN
     UPDATE content
     SET Markup = InMarkup,
@@ -209,7 +209,7 @@ USE `phishingdocs`;
 
 DROP TABLE IF EXISTS `Notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Notifications` (
   `Type` varchar(100) DEFAULT NULL,
   `API_Token` varchar(1000) DEFAULT NULL,
@@ -225,7 +225,7 @@ CREATE TABLE `Notifications` (
 
 DROP TABLE IF EXISTS `requests`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `requests` (
   `Datetime` datetime DEFAULT NULL,
   `IP` varchar(100) DEFAULT NULL,
@@ -259,7 +259,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckRecentlySubmitted`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100))
 BEGIN
 
--- LOOK BACK RECENTLY TO AVOID DUPLICATE RECORDS
+
 SELECT 
     *
 FROM
@@ -288,7 +288,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateNotificationRef`(IN InType VARCHAR(100), IN InAPI_Token VARCHAR(1000), IN InChannel VARCHAR(100))
 BEGIN
 
--- CREATE A UNIQUE IDENTIFIER FOR NOTIFICATION SETTINGS WHEN A DOCUMENT IS CREATED
+
 SET @UUID = UUID();
 
 INSERT INTO Notifications (Type, API_Token, Channel, UUID, Datetime) VALUES (InType, InAPI_Token, InChannel, @UUID, now());
@@ -313,7 +313,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetNotificationRef`(IN InUUID VARCHAR(1000))
 BEGIN
 
--- RETRIEVE NOTIFICATION SETTINGS FROM A UNIQUE ID IN THE URL "ID" PARAMETER
+
 SELECT 
     *
 FROM
@@ -341,7 +341,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUUIDRecord`(IN InUUID VARCHAR(1000))
 BEGIN
 
--- RETRIEVE ALL PHISH RECORDS ASSOCIATED WITH A DOCUMENT
+
 SELECT 
     *
 FROM
@@ -368,7 +368,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertRequests`(IN InIP VARCHAR(100), IN InTarget VARCHAR(100), IN InOrg VARCHAR(100), IN InUA VARCHAR(1000), IN InUUID VARCHAR(1000), IN InUser VARCHAR(100), IN InPass VARCHAR(100))
 BEGIN
 
--- INSERT CAPTURED INFORMATION FROM AN OPENED DOCUMENT INTO THE "requests" TABLE
+
 INSERT INTO requests (Datetime, IP, Target, Org, UA, UUID, User, Pass) VALUES (now(), InIP,InTarget,InOrg,InUA,InUUID,InUser,InPass);
 
 END ;;
@@ -390,7 +390,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MatchHashes`(IN InIP VARCHAR(100), IN InHash VARCHAR(1000))
 BEGIN
 
--- IF A HASH IS CAPTURED, COMPARE THE IP ADDRESS TO AN ACTIVE CAMPAIGN (fakesite or phishingdocs) AND UPDATE THE "requests" TABLE
+
 UPDATE requests 
 SET 
     NTLMv2 = CONCAT(NTLMv2, InHash, '<br>')
@@ -450,7 +450,7 @@ USE `fakesite`;
 
 DROP TABLE IF EXISTS `stolencreds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stolencreds` (
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
@@ -459,7 +459,8 @@ CREATE TABLE `stolencreds` (
   `location` varchar(50) DEFAULT NULL,
   `Token` varchar(1000) DEFAULT NULL,
   `Hash` varchar(1000) NOT NULL,
-  `stolencredscol` varchar(45) DEFAULT NULL
+  `stolencredscol` varchar(45) DEFAULT NULL,
+  `hibpcount` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -483,7 +484,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckProjects`()
 BEGIN
 
--- RETURNS PROJECT LIST
+
 SELECT DISTINCT
     location
 FROM
@@ -510,7 +511,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAwards`(IN InProject VARCHAR(1000), IN InUser VARCHAR(1000))
 BEGIN
 
--- MOST DEDICATED
+
 SELECT 
     'MostDedicated' AS Title, username
 FROM
@@ -524,7 +525,7 @@ FROM
     GROUP BY username) sc
 WHERE
     count = 2 
--- MOST DELAYED
+
 UNION SELECT 
     'MostDelayed' AS Title, username
 FROM
@@ -536,7 +537,7 @@ FROM
         location = InProject) iq
 WHERE
     DATEDIFF(DATE_FORMAT(NOW(), '%Y-%m-%d'), LastDate) >= 2
--- MOST DISCLOSED PASSWORDS
+
 UNION SELECT 
     'MostDisclosedPWs' AS Title, username
 FROM
@@ -550,7 +551,7 @@ FROM
     GROUP BY username , password) iq
 WHERE
     countpass = 2 
--- MOST PHISH
+
 UNION SELECT 
     'MostPhish' AS Title, iq.countrows AS username
 FROM
@@ -582,7 +583,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetRecords`(IN InProject VARCHAR(1000))
 BEGIN
 
--- SELECT ALL RECORDS FOR THE SELECTED PROJECT
+
 SELECT 
     *
 FROM
@@ -609,7 +610,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertStolenCreds`(IN InUser VARCHAR(1000), IN InPass VARCHAR(1000), InIP VARCHAR(100), InLocation VARCHAR(1000), InToken VARCHAR(1000))
 BEGIN
 
--- INSERT CAPTURED INFORMATION INTO stolencreds TABLE
+
 INSERT INTO stolencreds(username,password,entered,ip,location,token) VALUES(InUser,InPass,NOW(),InIP,InLocation,InToken);
 
 END ;;
@@ -631,7 +632,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RemoveProject`(IN InProject VARCHAR(1000))
 BEGIN
 
--- DELETE ALL RECORDS FOR THE SELECTED PROJECT
+
 DELETE FROM stolencreds 
 WHERE
     location = InProject;
@@ -655,11 +656,199 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RemoveRecord`(IN InProject VARCHAR(1000), IN InEntered TIMESTAMP)
 BEGIN
 
--- DELETE SPECIFIC RECORD FOR SELECTED PROJECT
+
 DELETE FROM stolencreds 
 WHERE
     location = InProject
     AND entered = InEntered;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Report-HIBPHitCount` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Report-HIBPHitCount`(IN InProject VARCHAR(1000))
+BEGIN
+
+-- HaveIBeenPwned Hits
+-- Number of Time the Password Has Been Leaked
+select distinct password as Password,hibpcount as '# of Known Reuses'
+from stolencreds 
+where location = InProject
+and hibpcount IS NOT NULL
+order by hibpcount desc;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Report-HIBPNumberReuse` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Report-HIBPNumberReuse`(IN InProject VARCHAR(1000))
+BEGIN
+
+-- HaveIBeenPwned Hits
+-- Number of Reused Passwords in Campaign
+set @Total = (select count(*)
+from stolencreds
+where location = InProject);
+
+set @Hits = (select CASE WHEN (count(password) IS NULL) THEN 0 ELSE count(password) END
+from stolencreds
+where location = InProject
+and hibpcount > 0);
+
+select CONCAT(@Hits,'/',@Total) as '# of Compromised Passwords';
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Report-NonUniquePWs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Report-NonUniquePWs`(IN InProject VARCHAR(1000))
+BEGIN
+
+-- Non-Unique Passwords
+SELECT 
+    FROM_BASE64(iq2.pw) AS Password,
+    COUNT(iq2.pw) AS Occurrences
+FROM
+    (SELECT 
+        sc.password AS pw
+    FROM
+        stolencreds sc
+    INNER JOIN (SELECT 
+        COUNT(username) AS cnt, password
+    FROM
+        stolencreds
+    WHERE
+        location = InProject
+    GROUP BY password
+    HAVING COUNT(username) > 1
+    ORDER BY COUNT(username) DESC) iq ON sc.password = iq.password
+    WHERE
+        location = InProject
+    GROUP BY sc.password , sc.username) iq2
+GROUP BY iq2.pw
+HAVING COUNT(iq2.pw) > 1
+ORDER BY COUNT(iq2.pw) DESC;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Report-PWComplexity` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Report-PWComplexity`(IN InProject VARCHAR(1000))
+BEGIN
+
+-- Password Complexity
+
+-- IF THIS PLUGIN ISN'T INSTALLED YOU MUST RUN THE FOLLOWING COMMAND ONCE
+-- INSTALL PLUGIN validate_password SONAME 'validate_password.so';
+
+select count(password) as '# of Passwords',VALIDATE_PASSWORD_STRENGTH(FROM_BASE64(password)) as 'Strenght Raiting'
+from stolencreds
+where location = InProject
+GROUP BY VALIDATE_PASSWORD_STRENGTH(FROM_BASE64(password))
+order by VALIDATE_PASSWORD_STRENGTH(FROM_BASE64(password)) desc;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Report-PWsByLength` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Report-PWsByLength`(IN InProject VARCHAR(1000))
+BEGIN
+
+-- Passwords by Length
+SELECT 
+    LENGTH(FROM_BASE64(password)) AS Length,
+    COUNT(password) AS 'Number of Passwords'
+FROM
+    stolencreds
+WHERE
+    location = InProject
+GROUP BY Length
+ORDER BY Length DESC;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpdateHIBPCount` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateHIBPCount`(IN InPass VARCHAR(1000), InLocation VARCHAR(1000), InCount INT)
+BEGIN
+
+
+UPDATE stolencreds
+SET hibpcount = InCount
+WHERE password = InPass
+AND location = InLocation;
 
 END ;;
 DELIMITER ;
@@ -677,4 +866,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-20  9:53:55
+-- Dump completed on 2019-11-12 15:27:11
