@@ -407,6 +407,16 @@ if (in_array(substr($sha1pass, 5), $pwnedarray)) {
 
 $haveibeenpwnedhits = $arraywithcount[substr($sha1pass, 5)];
 
+// Update DB w/ HIBP Data
+$connhibp = mysqli_connect($servername, $username, $password, $dbname);
+
+// Inserts Captured Information Into MySQL DB
+$sqlhibp = "CALL UpdateHIBPCount('$pass','$portal','$haveibeenpwnedhits');";
+$resulthibp = $connhibp->query($sqlhibp);
+
+printf($connhibp->error);
+$connhibp->close();
+
 // If the Password is so non-unique, give a Trophy
 if ($haveibeenpwnedhits >= "3000"){
 $cmdtrophy5 = "curl -F file=@awardgifs/TrophyLeastUniquePassword.gif -F 'initial_comment=That PW Gets Around.. (".number_format($haveibeenpwnedhits)." times!) - ".$user." @ ".$portal."' -F channels=".$slackchannel." -H 'Authorization: Bearer ".$SlackBotOrLegacyToken."' https://slack.com/api/files.upload";

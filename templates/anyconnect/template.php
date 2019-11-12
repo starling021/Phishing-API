@@ -269,11 +269,7 @@ function formSubmit() {
     <td>
     <div><select id="group_list" name="group_list" style="z-index:1; float:left;" >
     
-    <option value="DefaultWEBVPNGroup" selected="">Childrens_Medical_Users</option>
-
-    <option value="BasicPortal-WebVPN">RemoteAccess-BasicPortal</option>
-
-    <option value="TestPhoneFactor">Z_ISTestPF</option>
+    <option value="SSLVPN" selected="">SSLVPN</option>
 
     </select>
     </div>
@@ -342,12 +338,6 @@ set_focus();
 </tr>
 </tbody></table>
 </td></tr>
-
-<tr>
-<td id="copyright_panel" colspan="2" style="vertical-align:bottom">
-      <div style="text-indent:10px; ">  This is a private computer network belonging to Dayton Children's.  Use of this site must be authorized by Dayton Children's.
-</div></td>
-</tr>
 
 </tbody></table>
 
