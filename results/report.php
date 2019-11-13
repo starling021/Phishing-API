@@ -84,7 +84,7 @@ $result2 = $conn2->query($sql2);
 ?>
 	
 	<TABLE BORDER=1><TR><TH COLSPAN=2>Passwords Complexity Rank</TH></TR>
-	<TR><TH>Number of Passwords</TH><TH>Strength Raiting</TH></TR>
+	<TR><TH>Number of Passwords</TH><TH>Strength Rating</TH></TR>
 
 <?php
     // output data of each row
