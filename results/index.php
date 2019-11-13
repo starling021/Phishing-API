@@ -21,6 +21,14 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="../images/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
+<style>
+table.blank th {
+
+}
+table.blank td {
+
+}
+</style>
 </HEAD>
 <BODY>
 <FORM ACTION="../index.php" METHOD="GET">
@@ -114,12 +122,24 @@ $result = $conn->query($sql);
     <h2><FONT COLOR="#FFFFFF">Stolen Credentials</FONT></h2>
 
 
-
+<TABLE class="blank">
+<TR>
+<TD class="blank"><br>
 <FORM METHOD="POST" ACTION="<?php echo $_SERVER['PHP_SELF'];?>">
 <input type="hidden" name="deleteproject" value="<?php echo $project; ?>">
-<input type="submit" value="Delete Project">
+<input type="submit" value="Delete Project" onclick="return confirm('Are you sure?')" />
 </FORM>
+</TD>
+<TD class="blank"><br>
+<FORM METHOD="POST" ACTION="report.php">
+<input type="hidden" name="project" value="<?php echo $project; ?>">
+<input type="submit" value="Password Audit Report">
+</FORM>
+</TD>
+</TR>
+</TABLE>
 
+<br>
 
 
 <TABLE BORDER=1><TR><TH>Username</TH><TH>Password</TH><TH>Time</TH><TH>IP</TH><TH>Project</TH><TH>Token</TH><TH style="word-wrap: break-word;
