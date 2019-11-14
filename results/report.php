@@ -89,7 +89,12 @@ $result2 = $conn2->query($sql2);
 <?php
     // output data of each row
     while($row2 = $result2->fetch_assoc()) {
-echo "<TR><TD>".$row2["# of Passwords"]."</TD><TD>".$row2["Strength Raiting"]."</TD></TR>";
+		$strength = "";
+		$color = "";
+		if ($row2["Strength Raiting"] == "100"){$strength = "Strong"; $color="Green";}
+		if ($row2["Strength Raiting"] == "50"){$strength = "Fair"; $color="Yellow";}
+		if ($row2["Strength Raiting"] == "25"){$strength = "Weak"; $color="Red";}
+echo "<TR><TD>".$row2["# of Passwords"]."</TD><TD bgcolor=\"".$color."\">".$strength."</TD></TR>";
     }
 $conn2->close();
 	
