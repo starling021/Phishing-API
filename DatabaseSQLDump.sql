@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `content`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `content` (
   `CampaignName` varchar(100) DEFAULT NULL,
-  `Markup` varchar(10000) DEFAULT NULL,
+  `Markup` varchar(50000) DEFAULT NULL,
   `Variable1Name` varchar(1000) DEFAULT NULL,
   `Variable2Name` varchar(1000) DEFAULT NULL,
   `Variable3Name` varchar(1000) DEFAULT NULL,
@@ -73,13 +73,13 @@ CREATE TABLE `emailalerts` (
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = '' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(10000), IN INVariable1Name VARCHAR(1000), IN INVariable2Name VARCHAR(1000), IN INVariable3Name VARCHAR(1000), IN INVariable4Name VARCHAR(1000), IN INVariable5Name VARCHAR(1000), IN INVariable6Name VARCHAR(1000), IN INVariable7Name VARCHAR(1000), IN INVariable8Name VARCHAR(1000), IN INVariable9Name VARCHAR(1000), IN INVariable10Name VARCHAR(1000))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateModifyCampaign`(IN INCampaignName VARCHAR(1000), IN INMarkup VARCHAR(50000), IN INVariable1Name VARCHAR(1000), IN INVariable2Name VARCHAR(1000), IN INVariable3Name VARCHAR(1000), IN INVariable4Name VARCHAR(1000), IN INVariable5Name VARCHAR(1000), IN INVariable6Name VARCHAR(1000), IN INVariable7Name VARCHAR(1000), IN INVariable8Name VARCHAR(1000), IN INVariable9Name VARCHAR(1000), IN INVariable10Name VARCHAR(1000))
 BEGIN
 
 
@@ -866,4 +866,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-13  1:31:57
+-- Dump completed on 2019-11-21  0:08:27
