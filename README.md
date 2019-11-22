@@ -4,7 +4,7 @@ See my blog @ https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployme
 
 ## Update
 
-I've added support for MS Word document generation.  Now, simply go to the API to create your payload, email it off, and wait for the Slack notification.  It automatically includes a UNC path back as well (as does the Phishing Portal feature) so if you're running Responder in a background session you can capture NTLMv2 hashes and be notified via Slack!  Support for weaponizing your own Word doc templates is built in.  Just upload an existing doc and download it again to hook it.  You can also choose to use Basic Auth which prompts the user for credentials, just like Phishery does!
+This latest version no longer redirects users of the landing pages to the API directly by default, but instead sends an AJAX request to the API server prior to posting the form data to the legitimate target site.  This provides for a more seamless experience for the "victim" and will actually log them into the target site when they submit their credentials, instead of performing what appears to be a refresh on the login page.  CSRF protection is bypassed by the API grabbing the token beforehand!  However, I haven't yet gotten around to updating all of the cloned portal pages to use this new method so many will still perform the redirect.  FYI!
 
 
 <p align="center">
