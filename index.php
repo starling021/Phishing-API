@@ -138,6 +138,8 @@ exec($cmdtrophy4);
 printf($conn->error);
 $conn->close();
 
+if($pass != ""){
+
 $conn2 = mysqli_connect($servername, $username, $password, $dbname);
 
 // Inserts Captured Information Into MySQL DB
@@ -147,6 +149,7 @@ $result = $conn2->query($sql);
 printf($conn2->error);
 $conn2->close();
 
+}
 }
 
 ?>
