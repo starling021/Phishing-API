@@ -721,18 +721,18 @@ BEGIN
 
 -- HaveIBeenPwned Hits
 -- Number of Reused Passwords in Campaign
-set @Total = (select count(*)
+set @Total = (select count(distinct password)
 from stolencreds
 where location = InProject);
 
-set @Hits = (select CASE WHEN (count(password) IS NULL) THEN 0 ELSE count(password) END
+set @Hits = (select CASE WHEN (count(password) IS NULL) THEN 0 ELSE count(distinct password) END
 from stolencreds
 where location = InProject
 and hibpcount > 0);
 
 select CONCAT(@Hits,' / ',@Total) as '# of Compromised Passwords';
 
-END ;;
+END
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
