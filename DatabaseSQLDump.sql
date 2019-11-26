@@ -800,7 +800,7 @@ BEGIN
 -- IF THIS PLUGIN ISN'T INSTALLED YOU MUST RUN THE FOLLOWING COMMAND ONCE
 -- INSTALL PLUGIN validate_password SONAME 'validate_password.so';
 
-select count(password) as '# of Passwords',VALIDATE_PASSWORD_STRENGTH(FROM_BASE64(password)) as 'Strength Raiting'
+select count(distinct password) as '# of Passwords',VALIDATE_PASSWORD_STRENGTH(FROM_BASE64(password)) as 'Strength Raiting'
 from stolencreds
 where location = InProject
 GROUP BY VALIDATE_PASSWORD_STRENGTH(FROM_BASE64(password))
@@ -828,7 +828,7 @@ BEGIN
 -- Passwords by Length
 SELECT 
     LENGTH(FROM_BASE64(password)) AS Length,
-    COUNT(password) AS 'Number of Passwords'
+    COUNT(distinct password) AS 'Number of Passwords'
 FROM
     stolencreds
 WHERE
