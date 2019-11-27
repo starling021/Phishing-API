@@ -868,6 +868,7 @@ DELIMITER ;
 
 -- Dump completed on 2019-11-26 12:09:16
 
+USE `campaigns`;
 
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
