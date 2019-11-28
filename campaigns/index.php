@@ -671,7 +671,7 @@ if($row1['Variable10Name'] != ""){echo "<TR><TD>Variable ".$x.": </TD><TD><input
 
 </TABLE>
 
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=of5ifxe3ls8fdxa89e2ja3o4h2e0de9fp38rxhwpttatu8xq"></script>
+<script src="https://cdn.tiny.cloud/1/of5ifxe3ls8fdxa89e2ja3o4h2e0de9fp38rxhwpttatu8xq/tinymce/5/tinymce.min.js"></script>
 <script>
 tinymce.init({
     selector: 'textarea',
