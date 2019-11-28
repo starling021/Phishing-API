@@ -34,15 +34,15 @@ This latest version no longer redirects users of the landing pages to the API di
 
 2) Host the PHP (PHP7 is supported!) from a web service (Apache, Nginx, IIS, etc)
 
-3) Configure /var/www/html/config.php with your variables
+3) Configure `/var/www/html/config.php` with your variables
 
-4) Limit Access to the "Results" Directories (Apache's Basic Auth is Recommended)
+4) Limit Access to the "Results" Directories `/var/www/html/results` and `/var/www/html/phishingdocs/results` (Apache's Basic Auth is Recommended)
 
 5) Use HTTPS (Let's Encrypt!) and a Domain for the Hosted API
 
 6) Optionally run Responder and BeEF in a screen session and import the crontab file
 
-7) Enable browscap in your php.ini config and point to it in your web directory "/var/www/html/browscap.ini" (included in this repo)
+7) Enable browscap in your php.ini config and point to it in your web directory `/var/www/html/browscap.ini` (included in this repo)
 
 8) Enjoy! :)  Message me if you have any issues.  This does not work on Windows!
 
