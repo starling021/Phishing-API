@@ -124,15 +124,13 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 # 2) To Use the API for Generating Word Doc Payloads :
 
-1) Modify /phishingdocs/index.php to include your Slack Webhook parameters
+1) Create `/var/www/uploads` Path and `sudo chmod 777 /var/www/uploads -R` the path
 
-2) Create /var/www/uploads Path and make sure your web user has sudoers access
-
-3) Browse out to YOUR_URL.com and select "Weaponized Documents" to generate your DOCX
+3) Browse out to your hosted API (YOUR_URL.com) and select "Weaponized Documents" to generate your DOCX
 
 4) Optionally set up [Responder](https://github.com/SpiderLabs/Responder "Responder") in a background process and run `phishinghashes.sh` every minute or so with cron
 
-5) Set up your php.ini to allow uploads of at least 15MB and enable browsecap.ini for parsing UserAgent strings, otherwise some functionality may be limited.  
+5) Set up your php.ini to allow uploads of at least 15MB and enable browscap.ini for parsing UserAgent strings, otherwise some functionality may be limited.  
 
 6) Email your doc and wait for the Slack alerts!
 
