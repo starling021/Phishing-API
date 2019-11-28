@@ -30,7 +30,7 @@ This latest version no longer redirects users of the landing pages to the API di
 
 # To Setup :
 
-1) Import the DB SQL Dump Schema to a new MySQL Instance `mysql -u root -h localhost < DatabaseSQLDump.sql;`
+1) Import the DB SQL Dump Schema to a new MySQL Instance `mysql -u root -h localhost < DatabaseSQLDump.sql;`.  You may have to create a new user that's not "root" and grant all privileges to all databases for your config if you have issues.
 
 2) Host the PHP (PHP7 is supported!) from a web service (Apache, Nginx, IIS, etc)
 
@@ -40,11 +40,11 @@ This latest version no longer redirects users of the landing pages to the API di
 
 5) Use HTTPS (Let's Encrypt!) and a Domain for the Hosted API
 
-6) Add your web service account to /etc/sudoers (www-data for Apache)
+6) Optionally run Responder and BeEF in a screen session and import the crontab file
 
-7) Optionally run Responder and BeEF in a screen session and import the crontab file
+7) Enable browscap in your php.ini config and point to it in your web directory "/var/www/html/browscap.ini" (included in this repo)
 
-8) Enable browscap in your php.ini config and point to it in your web directory (included in this repo)
+8) Enjoy! :)  Message me if you have any issues.  This does not work on Windows!
 
 
 
