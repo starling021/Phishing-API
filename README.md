@@ -32,7 +32,7 @@ This latest version no longer redirects users of the landing pages to the API di
 
 1) Import the DB SQL Dump Schema to a new MySQL Instance `mysql -u root -h localhost < DatabaseSQLDump.sql;`.  You may have to create a new user that's not "root" and grant all privileges to all databases for your config if you have issues.
 
-2) Host the PHP (PHP7 is supported!) from a web service (Apache, Nginx, IIS, etc)
+2) Host the PHP (PHP7 is supported!) from a web service (Tested with Apache)
 
 3) Configure `/var/www/html/config.php` with your variables
 
