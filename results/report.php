@@ -41,14 +41,67 @@ if(isset($_REQUEST['project'])){
 	
 $project = $_REQUEST['project'];
 
+
+if(isset($_REQUEST["numemails"])){
+
+$numemails = $_REQUEST["numemails"];
+
+// Create connection
+$connupdate = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if ($connupdate->connect_error) {
+    die("Connection failed: " . $connupdate->connect_error);
+}
+
+// Update Email Count
+$sqlupdate = "CALL UpdateEmailsSent('$project','$numemails');";
+
+$resultupdate = $connupdate->query($sqlupdate);
+
+$connupdate->close();
+
+	
+}
+
+
+
 // Passwords By Length
 $sql1 = "CALL ReportPWsByLength('$project');";
 
 $result1 = $conn->query($sql1);
 ?>
 
-    <h2><font color="#FFFFFF">Password Audit Report</FONT></h2><br>
+    <h2><font color="#FFFFFF">Password Audit Report</FONT></h2><br><br>
+
+<?php
+// Get/Update Emails Sent for Campaign
+
+// Create connection
+$connstats = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if ($connstats->connect_error) {
+    die("Connection failed: " . $connstats->connect_error);
+}
+
+$sqlstats = "CALL GetEmailsSent('$project');";
+
+$resultstats = $connstats->query($sqlstats);
+
+    // output data of each row
+    while($rowstats = $resultstats->fetch_assoc()) {
+$emailssent = $rowstats["numemails"];
+    }
 	
+if(!isset($emailssent)){$emailssent = "0";}
+
+?>
+	
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"><font color="#FFFFFF"><b>Total Emails Sent: </b></font><input name="numemails" type="text" value="<?php echo $emailssent; ?>" size="5">&nbsp;<input type="hidden" name="project" value="<?php echo $project; ?>"><input type="submit" value="Update"></form><br>
+
+<?php 
+$connstats->close();
+?>
+
 	<TABLE BORDER=1><TR><TH COLSPAN=2>Passwords by Length</TH></TR>
 	<TR><TH>Length</TH><TH>Number of Passwords</TH></TR>
 
@@ -195,7 +248,9 @@ $result5 = $conn5->query($sql5);
 <?php
     // output data of each row
     while($row5 = $result5->fetch_assoc()) {
-echo "<TR><TD>".$row5["# of Compromised Passwords"]."</TD></TR>";
+$compromisedpws = $row5["Total"];
+$hits = $row5["Hits"];
+echo "<TR><TD>".$hits." / ".$compromisedpws."</TD></TR>";
     }
 $conn5->close();
 	
@@ -212,6 +267,11 @@ $conn5->close();
 <?php
 }
 ?>
+
+
+<TABLE BORDER=1><TR><TH>Overall Campaign Success Rate</TH></TR>
+
+<TR><TD><?php $percentagesuccess = ($compromisedpws / $emailssent) * 100; echo $percentagesuccess."%"; ?></TD></TR>
 
 </TABLE>
 </CENTER>
