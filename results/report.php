@@ -271,7 +271,7 @@ $conn5->close();
 
 <TABLE BORDER=1><TR><TH>Overall Campaign Success Rate</TH></TR>
 
-<TR><TD><?php $percentagesuccess = ($compromisedpws / $emailssent) * 100; echo $percentagesuccess."%"; ?></TD></TR>
+<TR><TD><?php $percentagesuccess = ($compromisedpws / $emailssent) * 100; echo round($percentagesuccess, 2)."%"; ?></TD></TR>
 
 </TABLE>
 </CENTER>
