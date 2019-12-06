@@ -182,7 +182,11 @@ $basicauthuser = $_SERVER['PHP_AUTH_USER'];
 
 $basicauthpw = $_SERVER['PHP_AUTH_PW'];
 
-$message = "> ".$target." just entered their credentials! (<".$APIResultsURL."?UUID=".$id."|".$basicauthuser.">)";
+if(!isset($org) || $org == ""){
+	$org = "Somewhere";
+}
+
+$message = "> ".$target." just entered their credentials at ".$org."! (<".$APIResultsURL."?UUID=".$id."|".$basicauthuser.">)";
 
 //$cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "'.$slackbotname.'", "text": "'.$message.'", "icon_emoji": "'.$slackemoji.'"}\' '.$slackurl.'';
 //echo $cmd;
