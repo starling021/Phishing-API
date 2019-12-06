@@ -549,7 +549,7 @@ else {
 <TH COLSPAN="2">API URL</TH><TH>Target</TH><TH>Organization</TH><TH>Payloads</TH><TH COLSPAN="2">Slack Settings<br>(Not Required)</TH>
 </TR>
 <TR>
-<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https" selected>https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith"></TD><TD><input type="text" name="Org" value="Evil Corp"></TD><TD><font size="2">HTTP Call </font><input type="checkbox" disabled checked><br><font size="2">SMB Hash </font><input type="checkbox" disabled checked><br><font size="2">Auth Prompt <input type="checkbox" name="basicauth"></font></TD><TD align="center" style="vertical-align:bottom"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required - Defaults to Conf</font></TD><TD align="center" style="vertical-align:bottom"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required - Defaults to Conf</font></TD>
+<TD><SELECT NAME="HTTPValue"><option value="http">http</option><option value="https" selected>https</option></SELECT></TD><TD><input type="text" name="URL" value="<?php echo $_SERVER['SERVER_NAME'];?>"></TD><TD><input type="text" name="Target" value="Joe Smith" size="10"></TD><TD><input type="text" name="Org" value="Evil Corp" size="10"></TD><TD><font size="2">HTTP Call </font><input type="checkbox" disabled checked><br><font size="2">SMB Hash </font><input type="checkbox" disabled checked><br><font size="2">Auth Prompt <input type="checkbox" name="basicauth"></font></TD><TD align="center" style="vertical-align:bottom"><input type="text" name="slackurl" value="" placeholder="Slack Webhook URL Here"><br><FONT SIZE="2">Not Required if Set in Conf</font></TD><TD align="center" style="vertical-align:bottom"><input type="text" value="" placeholder="#slack_channel" name="slackchannel"><br><font size="2">Not Required if Set in Conf</font></TD>
 </TR>
 <TR>
 <TD COLSPAN="7">
@@ -560,7 +560,7 @@ else {
 </TABLE>
 <br><br><button class="btn" type="submit"><i class="fa fa-download"></i> Generate Payload!</button>
 </CENTER><br><br>
-<FONT SIZE="3" COLOR="#ffffff"><p align="center">The generated Word doc will call back via HTTP to the Slack API specified in the API's php file.  Also, a UNC path will be created as well in an attempt to capture NTLMv2 SMB requests.  Make sure your server allows TCP 445 and you're running Responder when the documents are opened for added fun! :)<br><br>If you don't trust me enough to provide your Slack Token (can't blame you!) you can serve your own by downloading the source code on my <a href="https://github.com/curtbraz/Phishing-API">Github</a> page!</p></FONT>
+<FONT SIZE="3" COLOR="#ffffff"><p align="center">The generated Word doc will call back via HTTP to the Slack API specified in the API's php file.  Also, a UNC path will be created as well in an attempt to capture NTLMv2 SMB requests.  Make sure your server allows TCP 445 and you're running Responder when the documents are opened for added fun! :)</p></FONT>
 </FORM>
 
 <?php
