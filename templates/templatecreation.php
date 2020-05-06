@@ -40,8 +40,8 @@ if(!isset($_REQUEST['APIURL'])){
       <a href="../index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
       <a href="../phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
       <a href="../campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
-	  <a href="https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html" class="w3-bar-item w3-button" target="_blank"><i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: black;"></i> Help / About</a>
-	  </div>
+          <a href="https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html" class="w3-bar-item w3-button" target="_blank"><i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: black;"></i> Help / About</a>
+          </div>
   </div></FORM><br><br><br>
 <CENTER>
 <FORM METHOD="POST"  ACTION="<?php $_SERVER["PHP_SELF"]; ?>">
@@ -91,7 +91,7 @@ $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
 fwrite($handle, $html);
 
 // Zip up Generated HTML and Clean Up
-$cmdzipup = "sudo rm ".$templatename.".zip; cd ".$templatename."; sudo zip -r ../".$templatename.".zip ".$templatename." *; sudo chmod 777 ../".$templatename.".zip; sudo rm index.html;";
+$cmdzipup = "rm ".$templatename.".zip; cd ".$templatename."; zip -r ../".$templatename.".zip ".$templatename." *; rm index.html;";
 exec($cmdzipup);
 
 // Display Download Button for Generated HTML as an Archive
@@ -129,8 +129,8 @@ exec($cmdzipup);
       <a href="../index.php?fakesite=1" class="w3-bar-item w3-button"><i class="fa fa-user fa-1x" aria-hidden="true" style="color: black;"></i> Fake Portal</a>
       <a href="../phishingdocs/" class="w3-bar-item w3-button"><i class="fa fa-file-text fa-1x" aria-hidden="true" style="color: black;"></i> Weaponized Documents</a>
       <a href="../campaigns" class="w3-bar-item w3-button"><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: black;"></i> Email Campaigns</a>
-	  <a href="https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html" class="w3-bar-item w3-button" target="_blank"><i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: black;"></i> Help / About</a>
-	  </div>
+          <a href="https://curtbraz.blogspot.com/2018/10/phishapi-tool-rapid-deployment-of-fake.html" class="w3-bar-item w3-button" target="_blank"><i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: black;"></i> Help / About</a>
+          </div>
   </div></FORM><br><br><br>
 <FORM ACTION="<?php echo $templatename; ?>.zip" METHOD="GET">
 <button class="btn" style="width:100%" type="submit"><i class="fa fa-download"></i> Download Source HTML</button>
