@@ -17,7 +17,7 @@ $beefarray = json_decode($output2[0], true);
 $beefarray = $beefarray["logs"];
 
 foreach($beefarray as $id){
-if($id["type"] == "Zombie"){
+if($id["logtype"] == "Zombie"){
 
 $dateevent = strtotime($id["date"]);
 $datenow = strtotime("now");
