@@ -1,3 +1,15 @@
+<?php
+
+$ip = $_SERVER['REMOTE_ADDR'];                                                                                                                                                                                                     $$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+$org = $details->org; // -> "Mountain View"
+//var_dump($details);
+
+if(strpos($org, "Google") !== false){
+    echo "<HTML><BODY><IMG SRC=\"../images/favicon/android-icon-192x192.png\"></HTML></BODY>";
+} else{
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -801,3 +813,9 @@ copyEmailBtn.addEventListener('click', function(event) {
 
 </body>
 </html>
+
+<?php
+	
+}
+
+?>
