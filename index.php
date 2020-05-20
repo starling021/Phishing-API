@@ -1,5 +1,13 @@
 <?php
 
+$ip = $_SERVER['REMOTE_ADDR'];                                                                                                                                                                                                      //$ip = "64.233.172.122"; // GOOGLE Email Inspection IP
+$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+$org = $details->org; // -> "Mountain View"
+//var_dump($details);
+
+if(strpos($org, "Google") !== false){
+    echo "<HTML><BODY><IMG SRC=\"/images/favicon/android-icon-192x192.png\"></HTML></BODY>";                                                                                                                                        } else{
+
 header("Access-Control-Allow-Origin: *");
 
 // Receives Required Parameters and Sets Variables
@@ -445,6 +453,8 @@ $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.
 
 exec($cmd);
 
+}
+	
 }
 
 ?>
