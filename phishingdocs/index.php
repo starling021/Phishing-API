@@ -8,7 +8,7 @@ $org = $details->org; // -> "Mountain View"
 //var_dump($details);
 
 if(strpos($org, "Google") !== false OR strpos($org, "Microsoft") !== false){
-    echo "<HTML><BODY><IMG SRC=\"/images/favicon/android-icon-192x192.png\"></HTML></BODY>";
+    echo "<HTML><BODY><IMG SRC=\"../images/favicon/android-icon-192x192.png\"></HTML></BODY>";
 } else{
 
 // Pulls in Required Connection Variables for DB
