@@ -1,5 +1,16 @@
 <?php
 
+// This section of code doesn't allow Gmail or Microsoft to inspect links to avoid blacklisting
+$ip = $_SERVER['REMOTE_ADDR'];
+//$ip = "64.233.172.122"; // GOOGLE Email Inspection IP
+$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+$org = $details->org; // -> "Mountain View"
+//var_dump($details);
+
+if(strpos($org, "Google") !== false OR strpos($org, "Microsoft") !== false){
+    echo "<HTML><BODY><IMG SRC=\"/images/favicon/android-icon-192x192.png\"></HTML></BODY>";
+} else{
+
 // Pulls in Required Connection Variables for DB
 require_once '../config.php';
 
@@ -575,5 +586,5 @@ else {
 <?php
 }
 
-
+}
 ?>
