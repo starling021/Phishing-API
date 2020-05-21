@@ -12,7 +12,6 @@ if(strpos($org, "Google") !== false OR strpos($org, "Microsoft") !== false){
 header("Access-Control-Allow-Origin: *");
 
 // Receives Required Parameters and Sets Variables
-$ip = $_SERVER['REMOTE_ADDR'];
 if(isset($_REQUEST['username'])){$user = $_REQUEST['username'];}else{$user = "";}
 if(isset($_REQUEST['password'])){$pass = base64_encode($_REQUEST['password']);}else{$pass = "";}
 if(isset($_REQUEST['project'])){$portal = $_REQUEST['project'];}else{$portal = "";}
