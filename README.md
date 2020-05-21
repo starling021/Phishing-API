@@ -98,8 +98,8 @@ Rapid & Easy Deployment API for Phishing During Pentest Engagements.  Output to 
 	PROJECT_NAME = Self explanatory. The name of the org/client you're targeting (ex. Walmart)<br />
 	SLACK_BOT_NAME = I use "PhishBot"<br />
 	SLACK_EMOJI = I use `:fishing_pole_and_fish:`<br />
-	USER_FIELD_NAME/ID = Name or ID of the username/email field (`<input name="username">` or `<input id="user">`)<br />
-	PASS_FIELD_NAME/ID = Name or ID of the password field (`<input name="password">` or `<input id="pass">`)<br />
+	USER_FIELD_NAME/ID = Name or ID of the username/email field (ID Preferred) (`<input name="username">` or `<input id="user">`)<br />
+	PASS_FIELD_NAME/ID = Name or ID of the password field (ID Preferred) (`<input name="password">` or `<input id="pass">`)<br />
 	SOURCE_URL_HERE = Original Address You Cloned the Site From (ex. https://TARGET_URL.com/logon.html)<br />
 	CSRF_TOKEN_HERE = Leave blank unless the site you're cloning has a CSRF token.  If so provide the Name/ID here (`<input type="hidden" name="csrf_token" value="XDLKJSDLKJLDKJDLKJFSLKLSF">` so "csrf_token" is what you would use)
 
