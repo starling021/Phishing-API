@@ -619,6 +619,6 @@ $message = ">".$url." was visited by ".$ip.". ".$allowed." (`".$org."`)";
 $cmd = 'curl -s -X POST --data-urlencode \'payload={"channel": "'.$slackchannel.'", "username": "PhishBot", "text": "'.$message.'", "icon_emoji": ":bell:"}\' '.$SlackIncomingWebhookURL.'';
 
 // UNCOMMENT THIS IF YOU WANT ALERTS WHEN PEOPLE VISIT THE API
-exec($cmd);
+//exec($cmd);
 
 ?>
